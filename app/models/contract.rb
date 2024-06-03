@@ -3,9 +3,9 @@ class Contract < ApplicationRecord
 
   has_many :payslips
   has_many :user_contracts
-  has_many :user, throught: :user_contracts
+  has_many :user, through: :user_contracts
   has_many :child_contracts
-  has_many :children, throught: :child_contracts
+  has_many :children, through: :child_contracts
   has_many :events
 
   validates :start_date, presence: true

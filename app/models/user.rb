@@ -6,5 +6,5 @@ class User < ApplicationRecord
 
   has_many :events
   has_many :user_contracts
-  has_many :contrats, throught: :user_contracts
+  has_many :contrats, through: :user_contracts
 end

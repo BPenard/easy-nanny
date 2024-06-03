@@ -1,0 +1,2 @@
+class PayslipController < ApplicationController
+end
