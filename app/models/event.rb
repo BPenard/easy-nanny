@@ -4,6 +4,7 @@ class Event < ApplicationRecord
   belongs_to :contract
   belongs_to :user
   belongs_to :child
+  has_one_attached :photo
 
   validates :date, presence: true
   validates :type, presence: true
