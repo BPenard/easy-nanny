@@ -6,12 +6,14 @@ class CreateContracts < ActiveRecord::Migration[7.1]
       t.string :type
       t.integer :weekly_worked_hours
       t.float :gross_hourly_rate
-      t.references :nanny_id, null: false
-      t.references :parent_id, null: false
+      t.integer :nanny_id, null: false
+      t.integer :parent_id, null: false
 
       t.timestamps
     end
     add_foreign_key :contracts, :users, column: :nanny_id
     add_foreign_key :contracts, :users, column: :parent_id
+    add_index :contracts, :nanny_id
+    add_index :contracts, :parent_id
   end
 end
