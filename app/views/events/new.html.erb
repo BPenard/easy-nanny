@@ -1,0 +1,18 @@
+<div class="border p-5 m-5 rounded-2">
+
+  <div>
+    <h1>Ajouter un Evenement</h1>
+  </div>
+
+  <div>
+      <%= simple_form_for(@event, html: { multipart: true }) do |f| %>
+      <%= f.input :child_id, collection: current_user.children, label: 'Enfant' %>
+      <%= f.input :nanny_id, collection: current_user.nanny, label: 'Nounou' %>
+      <%= f.input :date, as: :date, label: 'Quel jour' %>
+      <%= f.input :type, collection: ["RTT", "Congés", "Absence", "Médicament"] %>
+      <%= f.input :description, as: :text, label: 'Commentaires' %>
+      <%= f.input :photo, as: :file, label: "Ajouter une photo" %>
+      <%= f.submit %>
+    <% end %>
+  </div>
+</div>
