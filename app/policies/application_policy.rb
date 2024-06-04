@@ -9,15 +9,15 @@ class ApplicationPolicy
   end
 
   def index?
-    false
+    true # a modifier en false lorsqu'on fera les policies exactes
   end
 
   def show?
-    false
+    true # a modifier en false lorsqu'on fera les policies exactes
   end
 
   def create?
-    false
+    true # a modifier en false lorsqu'on fera les policies exactes
   end
 
   def new?
@@ -25,7 +25,7 @@ class ApplicationPolicy
   end
 
   def update?
-    false
+    true # a modifier en false lorsqu'on fera les policies exactes
   end
 
   def edit?
@@ -33,7 +33,7 @@ class ApplicationPolicy
   end
 
   def destroy?
-    false
+    true # a modifier en false lorsqu'on fera les policies exactes
   end
 
   class Scope
