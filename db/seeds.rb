@@ -85,57 +85,102 @@ iphigenie_doubtfire.save!
 
 puts 'Creating 5 Children'
 
-children = [
-  {
-    first_name: "Jane 'Eleven'",
-    last_name: "Hopper",
-    birthdate: "01-12-1971"
-  },
-  {
-    first_name: "Mike",
-    last_name: "Wheeler",
-    birthdate: "07-04-1971"
-  },
-  {
-    first_name: "Dustin",
-    last_name: "Henderson",
-    birthdate: "29-05-1971"
-  },
-  {
-    first_name: "Lucas",
-    last_name: "Sinclair",
-    birthdate: "17-01-1971"
-  },
-  {
-    first_name: "Nancy",
-    last_name: "Wheeler",
-    birthdate: "14-10-1967"
-  }
-]
+jane = Child.new(
+  first_name: "Jane 'Eleven'",
+  last_name: "Hopper",
+  birthdate: "01-12-1971"
+)
+jane.user = john_doe
+jane.save!
 
-children.each do |child|
-  new_child = Child.new(
-    first_name: child[:first_name],
-    last_name: child[:last_name],
-    birthdate: child[:birthdate]
-  )
-  new_child.user = User.all.sample
-  new_child.save!
-end
+mike = Child.new(
+  first_name: "Mike",
+  last_name: "Wheeler",
+  birthdate: "07-04-1971"
+)
+
+mike.user = john_doe
+mike.save!
+
+dustin = Child.new(
+  first_name: "Dustin",
+  last_name: "Henderson",
+  birthdate: "29-05-1971"
+)
+
+dustin.user = john_doe
+dustin.save!
+
+lucas = Child.new(
+  first_name: "Lucas",
+  last_name: "Sinclair",
+  birthdate: "17-01-1971"
+)
+lucas.user = jane_smith
+lucas.save!
+
+nancy = Child.new(
+  first_name: "Nancy",
+  last_name: "Wheeler",
+  birthdate: "14-10-1967"
+)
+nancy.user = jane_smith
+nancy.save!
+
+# children = [jane, mike, dustin, lucas, nancy]
+
+# children.each do |child|
+#   new_child = Child.new(
+#     first_name: child[:first_name],
+#     last_name: child[:last_name],
+#     birthdate: child[:birthdate]
+#   )
+#   new_child.user = User.all.sample
+#   new_child.save!
+# end
 
 puts 'Creating 2 contracts'
 
- first_contract = Contract.new(
-   start_date: "01-09-2021",
-   end_date: "30-06-2023",
-   type: "cdi",
-   weekly_worked_hours: 35
- )
+first_contract = Contract.new(
+  start_date: "01-09-2021",
+  end_date: "30-06-2023",
+  type: "cdi",
+  weekly_worked_hours: 35,
+  gross_hourly_rate: 10
+)
+
+first_contract.parent = john_doe
+first_contract.nanny = mary_poppins
+first_contract.save!
+
+second_contract = Contract.new(
+  start_date: "01-01-2022",
+  type: "cdi",
+  weekly_worked_hours: 40,
+  gross_hourly_rate: 12
+)
+
+second_contract.parent = jane_smith
+second_contract.nanny = iphigenie_doubtfire
+second_contract.save!
 
 
+User.all.each do |user|
+  if user.children.count > 0
+    user.children.each do |child|
+      p "je suis là"
+      new_user_contract = ChildrenContract.new
+
+      new_user_contract.child = child
+      new_user_contract.contract = user.contracts.first
+      new_user_contract.save!
+    end
+  end
+end
 
 
 
 puts "- #{User.count} users created"
 puts "- #{Contract.count} contracts created"
 puts "- #{Child.count} children created"
+puts "- #{ChildrenContract.count} user_contracts created"
