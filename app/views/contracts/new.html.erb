@@ -1,0 +1,19 @@
+<div class="border p-5 m-5 rounded-2">
+
+  <div>
+    <h1>Create a new contract</h1>
+  </div>
+
+  <div>
+    <%= simple_form_for(@contract) do |f| %>
+      <%= f.input :nanny_id, collection: User.all_nannies %>
+      <%#= f.input :nanny, collection: current_user.nannies %>
+      <%= f.input :start_date, as: :date, label: 'Start Date' %>
+      <%= f.input :end_date, as: :date, label: 'End Date' %>
+      <%= f.input :type, collection: ["cdd", "cdi"] %>
+      <%= f.input :gross_hourly_rate, as: :float, label: 'Gross Hourly Rate' %>
+      <%= f.input :weekly_worked_hours, collection: (30..50) %>
+      <%= f.submit %>
+    <% end %>
+  </div>
+</div>
