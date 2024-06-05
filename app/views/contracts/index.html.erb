@@ -12,7 +12,7 @@
         </div>
         <div class="border p-2">
           <div>Enfant(s) gardé(s): </div>
-          <%= contract.children.each do |child| %>
+          <% contract.children.each do |child| %>
             <div> <%= child.first_name %> <%= child.last_name %></div>
           <% end %>
           <div> Début du contrat : <%= contract.start_date %></div>

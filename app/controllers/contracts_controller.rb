@@ -8,7 +8,7 @@ class ContractsController < ApplicationController
     @contract = Contract.new(contract_params)
     @contract.parent_id = current_user.id
     @contract.save!
-    redirect_to root_path
+    redirect_to contracts_path
     authorize @contract
   end
 
