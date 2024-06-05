@@ -7,7 +7,9 @@
   <div>
       <%= simple_form_for(@event) do |f| %>
       <%= f.input :child, collection: current_user.children, label: 'Enfant' %>
-      <%#= f.input :nanny_id, collection: current_user.contract, label: 'Nounou' %>
+      <%= f.association :contract, collection: current_user.parent_contracts, value_method: :id, label_method: :nanny, :required => true, prompt: "Please Select" %>
+
+      <%#= f.input :contract, collection: current_user.contracts, label: 'Nounou', value_method: :nanny %>
       <%= f.input :date, as: :date, label: 'Quel jour' %>
       <%= f.input :type, collection: ["RTT", "Congés", "Absence", "Médicament"] %>
       <%= f.input :description, as: :text, label: 'Commentaires' %>
