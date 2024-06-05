@@ -63,7 +63,7 @@ iphigenie_doubtfire = User.new(
   email: "iphigenie.doubtfire@example.com",
   password: "password",
   address: "2640 Steiner Street, San Francisco, United-states",
-  role: "parent",
+  role: "nanny",
   phone_number: "06.18.26.57.13"
 )
 iphigenie_doubtfire.save!
