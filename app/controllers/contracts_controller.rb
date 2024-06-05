@@ -1,6 +1,7 @@
 class ContractsController < ApplicationController
   def new
     @contract = Contract.new
+    authorize @contract
   end
 
   def create
@@ -8,6 +9,7 @@ class ContractsController < ApplicationController
     @contract.parent_id = current_user.id
     @contract.save!
     redirect_to root_path
+    authorize @contract
   end
 
   private
