@@ -1,5 +1,5 @@
 
-  <div class="d-flex flex-column flex-shrink-0 p-3 bg-body-tertiary" style="width: 300px; height: 100vh;">
+  <div class="d-flex flex-column flex-shrink-0 p-3 bg-body-tertiary" style="width: 300px; height: 100vh; position:sticky; top: 0px">
     <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
       <svg class="bi pe-none me-2" width="40" height="32"><use xlink:href="#bootstrap"/></svg>
       <span class="fs-4">Easy Nanny</span>
@@ -41,15 +41,16 @@
     <div class="dropdown">
       <a href="#" class="d-flex align-items-center link-body-emphasis text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
         <%= image_tag "avatar-homme.png", class: "avatar", alt: "user avatar" %>
-        <strong><%= current_user.first_name %></strong>
+        <% if current_user %>
+          <strong><%= current_user.first_name %></strong>
+        <% end %>
       </a>
       <ul class="dropdown-menu text-small shadow">
         <%# <li><a class="dropdown-item" href="#">New project...</a></li>
         <li><a class="dropdown-item" href="#">Settings</a></li> %>
         <li class="dropdown-item "><%= link_to "Profile",  edit_user_registration_path%></li>
-        <li><a class="dropdown-item" href="#">Profile</a></li>
         <li><hr class="dropdown-divider"></li>
-        <li class="dropdown-item "><%= link_to "Sign out", destroy_user_session_path, method: :delete %></li>
+        <li class="dropdown-item "><%= link_to "Sign out", destroy_user_session_path, data: {turbo_method: :delete} %></li>
         <%# <li><a class="dropdown-item" href="#">Sign out</a></li> %>
       </ul>
     </div>
