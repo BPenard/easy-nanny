@@ -175,7 +175,79 @@ User.all.each do |user|
   end
 end
 
+puts 'Creating 7 events'
+
+event1 = Event.new(
+  type: "Médicament",
+  date: "2024-06-12",
+  description: "Enfant malade"
+)
+
+event1.contract = first_contract
+event1.child = dustin
+event1.save!
+
+event2 = Event.new(
+  type: "RTT",
+  date: "2024-06-05",
+  description: "Pose d'un RTT"
+)
+
+event2.contract = second_contract
+event2.child = lucas
+event2.save!
+
+event3 = Event.new(
+  type: "Absence",
+  date: "2024-06-03",
+  description: "N'est pas venue au travail"
+)
+
+event3.contract = second_contract
+event3.child = nancy
+event3.save!
+
+event4 = Event.new(
+  type: "RTT",
+  date: "2024-10-03",
+  description: "Les vacances au soleil"
+)
+
+event4.contract = second_contract
+event4.child = nancy
+event4.save!
+
+event5 = Event.new(
+  type: "Congés",
+  date: "2024-06-06",
+  description: "Vacances bien méritées"
+)
+
+event5.contract = first_contract
+event5.child = dustin
+event5.save!
+
+event6 = Event.new(
+  type: "Congés",
+  date: "2024-06-07",
+  description: "Vacances bien méritées"
+)
+
+event6.contract = first_contract
+event6.child = dustin
+event6.save!
+
+event7 = Event.new(
+  type: "Médicament",
+  date: "2024-06-04",
+  description: "Dustin a été malade toute la nuit"
+)
+
+event7.contract = first_contract
+event7.child = dustin
+event7.save!
 puts "- #{User.count} users created"
 puts "- #{Contract.count} contracts created"
 puts "- #{Child.count} children created"
 puts "- #{ChildContract.count} child_contracts created"
+puts "- #{Event.count} events created"
