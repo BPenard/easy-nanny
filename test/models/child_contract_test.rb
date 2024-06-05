@@ -1,6 +1,6 @@
 require "test_helper"
 
-class ChildrenContractTest < ActiveSupport::TestCase
+class ChildContractTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

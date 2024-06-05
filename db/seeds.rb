@@ -1,6 +1,5 @@
-
-
 puts 'Cleaning the database'
+ChildContract.destroy_all
 Event.destroy_all
 Contract.destroy_all
 Child.destroy_all
@@ -68,7 +67,6 @@ iphigenie_doubtfire = User.new(
   phone_number: "06.18.26.57.13"
 )
 iphigenie_doubtfire.save!
-
 
 # nannies.each do |nanny|
 #   new_nanny = User.new(
@@ -164,24 +162,20 @@ second_contract.parent = jane_smith
 second_contract.nanny = iphigenie_doubtfire
 second_contract.save!
 
-
+puts "Creating ChildContracts"
 User.all.each do |user|
-  if user.children.count > 0
+  if user.children.count > 0 && user.role == "parent"
     user.children.each do |child|
-      # p "je suis là"
-      # new_user_contract = ChildrenContract.new
-
-      # new_user_contract.child = child
-      # new_user_contract.contract = user.contracts.first
-      # new_user_contract.save!
+      child.first_name
+      new_user_contract = ChildContract.new
+      new_user_contract.child = child
+      new_user_contract.contract = user.parent_contracts.first
+      new_user_contract.save!
     end
   end
 end
 
-
-
 puts "- #{User.count} users created"
 puts "- #{Contract.count} contracts created"
 puts "- #{Child.count} children created"
-# puts "- #{ChildrenContract.count} user_contracts created"
-puts "- 0 user_contracts created"
+puts "- #{ChildContract.count} child_contracts created"
