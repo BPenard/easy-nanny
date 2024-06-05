@@ -1,17 +1,31 @@
-<div>
-  <div>My Contracts</div>
-  <div>
+<div class="container w-80 mt-5 ms-5">
+  <div><h1>Mes Contrats</h1></div>
+  <div class="d-flex flex-column">
     <% @contracts.each do |contract| %>
-      <%= contract.nanny.first_name %>
-      <%= contract.nanny.last_name %>
+      <div class="m-2 p-2 border rounded-3 w-50">
+        <div class="border p-2 mb-2">
+          <div>
+          <h4> <%= contract.nanny.first_name %> <%= contract.nanny.last_name %> </h4>
+          </div>
+          <div> Adresse : <%= contract.nanny.address %></div>
+
+        </div>
+        <div class="border p-2">
+          <div> Enfant(s) gardé(s): <%= contract.children %></div>
+          <div> Début du contrat : <%= contract.start_date %></div>
+          <div> Fin du contrat : <%= contract.end_date %></div>
+          <div> Type de contrat : <%= contract.type %></div>
+          <div> Nombre d'heures hebdomadaires : <%= contract.weekly_worked_hours %></div>
+          <div> Taux horaire : <%= contract.gross_hourly_rate %></div>
+
+        </div>
+      </div>
     <% end %>
   </div>
-
-
 </div>
 
-<%# 
-t.date "start_date"
+
+<%# t.date "start_date"
     t.date "end_date"
     t.string "type"
     t.integer "weekly_worked_hours"
@@ -21,4 +35,4 @@ t.date "start_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["nanny_id"], name: "index_contracts_on_nanny_id"
-    t.index ["parent_id"], name: "index_contracts_on_parent_id" %>
+    t.index ["parent_id"], name: "index_contracts_on_parent_id" %> %>
