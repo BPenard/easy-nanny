@@ -177,7 +177,7 @@ end
 
 puts 'Creating 3 events'
 
-event1 = Events.new(
+event1 = Event.new(
   type: "Maladie",
   date: "2024-06-12",
   description: "Enfant malade"
@@ -187,7 +187,7 @@ event1.contract = "first_contract"
 event1.child =  "Dustin"
 event1.save!
 
-event2 = Events.new(
+event2 = Event.new(
   type: "RTT",
   date: "2024-06-05",
   description: "Pose d'un RTT",
@@ -199,7 +199,7 @@ event2.contract = "second_contract"
 event2.child =  "Lucas"
 event2.save!
 
-event3 = Events.new(
+event3 = Event.new(
   type: "Absence",
   date: "2024-06-03",
   description: "N'est pas venue au travail",
