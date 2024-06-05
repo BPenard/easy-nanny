@@ -1,16 +1,25 @@
 <div class="container" style="text-align: center;">
-  <h1>Les derniers événements</h1>
+  <h1>Les événements de la semaine</h1>
 
-  <ul>
-    <% @events.each do |event| %>
-      <li><%= "#{event.date} - #{event.type} concernant #{event.child.first_name}" %></li>
-    <% end %>
-  </ul>
-    <div>
-    <div class="centered-calendar">
-      <%= week_calendar do |date| %>
+<div>
+  <div class="centered-calendar">
+    <%= week_calendar do |date| %>
+      <div>
         <%= date %>
-      <% end %>
-    </div>
+        <ul>
+          <% @events.each do |event| %>
+            <% if date == event.date %>
+              <li><%= "#{event.type} concernant #{event.child.first_name}" %></li>
+            <% end %>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
   </div>
 </div>
+
+<%#
+ <% @events.each do |event| %>
+  <%# if date = event.date %>
+    <%# <li><%= "#{event.type} concernant #{event.child.first_name}" %>
+  <%# <% end %>
