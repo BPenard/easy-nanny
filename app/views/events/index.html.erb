@@ -1,0 +1,8 @@
+
+<h1>Les derniers événements</h1>
+
+<ul>
+  <% @events.each do |event| %>
+    <li><%= "Le #{event.date} il y a un événement de type #{event.type} concernant #{event.child.first_name}" %></li>
+  <% end %>
+</ul>
