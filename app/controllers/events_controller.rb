@@ -7,12 +7,14 @@ class EventsController < ApplicationController
 
   def new
     @event = Event.new
+    authorize @event
   end
 
   def create
     @event = Event.new(event_params)
-    @event.nanny_id = current_user.nanny.id
-    @event.children_id = current_user.children.id
+    # @event.contract_id = current_user.contract.id
+    # @event.children_id = current_user.children.id
+    authorize @event
 
     if @event.save
       redirect_to root_path
@@ -22,6 +24,6 @@ class EventsController < ApplicationController
   end
 
   def event_params
-    params.require(:event).permit(:nanny_id, :child_id, :date, :type)
+    params.require(:event).permit(:contract_id, :child_id, :date, :type)
   end
 end

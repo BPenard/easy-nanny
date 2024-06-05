@@ -5,9 +5,9 @@
   </div>
 
   <div>
-      <%= simple_form_for(@event, html: { multipart: true }) do |f| %>
-      <%= f.input :child_id, collection: current_user.children, label: 'Enfant' %>
-      <%= f.input :nanny_id, collection: current_user.nanny, label: 'Nounou' %>
+      <%= simple_form_for(@event) do |f| %>
+      <%= f.input :child, collection: current_user.children, label: 'Enfant' %>
+      <%#= f.input :nanny_id, collection: current_user.contract, label: 'Nounou' %>
       <%= f.input :date, as: :date, label: 'Quel jour' %>
       <%= f.input :type, collection: ["RTT", "Congés", "Absence", "Médicament"] %>
       <%= f.input :description, as: :text, label: 'Commentaires' %>
