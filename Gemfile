@@ -2,6 +2,10 @@ source "https://rubygems.org"
 
 ruby "3.1.2"
 
+# Wiked PDF
+gem 'wicked_pdf'
+gem 'wkhtmltopdf-binary'
+
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.1.3", ">= 7.1.3.3"
 

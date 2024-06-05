@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8' />
+    <%= wicked_pdf_stylesheet_link_tag "pdf" -%>
+    <%= wicked_pdf_javascript_include_tag "number_pages" %>
+</head>
+<body>
+  <h1>Contrat de Travail</h1>
+  <h2>Assistante Maternelle</h2>
+
+  <div class="section">
+    <div class="section-title">1. Parties du Contrat</div>
+    <p><strong>Salariée :</strong> <%= @contract.nanny.first_name %> <%= @contract.nanny.last_name %>, demeurant à <%= @contract.nanny.address %>.</p>
+    <p><strong>Employeur :</strong> <%= @contract.parent.first_name %> <%= @contract.parent.last_name %>, demeurant à <%= @contract.parent.address %>.</p>
+  </div>
+
+  <div class="section">
+    <div class="section-title">2. Objet du Contrat</div>
+    <p>Le présent contrat a pour objet l'emploi d'une assistante maternelle agréée pour la garde de
+    <% @contract.children.each do |child| %>
+      <div> <%= child.first_name %> <%= child.last_name %></div>
+    <% end %>.</p>
+  </div>
+
+  <div class="section">
+    <div class="section-title">3. Durée et Horaire de Travail</div>
+    <p>Le contrat est conclu pour une durée de <%= @contract.weekly_worked_hours %> heures par mois, à compter du <%= @contract.start_date %>.</p>
+    <p>Les horaires de travail sont les suivants :</p>
+    <ul>
+      <li>Lundi : 9h - 18h</li>
+      <li>Mardi : 9h - 18h</li>
+      <li>Mercredi : 9h - 18h</li>
+      <li>Jeudi : 9h - 18h</li>
+      <li>Vendredi : 9h - 18h</li>
+      <li>Samedi : 9h - 18h</li>
+      <li>Dimanche : 9h - 18h</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <div class="section-title">4. Rémunération</div>
+    <p>La rémunération de l'assistante maternelle est fixée à <%= @contract.gross_hourly_rate %> euros par heure. Le salaire sera versé le <%= @payment_date %> de chaque mois.</p>
+  </div>
+
+  <div class="section">
+    <div class="section-title">5. Congés</div>
+    <p>L'assistante maternelle a droit à 0 jours de congés payés par an :) .</p>
+  </div>
+
+  <div class="section">
+    <div class="section-title">6. Obligations de l'Employeur</div>
+    <p>L'employeur s'engage à fournir toutes les informations nécessaires à l'assistante maternelle concernant les habitudes de l'enfant et à assurer un environnement de travail sain et sécurisé.</p>
+  </div>
+
+  <div class="section">
+    <div class="section-title">7. Obligations de l'Assistante Maternelle</div>
+    <p>L'assistante maternelle s'engage à assurer la garde de l'enfant dans le respect des horaires convenus et à signaler toute absence ou retard éventuel.</p>
+  </div>
+
+  <div class="section">
+    <div class="section-title">8. Résiliation du Contrat</div>
+    <p>Le présent contrat peut être résilié par l'une ou l'autre des parties moyennant un préavis de <%= @notice_period %> jours.</p>
+  </div>
+
+  <div class="section">
+    <div class="section-title">9. Signatures</div>
+    <p>Fait à <%= @location %>, le <%= @current_date %>.</p>
+    <p><strong>Employeur :</strong> ____________________________</p>
+    <p><strong>Assistante Maternelle :</strong> ____________________________</p>
+  </div>
+</body>
+</html>
+</html>
