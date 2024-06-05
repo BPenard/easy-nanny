@@ -20,6 +20,8 @@
           <div> Type de contrat : <%= contract.type %></div>
           <div> Nombre d'heures hebdomadaires : <%= contract.weekly_worked_hours %></div>
           <div> Taux horaire : <%= contract.gross_hourly_rate %></div>
+          <%= link_to 'Télécharger le contrat', contract_path(contract, format: :pdf), class: 'btn btn-primary m-3', target: '_blank' %>
+
 
         </div>
       </div>
