@@ -168,12 +168,12 @@ second_contract.save!
 User.all.each do |user|
   if user.children.count > 0
     user.children.each do |child|
-      p "je suis là"
-      new_user_contract = ChildrenContract.new
+      # p "je suis là"
+      # new_user_contract = ChildrenContract.new
 
-      new_user_contract.child = child
-      new_user_contract.contract = user.contracts.first
-      new_user_contract.save!
+      # new_user_contract.child = child
+      # new_user_contract.contract = user.contracts.first
+      # new_user_contract.save!
     end
   end
 end
@@ -183,4 +183,5 @@ end
 puts "- #{User.count} users created"
 puts "- #{Contract.count} contracts created"
 puts "- #{Child.count} children created"
-puts "- #{ChildrenContract.count} user_contracts created"
+# puts "- #{ChildrenContract.count} user_contracts created"
+puts "- 0 user_contracts created"

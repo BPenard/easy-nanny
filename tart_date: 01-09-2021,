@@ -1,0 +1,336 @@
+[1mdiff --git a/app/models/child.rb b/app/models/child.rb[m
+[1mindex 6e51b34..03b0078 100644[m
+[1m--- a/app/models/child.rb[m
+[1m+++ b/app/models/child.rb[m
+[36m@@ -1,7 +1,8 @@[m
+ class Child < ApplicationRecord[m
+[31m-  has_many :child_contracts[m
+[31m-  has_many :contracts, through: :child_contracts[m
+[32m+[m[32m  has_many :children_contracts[m
+[32m+[m[32m  has_many :contracts, through: :children_contracts[m
+   has_many :events[m
+[32m+[m[32m  belongs_to :user[m
+ [m
+   validates :first_name, presence: true[m
+   validates :last_name, presence: true[m
+[1mdiff --git a/app/models/contract.rb b/app/models/contract.rb[m
+[1mindex ebdbc13..bf54367 100644[m
+[1m--- a/app/models/contract.rb[m
+[1m+++ b/app/models/contract.rb[m
+[36m@@ -5,12 +5,12 @@[m [mclass Contract < ApplicationRecord[m
+   belongs_to :parent, class_name: 'User', foreign_key: 'parent_id'[m
+ [m
+   has_many :payslips[m
+[31m-  has_many :child_contracts[m
+[31m-  has_many :children, through: :child_contracts[m
+[32m+[m[32m  has_many :children_contracts[m
+[32m+[m[32m  has_many :children, through: :children_contracts[m
+   has_many :events[m
+ [m
+   validates :start_date, presence: true[m
+[31m-  validates :end_date, presence: true[m
+[32m+[m[32m  # validates :end_date, presence: true # dans le cas d'un CDI pas de end date[m
+   validates :type, presence: true[m
+   validates :type, inclusion: { in: %w[cdi cdd] }[m
+   validates :weekly_worked_hours, presence: true[m
+[1mdiff --git a/app/models/user.rb b/app/models/user.rb[m
+[1mindex b7a92d0..c6cbb05 100644[m
+[1m--- a/app/models/user.rb[m
+[1m+++ b/app/models/user.rb[m
+[36m@@ -6,6 +6,7 @@[m [mclass User < ApplicationRecord[m
+ [m
+   has_many :events[m
+   has_many :contracts[m
+[32m+[m[32m  has_many :children[m
+   has_many :parent_contracts, class_name: 'Contract', foreign_key: 'parent_id'[m
+   has_many :nannies, through: :parent_contracts, source: :nanny[m
+   has_many :nanny_contracts, class_name: 'Contract', foreign_key: 'nanny_id'[m
+[1mdiff --git a/db/migrate/20240603131434_create_children.rb b/db/migrate/20240603131434_create_children.rb[m
+[1mindex c43c3b7..dda7e22 100644[m
+[1m--- a/db/migrate/20240603131434_create_children.rb[m
+[1m+++ b/db/migrate/20240603131434_create_children.rb[m
+[36m@@ -4,7 +4,7 @@[m [mclass CreateChildren < ActiveRecord::Migration[7.1][m
+       t.string :first_name[m
+       t.string :last_name[m
+       t.date :birthdate[m
+[31m-      t.references :users, null: false, foreign_key: true[m
+[32m+[m[32m      t.references :user, null: false, foreign_key: true[m
+ [m
+       t.timestamps[m
+     end[m
+[1mdiff --git a/db/schema.rb b/db/schema.rb[m
+[1mindex 1edd515..3131297 100644[m
+[1m--- a/db/schema.rb[m
+[1m+++ b/db/schema.rb[m
+[36m@@ -10,7 +10,7 @@[m
+ #[m
+ # It's strongly recommended that you check this file into your version control system.[m
+ [m
+[31m-ActiveRecord::Schema[7.1].define(version: 2024_06_03_153306) do[m
+[32m+[m[32mActiveRecord::Schema[7.1].define(version: 2024_06_03_145305) do[m
+   # These are extensions that must be enabled in order to support this database[m
+   enable_extension "plpgsql"[m
+ [m
+[36m@@ -55,8 +55,10 @@[m [mActiveRecord::Schema[7.1].define(version: 2024_06_03_153306) do[m
+     t.string "first_name"[m
+     t.string "last_name"[m
+     t.date "birthdate"[m
+[32m+[m[32m    t.bigint "user_id", null: false[m
+     t.datetime "created_at", null: false[m
+     t.datetime "updated_at", null: false[m
+[32m+[m[32m    t.index ["user_id"], name: "index_children_on_user_id"[m
+   end[m
+ [m
+   create_table "contracts", force: :cascade do |t|[m
+[36m@@ -64,9 +66,13 @@[m [mActiveRecord::Schema[7.1].define(version: 2024_06_03_153306) do[m
+     t.date "end_date"[m
+     t.string "type"[m
+     t.integer "weekly_worked_hours"[m
+[32m+[m[32m    t.float "gross_hourly_rate"[m
+[32m+[m[32m    t.integer "nanny_id", null: false[m
+[32m+[m[32m    t.integer "parent_id", null: false[m
+     t.datetime "created_at", null: false[m
+     t.datetime "updated_at", null: false[m
+[31m-    t.float "gross_hourly_rate"[m
+[32m+[m[32m    t.index ["nanny_id"], name: "index_contracts_on_nanny_id"[m
+[32m+[m[32m    t.index ["parent_id"], name: "index_contracts_on_parent_id"[m
+   end[m
+ [m
+   create_table "events", force: :cascade do |t|[m
+[36m@@ -97,15 +103,6 @@[m [mActiveRecord::Schema[7.1].define(version: 2024_06_03_153306) do[m
+     t.index ["contract_id"], name: "index_payslips_on_contract_id"[m
+   end[m
+ [m
+[31m-  create_table "user_contracts", force: :cascade do |t|[m
+[31m-    t.bigint "contract_id", null: false[m
+[31m-    t.bigint "user_id", null: false[m
+[31m-    t.datetime "created_at", null: false[m
+[31m-    t.datetime "updated_at", null: false[m
+[31m-    t.index ["contract_id"], name: "index_user_contracts_on_contract_id"[m
+[31m-    t.index ["user_id"], name: "index_user_contracts_on_user_id"[m
+[31m-  end[m
+[31m-[m
+   create_table "users", force: :cascade do |t|[m
+     t.string "email", default: "", null: false[m
+     t.string "encrypted_password", default: "", null: false[m
+[36m@@ -127,10 +124,11 @@[m [mActiveRecord::Schema[7.1].define(version: 2024_06_03_153306) do[m
+   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"[m
+   add_foreign_key "child_contracts", "children"[m
+   add_foreign_key "child_contracts", "contracts"[m
+[32m+[m[32m  add_foreign_key "children", "users"[m
+[32m+[m[32m  add_foreign_key "contracts", "users", column: "nanny_id"[m
+[32m+[m[32m  add_foreign_key "contracts", "users", column: "parent_id"[m
+   add_foreign_key "events", "children"[m
+   add_foreign_key "events", "contracts"[m
+   add_foreign_key "events", "users"[m
+   add_foreign_key "payslips", "contracts"[m
+[31m-  add_foreign_key "user_contracts", "contracts"[m
+[31m-  add_foreign_key "user_contracts", "users"[m
+ end[m
+[1mdiff --git a/db/seeds.rb b/db/seeds.rb[m
+[1mindex 9d57a1f..afc91a6 100644[m
+[1m--- a/db/seeds.rb[m
+[1m+++ b/db/seeds.rb[m
+[36m@@ -1,19 +1,186 @@[m
+ [m
+ [m
+ puts 'Cleaning the database'[m
+[31m-[m
+[32m+[m[32mEvent.destroy_all[m
+[32m+[m[32mContract.destroy_all[m
+[32m+[m[32mChild.destroy_all[m
+[32m+[m[32mUser.destroy_all[m
+ [m
+ puts 'Creating 2 Parents'[m
+ [m
+[31m-parents = [][m
+[32m+[m[32mjohn_doe = User.new([m
+[32m+[m[32m  first_name: "John",[m
+[32m+[m[32m  last_name: "Doe",[m
+[32m+[m[32m  email: "john.doe@example.com",[m
+[32m+[m[32m  password: "password",[m
+[32m+[m[32m  address: "12 Rue de la Liberté, 75003 Paris, France",[m
+[32m+[m[32m  role: "parent",[m
+[32m+[m[32m  phone_number: "06.03.23.47.23"[m
+[32m+[m[32m)[m
+[32m+[m[32mjohn_doe.save![m
+[32m+[m
+[32m+[m[32mjane_smith = User.new([m
+[32m+[m[32m  first_name: "Jane",[m
+[32m+[m[32m  last_name: "Smith",[m
+[32m+[m[32m  email: "jane.smith@example.com",[m
+[32m+[m[32m  password: "password",[m
+[32m+[m[32m  address: "25 Avenue des Champs-Élysées, 75008 Paris, France",[m
+[32m+[m[32m  role: "parent",[m
+[32m+[m[32m  phone_number: "06.04.26.37.93"[m
+[32m+[m[32m)[m
+[32m+[m[32mjane_smith.save![m
+[32m+[m
+[32m+[m[32m# parents = [john_doe, jane_smith][m
+ [m
+[32m+[m[32m# parents.each do |user|[m
+[32m+[m[32m#   new_user = User.new([m
+[32m+[m[32m#     first_name: user[:first_name],[m
+[32m+[m[32m#     last_name: user[:last_name],[m
+[32m+[m[32m#     email: user[:email],[m
+[32m+[m[32m#     password: user[:password],[m
+[32m+[m[32m#     address: user[:address],[m
+[32m+[m[32m#     role: user[:role],[m
+[32m+[m[32m#     phone_number: user[:phone_number][m
+[32m+[m[32m#   )[m
+[32m+[m[32m#   new_user.save![m
+[32m+[m[32m# end[m
+ [m
+ puts 'Creating 2 Nannies'[m
+ [m
+[32m+[m[32mmary_poppins = User.new([m
+[32m+[m[32m  first_name: "Mary",[m
+[32m+[m[32m  last_name: "Poppins",[m
+[32m+[m[32m  email: "mary.poppins@example.com",[m
+[32m+[m[32m  password: "password",[m
+[32m+[m[32m  address: "number 17 Cherry Tree Lane, London, England",[m
+[32m+[m[32m  role: "nanny",[m
+[32m+[m[32m  phone_number: "07.12.21.47.23"[m
+[32m+[m[32m)[m
+[32m+[m[32mmary_poppins.save![m
+[32m+[m
+[32m+[m[32miphigenie_doubtfire = User.new([m
+[32m+[m[32m  first_name: "Iphigénie",[m
+[32m+[m[32m  last_name: "Doubtfire",[m
+[32m+[m[32m  email: "iphigenie.doubtfire@example.com",[m
+[32m+[m[32m  password: "password",[m
+[32m+[m[32m  address: "2640 Steiner Street, San Francisco, United-states",[m
+[32m+[m[32m  role: "parent",[m
+[32m+[m[32m  phone_number: "06.18.26.57.13"[m
+[32m+[m[32m)[m
+[32m+[m[32miphigenie_doubtfire.save![m
+[32m+[m
+[32m+[m
+[32m+[m[32m# nannies.each do |nanny|[m
+[32m+[m[32m#   new_nanny = User.new([m
+[32m+[m[32m#     first_name: nanny[:first_name],[m
+[32m+[m[32m#     last_name: nanny[:last_name],[m
+[32m+[m[32m#     email: nanny[:email],[m
+[32m+[m[32m#     password: nanny[:password],[m
+[32m+[m[32m#     address: nanny[:address],[m
+[32m+[m[32m#     role: nanny[:role],[m
+[32m+[m[32m#     phone_number: nanny[:phone_number][m
+[32m+[m[32m#   )[m
+[32m+[m[32m#   new_nanny.save![m
+[32m+[m[32m# end[m
+[32m+[m
+ puts 'Creating 5 Children'[m
+ [m
+[32m+[m[32mjane = Child.new([m
+[32m+[m[32m  first_name: "Jane 'Eleven'",[m
+[32m+[m[32m  last_name: "Hopper",[m
+[32m+[m[32m  birthdate: "01-12-1971"[m
+[32m+[m[32m)[m
+[32m+[m[32mjane.user = john_doe[m
+[32m+[m[32mjane.save![m
+[32m+[m
+[32m+[m[32mmike = Child.new([m
+[32m+[m[32m  first_name: "Mike",[m
+[32m+[m[32m  last_name: "Wheeler",[m
+[32m+[m[32m  birthdate: "07-04-1971"[m
+[32m+[m[32m)[m
+[32m+[m
+[32m+[m[32mmike.user = john_doe[m
+[32m+[m[32mmike.save![m
+[32m+[m
+[32m+[m[32mdustin = Child.new([m
+[32m+[m[32m  first_name: "Dustin",[m
+[32m+[m[32m  last_name: "Henderson",[m
+[32m+[m[32m  birthdate: "29-05-1971"[m
+[32m+[m[32m)[m
+[32m+[m
+[32m+[m[32mdustin.user = john_doe[m
+[32m+[m[32mdustin.save![m
+[32m+[m
+[32m+[m[32mlucas = Child.new([m
+[32m+[m[32m  first_name: "Lucas",[m
+[32m+[m[32m  last_name: "Sinclair",[m
+[32m+[m[32m  birthdate: "17-01-1971"[m
+[32m+[m[32m)[m
+[32m+[m[32mlucas.user = jane_smith[m
+[32m+[m[32mlucas.save![m
+[32m+[m
+[32m+[m[32mnancy = Child.new([m
+[32m+[m[32m  first_name: "Nancy",[m
+[32m+[m[32m  last_name: "Wheeler",[m
+[32m+[m[32m  birthdate: "14-10-1967"[m
+[32m+[m[32m)[m
+[32m+[m[32mnancy.user = jane_smith[m
+[32m+[m[32mnancy.save![m
+[32m+[m
+[32m+[m[32m# children = [jane, mike, dustin, lucas, nancy][m
+[32m+[m
+[32m+[m[32m# children.each do |child|[m
+[32m+[m[32m#   new_child = Child.new([m
+[32m+[m[32m#     first_name: child[:first_name],[m
+[32m+[m[32m#     last_name: child[:last_name],[m
+[32m+[m[32m#     birthdate: child[:birthdate][m
+[32m+[m[32m#   )[m
+[32m+[m[32m#   new_child.user = User.all.sample[m
+[32m+[m[32m#   new_child.save![m
+[32m+[m[32m# end[m
+[32m+[m
+ puts 'Creating 2 contracts'[m
+ [m
+[32m+[m[32mfirst_contract = Contract.new([m
+[32m+[m[32m  start_date: "01-09-2021",[m
+[32m+[m[32m  end_date: "30-06-2023",[m
+[32m+[m[32m  type: "cdi",[m
+[32m+[m[32m  weekly_worked_hours: 35,[m
+[32m+[m[32m  gross_hourly_rate: 10[m
+[32m+[m[32m)[m
+[32m+[m
+[32m+[m[32mfirst_contract.parent = john_doe[m
+[32m+[m[32mfirst_contract.nanny = mary_poppins[m
+[32m+[m[32mfirst_contract.save![m
+[32m+[m
+[32m+[m[32msecond_contract = Contract.new([m
+[32m+[m[32m  start_date: "01-01-2022",[m
+[32m+[m[32m  type: "cdi",[m
+[32m+[m[32m  weekly_worked_hours: 40,[m
+[32m+[m[32m  gross_hourly_rate: 12[m
+[32m+[m[32m)[m
+[32m+[m
+[32m+[m[32msecond_contract.parent = jane_smith[m
+[32m+[m[32msecond_contract.nanny = iphigenie_doubtfire[m
+[32m+[m[32msecond_contract.save![m
+[32m+[m
+[32m+[m
+[32m+[m[32mUser.all.each do |user|[m
+[32m+[m[32m  if user.children.count > 0[m
+[32m+[m[32m    user.children.each do |child|[m
+[32m+[m[32m      p "je suis là"[m
+[32m+[m[32m      new_user_contract = ChildrenContract.new[m
+[32m+[m
+[32m+[m[32m      new_user_contract.child = child[m
+[32m+[m[32m      new_user_contract.contract = user.contracts.first[m
+[32m+[m[32m      new_user_contract.save![m
+[32m+[m[32m    end[m
+[32m+[m[32m  end[m
+[32m+[m[32mend[m
+[32m+[m
+ [m
+ [m
+[31m-# puts "Created #{User.count} users and #{Bike.count} bikes."[m
+[32m+[m[32mputs "- #{User.count} users created"[m
+[32m+[m[32mputs "- #{Contract.count} contracts created"[m
+[32m+[m[32mputs "- #{Child.count} children created"[m
+[32m+[m[32mputs "- #{ChildrenContract.count} user_contracts created"[m
+[1mdiff --git a/test/models/user_contract_test.rb b/test/models/user_contract_test.rb[m
+[1mnew file mode 100644[m
+[1mindex 0000000..03ffcda[m
+[1m--- /dev/null[m
+[1m+++ b/test/models/user_contract_test.rb[m
+[36m@@ -0,0 +1,7 @@[m
+[32m+[m[32mrequire "test_helper"[m
+[32m+[m
+[32m+[m[32mclass UserContractTest < ActiveSupport::TestCase[m
+[32m+[m[32m  # test "the truth" do[m
+[32m+[m[32m  #   assert true[m
+[32m+[m[32m  # end[m
+[32m+[m[32mend[m
