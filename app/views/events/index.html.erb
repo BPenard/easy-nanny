@@ -1,8 +1,16 @@
+<div class="container" style="text-align: center;">
+  <h1>Les derniers événements</h1>
 
-<h1>Les derniers événements</h1>
-
-<ul>
-  <% @events.each do |event| %>
-    <li><%= "Le #{event.date} il y a un événement de type #{event.type} concernant #{event.child.first_name}" %></li>
-  <% end %>
-</ul>
+  <ul>
+    <% @events.each do |event| %>
+      <li><%= "#{event.date} - #{event.type} concernant #{event.child.first_name}" %></li>
+    <% end %>
+  </ul>
+    <div>
+    <div class="centered-calendar">
+      <%= week_calendar do |date| %>
+        <%= date %>
+      <% end %>
+    </div>
+  </div>
+</div>
