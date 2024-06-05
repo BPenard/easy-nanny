@@ -15,4 +15,8 @@ class Contract < ApplicationRecord
   validates :type, inclusion: { in: %w[cdi cdd] }
   validates :weekly_worked_hours, presence: true
   validates :gross_hourly_rate, presence: true
+
+  def display_nanny_first_name
+    nanny.first_name
+  end
 end

@@ -7,6 +7,8 @@ class EventsController < ApplicationController
 
   def new
     @event = Event.new
+    # @nannies = [[1, "Nannie 1"], [2, "Nannie 2"]]
+    # authorize @nannies
     authorize @event
   end
 
@@ -17,7 +19,6 @@ class EventsController < ApplicationController
     authorize @event
 
     if @event.save!
-      raise
       redirect_to root_path
     else
       render :new, status: :unprocessable_entity
