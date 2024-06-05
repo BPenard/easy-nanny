@@ -1,6 +1,6 @@
 class Child < ApplicationRecord
-  has_many :children_contracts
-  has_many :contracts, through: :children_contracts
+  has_many :child_contracts
+  has_many :contracts, through: :child_contracts
   has_many :events
   belongs_to :user
 
