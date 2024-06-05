@@ -1,0 +1,18 @@
+<div class="container">
+
+<h1>Children Index</h1>
+  <% @children.each do |child|%>
+  <ul>
+    <li>
+        <%= child.first_name %>
+        <%= child.last_name %>
+        <%= link_to "edit", edit_child_path(child)%>
+    </li>
+  </ul>
+
+  <% end %>
+
+  <%= link_to "Add a child", new_child_path%>
+
+
+</div>
