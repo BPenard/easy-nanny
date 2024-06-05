@@ -12,6 +12,10 @@ class ContractsController < ApplicationController
     authorize @contract
   end
 
+  def index
+    @contracts = policy_scope(Contract)
+  end
+
   private
 
   def contract_params

@@ -1,8 +1,8 @@
 class EventsController < ApplicationController
-
   def index
     @events = policy_scope(Event)
-    render 'welcome'
+    @events = Event.all
+    # render 'welcome'
   end
 
   def new
