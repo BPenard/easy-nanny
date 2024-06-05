@@ -175,7 +175,45 @@ User.all.each do |user|
   end
 end
 
+puts 'Creating 3 events'
+
+event1 = Events.new(
+  type: "Maladie",
+  date: "2024-06-12",
+  description: "Enfant malade"
+)
+
+event1.contract = "first_contract"
+event1.child =  "Dustin"
+event1.save!
+
+event2 = Events.new(
+  type: "RTT",
+  date: "2024-06-05",
+  description: "Pose d'un RTT",
+  contract_id: "1",
+  child_id: "1"
+)
+
+event2.contract = "second_contract"
+event2.child =  "Lucas"
+event2.save!
+
+event3 = Events.new(
+  type: "Absence",
+  date: "2024-06-03",
+  description: "N'est pas venue au travail",
+  contract_id: "1",
+  child_id: "1"
+)
+
+event3.contract = "second_contract"
+event3.child =  "Nancy"
+event3.save!
+
+
 puts "- #{User.count} users created"
 puts "- #{Contract.count} contracts created"
 puts "- #{Child.count} children created"
 puts "- #{ChildContract.count} child_contracts created"
+puts "- #{Event.count} events created"
