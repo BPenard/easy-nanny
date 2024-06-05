@@ -80,13 +80,11 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_03_145305) do
     t.date "date"
     t.string "type"
     t.bigint "contract_id", null: false
-    t.bigint "user_id", null: false
     t.bigint "child_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["child_id"], name: "index_events_on_child_id"
     t.index ["contract_id"], name: "index_events_on_contract_id"
-    t.index ["user_id"], name: "index_events_on_user_id"
   end
 
   create_table "payslips", force: :cascade do |t|
@@ -129,6 +127,5 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_03_145305) do
   add_foreign_key "contracts", "users", column: "parent_id"
   add_foreign_key "events", "children"
   add_foreign_key "events", "contracts"
-  add_foreign_key "events", "users"
   add_foreign_key "payslips", "contracts"
 end

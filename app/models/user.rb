@@ -4,7 +4,6 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  has_many :events
   has_many :contracts
   has_many :children
   has_many :parent_contracts, class_name: 'Contract', foreign_key: 'parent_id'
