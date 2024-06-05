@@ -25,6 +25,7 @@
         <% end %>
       </li>
       <li>
+        <%= link_to new_event_path, class: "nav-link link-body-emphasis" do %>
         <%= link_to contracts_path, class: "nav-link link-body-emphasis" do %>
           <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#table"/></svg>
           Voir mes contrats
@@ -34,6 +35,7 @@
         <a href="#" class="nav-link link-body-emphasis">
           <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#grid"/></svg>
           Déclarer un événement
+          <% end %>
         </a>
       </li>
       <li>
