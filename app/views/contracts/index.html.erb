@@ -1,0 +1,24 @@
+<div>
+  <div>My Contracts</div>
+  <div>
+    <% @contracts.each do |contract| %>
+      <%= contract.nanny.first_name %>
+      <%= contract.nanny.last_name %>
+    <% end %>
+  </div>
+
+
+</div>
+
+<%# 
+t.date "start_date"
+    t.date "end_date"
+    t.string "type"
+    t.integer "weekly_worked_hours"
+    t.float "gross_hourly_rate"
+    t.integer "nanny_id", null: false
+    t.integer "parent_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["nanny_id"], name: "index_contracts_on_nanny_id"
+    t.index ["parent_id"], name: "index_contracts_on_parent_id" %>

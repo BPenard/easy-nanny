@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   root to: "pages#home"
 
   resources :children, only: %i[new create]
-  resources :contracts, only: %i[new create edit update]
+  resources :contracts, only: %i[new create index show edit update]
   resources :payslips, only: %i[index show]
   resources :events, only: %i[index show new create]
   resources :user_contracts
