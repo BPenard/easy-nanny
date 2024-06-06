@@ -1,0 +1,18 @@
+<div class="container">
+  <h1>Payslip : <%= @payslip.id %></h1>
+
+  <ul>
+    <li>Contract ID : <%=@payslip.contract.id  %></li>
+    <li>Month of payslip : <%=@payslip.month_of_payslip.strftime("%B %Y")  %></li>
+    <li>Business days of the month : <%=@business_days%></li>
+    <li>Paid amount : <%=@payslip.paid_amount  %></li>
+    <li>Payment Date : <%= @payslip.payment_date %></li>
+    <li>Employer contributions : <%= @payslip.employer_contributions %></li>
+    <li>Employee contributions : <%= @payslip.employee_contributions %></li>
+    <li>Gross salary : <%= @payslip.gross_salary %></li>
+    <li>Tax rate : <%= @payslip.tax_rate %></li>
+  </ul>
+
+
+
+</div>

@@ -1,4 +1,14 @@
 <div class="container">
+<h2>Mes contrats</h2>
+ <% @contracts.each do |contract| %>
+    <ul>
+      <li>
+      <%= contract.id %>
+      <%= link_to "Create new payslip on this contract", contract_payslips_path(contract), data: {turbo_method: :post}%>
+      </li>
+    </ul>
+  <% end %>
+
   <h1>Liste des payslips</h1>
 
   <% @payslips.each do |payslip| %>
