@@ -16,6 +16,30 @@ class ContractsController < ApplicationController
     @contracts = policy_scope(Contract)
   end
 
+  def show
+    @contract = Contract.find(params[:id])
+    authorize @contract
+    respond_to do |format|
+      format.html
+      format.pdf do
+        render pdf: "Contrat de travail",
+               template: "contracts/show"
+      end
+    end
+  end
+
+  def edit
+    @contract = Contract.find(params[:id])
+    authorize @contract
+  end
+
+  def update
+    @contract = Contract.find(params[:id])
+    @contract.update(contract_params)
+    authorize @contract
+    redirect_to contracts_path
+  end
+
   private
 
   def contract_params
