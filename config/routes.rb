@@ -5,9 +5,9 @@ Rails.application.routes.draw do
   resources :children, only: %i[new create index show edit update]
   resources :contracts, only: %i[new create index show edit update]
   resources :payslips, only: %i[index show]
-  resources :events, only: %i[index show new create]
+  resources :events, only: %i[show new create]
   resources :user_contracts
   resources :child_contracts
 
-  # get '/welcome', to: 'events#index'
+  get '/welcome', to: 'events#index'
 end
