@@ -1,0 +1,33 @@
+.simple-calendar {
+  table {
+    min-height: 50vh;
+  }
+  .today {
+    background-color: #faf3dd;
+  }
+}
+
+.event {
+  color: white;
+  padding: 8px 24px;
+  border-radius: 4px;
+  background: #1edd88;
+  transition: background 0.3s ease;
+}
+
+.event:hover {
+  background: #1bcb7f;
+  color: white;
+}
+
+// .simple-calendar.today {
+//   background-color: red;
+// }
+
+// .simple-calendar.has-events {
+//   background-color: green;
+// }
+
+// .simple-calendar.future {
+//   background-color: white;
+// }
