@@ -1,5 +1,13 @@
 <div class="container">
-  <h1>Payslip : <%= @payslip.id %></h1>
+  <div>
+    <h1><%=@payslip.contract.nanny.first_name %> <%=  @payslip.contract.nanny.last_name %></h1>
+    <h2><%=@payslip.month_of_payslip.strftime("%B %Y")%></h2>
+  </div>
+
+  <%#= link_to "See last payslip", contract_payslip_path(contract, contract.payslips.last), class: "btn btn-outline-primary"%>
+
+
+
 
   <ul>
     <li>Contract ID : <%=@payslip.contract.id  %></li>
