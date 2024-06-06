@@ -24,6 +24,10 @@ class ApplicationController < ActionController::Base
   private
 
   def skip_pundit?
-    devise_controller? || params[:controller] =~ /(^(rails_)?admin)|(^pages$)/
+    devise_controller? || params[:controller] =~ /(^(rails_)?admin)|(^pages$)/ || contract_intake_controller?
+  end
+
+  def contract_intake_controller?
+    params[:controller] == "contract_intake/nanny_contracts" || params[:controller] == "contract_intake/information_contracts"
   end
 end

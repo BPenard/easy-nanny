@@ -1,0 +1,19 @@
+.breadcrumb {
+  margin: 10px 0;
+}
+.breadcrumb ol {
+  padding: 0;
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+}
+.breadcrumb li {
+  flex: 1;
+  text-align: center;
+  padding: 10px;
+  border-bottom: 2px solid #ccc;
+}
+.breadcrumb li.active {
+  font-weight: bold;
+  border-bottom: 2px solid #007bff;
+}

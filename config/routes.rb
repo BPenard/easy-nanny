@@ -11,6 +11,10 @@ Rails.application.routes.draw do
 
   resources :user_contracts
   resources :child_contracts
+  namespace :contract_intake do
+    resources :nanny_contracts, only: %i[new create]
+    resources :information_contracts, only: %i[new create]
+  end
 
   get '/welcome', to: 'events#index'
 end
