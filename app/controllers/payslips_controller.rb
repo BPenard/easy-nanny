@@ -24,6 +24,7 @@ class PayslipsController < ApplicationController
     @payslip.paid_amount = paid_amount(@payslip.gross_salary, @payslip.employee_contributions)
 
     @payslip.save!
+    redirect_to contract_payslip_path(@contract, @payslip)
 
     authorize @payslip
     authorize @contract
