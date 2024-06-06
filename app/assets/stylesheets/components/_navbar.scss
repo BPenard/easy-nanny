@@ -1,14 +1,3 @@
-// html,
-// body {
-//   height: 100%;
-// }
-
-// body {
-//   min-height: 100vh;
-//   min-height: -webkit-fill-available;
-//   display: flex;
-// }
-
 main {
   height: 100vh;
   height: -webkit-fill-available;
@@ -16,6 +5,11 @@ main {
   overflow-x: auto;
   overflow-y: hidden;
   flex-grow: 1;
+  background: transparent;
+}
+
+.bg-body-tertiary {
+  background: transparent; /* Fond transparent pour la navbar */
 }
 
 .dropdown-toggle {
