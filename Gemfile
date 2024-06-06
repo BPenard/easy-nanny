@@ -53,6 +53,7 @@ gem "devise"
 gem "pundit"
 gem "simple_calendar"
 gem 'cloudinary'
+gem 'rails-i18n', '~> 7.0.0'
 
 # Wiked PDF
 gem 'wicked_pdf'

@@ -1,25 +1,12 @@
 <div class="container" style="text-align: center;">
   <h1>Les événements de la semaine</h1>
 
-<div>
-  <div class="centered-calendar">
-    <%= week_calendar do |date| %>
-      <div>
-        <%= date %>
-        <ul>
-          <% @events.each do |event| %>
-            <% if date == event.date %>
-              <li><%= "#{event.type} concernant #{event.child.first_name}" %></li>
-            <% end %>
-          <% end %>
-        </ul>
-      </div>
-    <% end %>
-  </div>
-</div>
+<%= week_calendar(attribute: :date, events: @events) do |date, events| %>
+  <%= date %>
 
-<%#
- <% @events.each do |event| %>
-  <%# if date = event.date %>
-    <%# <li><%= "#{event.type} concernant #{event.child.first_name}" %>
-  <%# <% end %>
+  <% events.each do |event| %>
+    <div class="event">
+      <p><%= event.type %></p>
+    </div>
+  <% end %>
+<% end %>

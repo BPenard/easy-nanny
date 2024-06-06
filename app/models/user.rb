@@ -4,7 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  has_many :contracts
+  # has_many :contracts
   has_many :children
   has_many :parent_contracts, class_name: 'Contract', foreign_key: 'parent_id'
   has_many :nannies, through: :parent_contracts, source: :nanny
@@ -14,6 +14,25 @@ class User < ApplicationRecord
   # methodes de classe
   scope :all_nannies, -> { where("role = ?", "nanny") }
   scope :all_parents, -> { where("role = ?", "parent") }
+
+  def events
+  end
+
+  def nanny?
+    self.role == "nanny"
+  end
+
+  def parent?
+    self.role == "parent"
+  end
+
+  def events
+    Event.where(contract: nanny? ? nanny_contracts : parent_contracts)
+  end
+
+  # User.pluck(:role).uniq.each do |role|
+  #   define_method("#{role}?") { self.role == role }
+  # end
 
 end
 

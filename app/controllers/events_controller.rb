@@ -1,8 +1,9 @@
 class EventsController < ApplicationController
   def index
     @events = policy_scope(Event)
-    @events = Event.all
-    # render 'welcome'
+    start_date = params.fetch(:start_date, Date.today).to_date
+
+    @events = @events.where("date >= ?", start_date.beginning_of_week)
   end
 
   def new
