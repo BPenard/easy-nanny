@@ -29,11 +29,9 @@ class PayslipsController < ApplicationController
     authorize @contract
   end
 
-
   private
 
   def business_days_in_month(date)
-    # raise
     # Calcul la date de début et de fin du mois
     start_date = Date.new(date.year, date.month, 1)
     end_date = Date.new(date.year, date.month + 1, 1).prev_day
@@ -64,6 +62,4 @@ class PayslipsController < ApplicationController
   def paid_amount(gross_salary, employee_contributions)
     gross_salary - employee_contributions
   end
-
-
 end

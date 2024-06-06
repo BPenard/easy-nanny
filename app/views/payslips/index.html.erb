@@ -3,17 +3,19 @@
  <% @contracts.each do |contract| %>
     <ul>
       <li>
-      <%= contract.id %>
-      <%= link_to "Create new payslip on this contract", contract_payslips_path(contract), data: {turbo_method: :post}%>
+      <%= contract.nanny.first_name %>
+      <%= link_to "Create new payslip on this contract", contract_payslips_path(contract), data: {turbo_method: :post}, class: "btn btn-primary"%>
       </li>
+        <h2>Liste des payslips</h2>
+        <% contract.payslips.each do |payslip| %>
+          <ul>
+            <li><%= link_to payslip.id, contract_payslip_path(payslip.contract_id, payslip)%></li>
+          </ul>
+        <% end %>
+
+
     </ul>
   <% end %>
 
-  <h1>Liste des payslips</h1>
 
-  <% @payslips.each do |payslip| %>
-    <ul>
-      <li><%= link_to payslip.id, payslip_path(payslip)%></li>
-    </ul>
-  <% end %>
 </div>
