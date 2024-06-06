@@ -9,8 +9,8 @@
       <%= contract.nanny.last_name %>
     </div>
     <p>Contract id : <%= contract.id %></p>
-    <p>last payslip : <%= contract.payslips.last.month_of_payslip.strftime("%B %Y") %> </p>
       <% if contract.payslips.last %>
+        <p>last payslip : <%= contract.payslips.last.month_of_payslip.strftime("%B %Y") %> </p>
         <%= link_to "See last payslip", contract_payslip_path(contract, contract.payslips.last), class: "btn btn-outline-primary"%>
       <% end %>
       <%= link_to "Create new payslip on this contract", contract_payslips_path(contract), data: {turbo_method: :post}, class: "btn btn-primary"%>
