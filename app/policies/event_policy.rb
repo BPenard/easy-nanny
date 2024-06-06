@@ -8,7 +8,8 @@ class EventPolicy < ApplicationPolicy
   class Scope < ApplicationPolicy::Scope
     # NOTE: Be explicit about which records you allow access to!
     def resolve
-      scope.all
+      user.events
+      # scope.where(user: event.contract.user)
     end
   end
 

@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   end
   resources :payslips, only: %i[index]
   resources :events, only: %i[index show new create]
+
   resources :user_contracts
   resources :child_contracts
 

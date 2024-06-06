@@ -28,6 +28,18 @@ class ContractsController < ApplicationController
     end
   end
 
+  def edit
+    @contract = Contract.find(params[:id])
+    authorize @contract
+  end
+
+  def update
+    @contract = Contract.find(params[:id])
+    @contract.update(contract_params)
+    authorize @contract
+    redirect_to contracts_path
+  end
+
   private
 
   def contract_params
