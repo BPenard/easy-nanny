@@ -1,0 +1,9 @@
+<div class="container">
+  <h1>Liste des payslips</h1>
+
+  <% @payslips.each do |payslip| %>
+    <ul>
+      <li><%= link_to payslip.id, payslip_path(payslip)%></li>
+    </ul>
+  <% end %>
+</div>
