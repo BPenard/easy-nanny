@@ -139,7 +139,16 @@ GEM
       multipart-post (~> 2)
     faraday-net_http (3.1.0)
       net-http
-    ffi (1.17.0)
+    ffi (1.17.0-aarch64-linux-gnu)
+    ffi (1.17.0-aarch64-linux-musl)
+    ffi (1.17.0-arm-linux-gnu)
+    ffi (1.17.0-arm-linux-musl)
+    ffi (1.17.0-arm64-darwin)
+    ffi (1.17.0-x86-linux-gnu)
+    ffi (1.17.0-x86-linux-musl)
+    ffi (1.17.0-x86_64-darwin)
+    ffi (1.17.0-x86_64-linux-gnu)
+    ffi (1.17.0-x86_64-linux-musl)
     font-awesome-sass (6.5.2)
       sassc (~> 2.0)
     globalid (1.2.1)
@@ -309,25 +318,24 @@ GEM
     websocket-extensions (0.1.5)
     wicked_pdf (2.8.0)
       activesupport
-    wkhtmltopdf-binary (0.12.6.7)
     xpath (3.2.0)
       nokogiri (~> 1.8)
     zeitwerk (2.6.15)
 
 PLATFORMS
   aarch64-linux
-  aarch64-linux
+  aarch64-linux-gnu
   aarch64-linux-musl
   arm-linux
-  arm-linux
+  arm-linux-gnu
   arm-linux-musl
   arm64-darwin
   x86-linux
-  x86-linux
+  x86-linux-gnu
   x86-linux-musl
   x86_64-darwin
   x86_64-linux
-  x86_64-linux
+  x86_64-linux-gnu
   x86_64-linux-musl
 
 DEPENDENCIES
@@ -358,10 +366,9 @@ DEPENDENCIES
   tzinfo-data
   web-console
   wicked_pdf
-  wkhtmltopdf-binary
 
 RUBY VERSION
    ruby 3.1.2p20
 
 BUNDLED WITH
-   2.5.9
+   2.5.11
