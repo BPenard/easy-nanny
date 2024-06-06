@@ -55,7 +55,7 @@ gem "simple_calendar"
 gem 'cloudinary'
 
 # Wiked PDF
-# gem 'wicked_pdf'
+gem 'wicked_pdf'
 # gem 'wkhtmltopdf-binary'
 
 group :development, :test do
