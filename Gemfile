@@ -53,6 +53,7 @@ gem "sassc-rails"
 gem "pundit"
 gem "simple_calendar", "~> 2.4"
 gem 'cloudinary'
+gem 'rails-i18n', '~> 7.0.0'
 
 
 
