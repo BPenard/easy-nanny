@@ -1,4 +1,5 @@
 puts 'Cleaning the database'
+Payslip.destroy_all
 ChildContract.destroy_all
 Event.destroy_all
 Contract.destroy_all
