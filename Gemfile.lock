@@ -1,4 +1,11 @@
 GIT
+  remote: https://github.com/ghbozz/stomp
+  revision: b167368618a0ec76a18c622d98f4d315cf5dcf86
+  specs:
+    stomp (0.1.0)
+      activesupport
+
+GIT
   remote: https://github.com/heartcombo/simple_form.git
   revision: d3a594920a14a692836392b5a7c0cd4708e25cb3
   specs:
@@ -139,9 +146,9 @@ GEM
       multipart-post (~> 2)
     faraday-net_http (3.1.0)
       net-http
-    ffi (1.17.0)
     ffi (1.17.0-arm64-darwin)
     ffi (1.17.0-x86_64-darwin)
+    ffi (1.17.0-x86_64-linux-gnu)
     font-awesome-sass (6.5.2)
       sassc (~> 2.0)
     globalid (1.2.1)
@@ -332,6 +339,7 @@ DEPENDENCIES
   simple_form!
   sprockets-rails
   stimulus-rails
+  stomp!
   turbo-rails
   tzinfo-data
   web-console
