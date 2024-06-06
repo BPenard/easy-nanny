@@ -19,4 +19,8 @@ class Contract < ApplicationRecord
   def display_nanny_first_name
     nanny.first_name
   end
+
+  def has_payslip?
+    payslips.exists?
+  end
 end
