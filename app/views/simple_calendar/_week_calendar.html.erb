@@ -1,13 +1,16 @@
 <div class="simple-calendar">
-  <div class="calendar-heading">
-    <%= link_to t('simple_calendar.previous', default: 'Précédente'), calendar.url_for_previous_view %>
-    <% if calendar.number_of_weeks == 1 %>
+  <div class="calendar-heading d-flex justify-content-between align-items-center">
+    <div class="week-number">
+      <%= link_to t('simple_calendar.previous', default: '<<'), calendar.url_for_previous_view %>
+       <% if calendar.number_of_weeks == 1 %>
       <span class="calendar-title"><%= t('simple_calendar.week', default: 'Semaine') %> <%= calendar.week_number %></span>
-    <% else %>
+      <% else %>
       <span class="calendar-title"><%= t('simple_calendar.week', default: 'Semaine') %> <%= calendar.week_number %> - <%= calendar.end_week %></span>
-    <% end %>
-    <%= link_to t('simple_calendar.next', default: 'Suivante'), calendar.url_for_next_view %>
-  </div>
+      <% end %>
+      <%= link_to t('simple_calendar.next', default: '>>'), calendar.url_for_next_view %>
+    </div>
+  <%= link_to 'Ajouter un événement', new_event_path, class: 'btn btn-outline-info' %>
+</div>
 
   <table class="table table-striped">
     <thead>
