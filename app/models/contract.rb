@@ -9,12 +9,12 @@ class Contract < ApplicationRecord
   has_many :children, through: :child_contracts
   has_many :events
 
-  validates :start_date, presence: true
+  # validates :start_date, presence: true
   # validates :end_date, presence: true # dans le cas d'un CDI pas de end date
-  validates :type, presence: true
-  validates :type, inclusion: { in: %w[cdi cdd] }
-  validates :weekly_worked_hours, presence: true
-  validates :gross_hourly_rate, presence: true
+  # validates :type, presence: true
+  # validates :type, inclusion: { in: %w[cdi cdd] }
+  # validates :weekly_worked_hours, presence: true
+  # validates :gross_hourly_rate, presence: true
 
   def display_nanny_first_name
     nanny.first_name

@@ -1,17 +1,25 @@
 <div class="border p-5 m-5 rounded-2">
 
   <div>
-    <h1>Modification du contrat</h1>
+    <h1>Créer un nouveau contract</h1>
+  </div>
+
+  <div class="breadcrumb">
+    <ol>
+      <li>Choix de la Nanny</li>
+      <li class="active">Informations du Contrat</li>
+      <li>Confirmation</li>
+    </ol>
   </div>
 
   <div>
-    <%= simple_form_for(@contract) do |f| %>
+    <%= simple_form_for(@information_contract, url: contract_intake_information_contracts_path(contract: @contract)) do |f| %>
       <%= f.input :start_date, as: :date, label: 'Date de début' %>
       <%= f.input :end_date, as: :date, label: 'Date de fin' %>
       <%= f.input :type, collection: ["cdd", "cdi"], label: 'Type de contrat' %>
       <%= f.input :gross_hourly_rate, as: :float, label: 'Taux horaire' %>
       <%= f.input :weekly_worked_hours, collection: (30..50), label: 'Temps de travail hebdomadaire' %>
-      <%= f.submit 'Modifier le contrat' %>
+      <%= f.submit 'Suivant' %>
     <% end %>
   </div>
 </div>
