@@ -9,5 +9,5 @@ Rails.application.routes.draw do
   resources :user_contracts
   resources :child_contracts
 
-  get '/welcome', to: 'events#index'
+  # get '/welcome', to: 'events#index'
 end
