@@ -1,12 +1,16 @@
 <div class="container" style="text-align: center;">
-  <h1>Les événements de la semaine</h1>
+  <h1 style="margin-bottom: 20px;">Ma semaine</h1>
 
-<%= week_calendar(attribute: :date, events: @events) do |date, events| %>
-  <%= date %>
+  <div style="margin: 0 auto; max-width: 75%; padding: 10px;">
+    <%= week_calendar(attribute: :date, events: @events) do |date, events| %>
+      <%= date %>
 
-  <% events.each do |event| %>
-    <div class="event">
-      <p><%= event.type %></p>
-    </div>
-  <% end %>
-<% end %>
+      <% events.each do |event| %>
+        <div class="event">
+          <p><%= event.type %></p>
+          <div class="toggle"><%= event.description %></div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+</div>

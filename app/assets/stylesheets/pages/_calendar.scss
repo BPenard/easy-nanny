@@ -1,23 +1,54 @@
 .simple-calendar {
   table {
-    min-height: 50vh;
+    min-height: 70vh;
   }
   .today {
-    background-color: #faf3dd;
+    background-color: #f9eec8;
+    border: 4px dotted #f4bb00;
+    color: black;
   }
+  .past {
+    background-color: #e0e0f5;
+    opacity: 0.5;
+  }
+
+  .future {
+    background-color: #ffffff;
+    opacity: 0.9;
+  }
+}
+
+.calendar-heading a {
+  color: black;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.calendar-heading {
+  color: red;
+  font-weight: bold;
 }
 
 .event {
-  color: white;
+  color: rgb(0, 0, 0);
   padding: 8px 24px;
   border-radius: 4px;
-  background: #1edd88;
+  background: transparent;
+  border: 2px solid #97a1cd;
   transition: background 0.3s ease;
+  position: relative;
 }
 
 .event:hover {
-  background: #1bcb7f;
+  background: #bff0db;
   color: white;
+  .toggle {
+    display: block;
+  }
+}
+
+.toggle {
+  display: none;
 }
 
 // .simple-calendar.today {
