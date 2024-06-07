@@ -15,15 +15,15 @@ class PayslipsController < ApplicationController
   def create
     @payslip = Payslip.new
     @contract = Contract.find(params[:contract_id])
-    @payslip.contract = @contract
-    @payslip.month_of_payslip = Date.today
-    @number_of_days = business_days_in_month(@payslip.month_of_payslip)
-    @payslip.gross_salary = gross_salary(@number_of_days, @contract)
-    @payslip.employer_contributions = employer_contributions(@payslip.gross_salary)
-    @payslip.employee_contributions = employee_contributions(@payslip.gross_salary)
-    @payslip.paid_amount = paid_amount(@payslip.gross_salary, @payslip.employee_contributions)
+    @payslip = payslip_calcul(@payslip, @contract)
 
-    @payslip.save!
+    if @payslip.save!
+      flash[:notice] = "La fiche de paie a été créée avec succès"
+      redirect_to contract_payslip_path(@contract, @payslip)
+    else
+      flash[:alert] = "Erreur lors de la payslip : #{ @payslip.errors.full_messages.join(', ')}"
+      redirect_to payslips_path
+    end
 
     authorize @payslip
     authorize @contract
@@ -61,5 +61,16 @@ class PayslipsController < ApplicationController
 
   def paid_amount(gross_salary, employee_contributions)
     gross_salary - employee_contributions
+  end
+
+  def payslip_calcul(payslip, contract)
+    payslip.contract = contract
+    payslip.month_of_payslip = Date.today
+    number_of_days = business_days_in_month(payslip.month_of_payslip)
+    payslip.gross_salary = gross_salary(number_of_days, contract)
+    payslip.employer_contributions = employer_contributions(payslip.gross_salary)
+    payslip.employee_contributions = employee_contributions(payslip.gross_salary)
+    payslip.paid_amount = paid_amount(payslip.gross_salary, payslip.employee_contributions)
+    return payslip
   end
 end

@@ -1,3 +1,14 @@
+// body {
+//   margin: 0;
+//   padding: 0;
+//   background: linear-gradient(
+//     to bottom,
+//     #ffe4d7,
+//     #f6bc85
+//   ); /* Dégradé du rose au orange */
+//   height: 100vh; /* S'assure que le dégradé couvre toute la hauteur de la page */
+// }
+
 .simple-calendar {
   table {
     min-height: 70vh;
@@ -50,15 +61,3 @@
 .toggle {
   display: none;
 }
-
-// .simple-calendar.today {
-//   background-color: red;
-// }
-
-// .simple-calendar.has-events {
-//   background-color: green;
-// }
-
-// .simple-calendar.future {
-//   background-color: white;
-// }
