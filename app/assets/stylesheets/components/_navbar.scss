@@ -60,3 +60,21 @@ main {
 .scrollarea {
   overflow-y: auto;
 }
+
+.nav-link {
+  margin-left: 10px;
+  margin-right: 40px;
+}
+
+.nav-link.active {
+  background-color: #800080 !important;
+  color: white !important;
+  border-radius: 50px !important;
+  background-color: transparent;
+  transition: background-color 0.3s ease;
+}
+
+.title-logo {
+  margin-left: 10px;
+  margin-right: 40px;
+}

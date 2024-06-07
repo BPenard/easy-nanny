@@ -22,8 +22,7 @@ class ContractsController < ApplicationController
     respond_to do |format|
       format.html
       format.pdf do
-        render pdf: "Contrat de travail",
-               template: "contracts/show"
+        send_data(@contract.to_pdf, filename: @contract.pdf_name, type: "application/pdf")
       end
     end
   end
