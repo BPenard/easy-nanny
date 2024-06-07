@@ -20,7 +20,7 @@ class EventsController < ApplicationController
     authorize @event
 
     if @event.save!
-      redirect_to root_path
+      redirect_to welcome_path
     else
       render :new, status: :unprocessable_entity
     end
