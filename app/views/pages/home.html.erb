@@ -7,12 +7,11 @@
     <%= stylesheet_link_tag 'application', media: 'all' %> <!-- Inclut votre feuille de style principale -->
   </head>
   <body>
-    <div class="video-overlay"></div>
-        <%= video_tag 'baby.mp4', class: 'background-video', autoplay: true, muted: true, loop: true %>
-        <%= link_to "Me connecter", new_user_session_path, class: "nav-links btn btn-outline-light rounded-5 m-3" %>
-        <%#= link_to "Sign up ", new_user_registration_path %>
-    <div class="container">
-      <h1>Easy Nanny</h1>
-    </div>
-  </body>
+  <div class="video-overlay"></div>
+  <%= video_tag 'baby.mp4', class: 'background-video', autoplay: true, muted: true, loop: true %>
+  <%= link_to "Me connecter", new_user_session_path, class: "nav-links btn btn-outline-light rounded-5 m-3" %>
+  <div class="container d-flex justify-content-center align-items-center" style="height: 100vh;">
+    <h1 class="text-center text-banner">Easy Nanny</h1>
+  </div>
+</body>
 </html>
