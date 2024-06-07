@@ -16,7 +16,9 @@
     <%= simple_form_for(@nanny_contract) do |f| %>
       <%= f.input :nanny_id, collection: User.all_nannies, label_method: -> (nanny) {
         "<p>#{nanny.first_name} #{nanny.last_name}</p>".html_safe
-      }, label: 'Choix de la Nanny'  %>
+      }, label: 'Choix de la Nanny' %>
+      <%= f.input :nanny_id, collection: current_user.children, label_method: -> (child) {
+        "#{child.first_name} #{child.last_name}" } %>
       <%= f.submit 'Suivant' %>
     <% end %>
   </div>
