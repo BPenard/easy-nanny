@@ -23,4 +23,12 @@ class Contract < ApplicationRecord
   def has_payslip?
     payslips.exists?
   end
+  
+  def to_pdf
+    ContractPdfGeneratorService.call(self)
+  end
+
+  def pdf_name
+    "Contrat de travail (#{Date.current.strftime('%d-%m-%Y')})"
+  end
 end
