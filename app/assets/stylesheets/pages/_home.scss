@@ -15,11 +15,11 @@ body {
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%;
+  height: 100vh;
   object-fit: cover; /* Couvre toute la page sans déformation */
   z-index: -1; /* Place la vidéo en arrière-plan */
 }
-.container {
+.text-banner {
   text-align: center;
   color: #fff; /* Couleur du texte en blanc pour contraster avec le fond */
   z-index: 1; /* Place le contenu au-dessus de la vidéo */
@@ -31,7 +31,7 @@ body {
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%;
+  height: 100vh;
   background-color: rgba(0, 0, 0, 0.5); /* Couleur de fond semi-transparente */
   z-index: 0; /* Assure que l'overlay est derrière la vidéo */
 }
@@ -45,6 +45,7 @@ h1 {
   position: absolute;
   top: 10px;
   right: 10px;
+  z-index: 1;
   .a {
     text-decoration: none;
     font-size: 30px;

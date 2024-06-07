@@ -13,8 +13,8 @@
 
   <body class="d-flex align-items-start">
     <% unless current_page?(root_path) || current_page?(new_user_session_path) || current_page?(new_user_registration_path)%>
+      <%= render "shared/navbar" %>
     <% end %>
-    <%= render "shared/navbar" %>
     <%= yield %>
     <%= render "shared/flashes" %>
   </body>
