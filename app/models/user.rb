@@ -30,10 +30,9 @@ class User < ApplicationRecord
     Event.where(contract: nanny? ? nanny_contracts : parent_contracts)
   end
 
-  # User.pluck(:role).uniq.each do |role|
-  #   define_method("#{role}?") { self.role == role }
-  # end
-
+  def full_name
+    "#{first_name} #{last_name}"
+  end
 end
 
 
