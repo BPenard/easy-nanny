@@ -1,20 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Welcome</title>
-  <%= stylesheet_link_tag 'application', media: 'all' %> <!-- Inclut votre feuille de style principale -->
-</head>
-<body>
-      <div class="nav-links">
-      <%= link_to "Sign in /", new_user_session_path %>
-      <%= link_to "Sign up ", new_user_registration_path %>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome</title>
+    <%= stylesheet_link_tag 'application', media: 'all' %> <!-- Inclut votre feuille de style principale -->
+  </head>
+  <body>
+    <div class="video-overlay"></div>
+        <%= video_tag 'baby.mp4', class: 'background-video', autoplay: true, muted: true, loop: true %>
+        <%= link_to "Me connecter", new_user_session_path, class: "nav-links btn btn-outlined-light rounded-5 m-3" %>
+        <%#= link_to "Sign up ", new_user_registration_path %>
+    <div class="container">
+      <h1>Easy Nanny</h1>
     </div>
-  <%= video_tag 'baby.mp4', class: 'background-video', autoplay: true, muted: true, loop: true %>
-  <div class="video-overlay"></div>
-  <div class="container">
-    <h1>Easy Nanny</h1>
-  </div>
-</body>
+  </body>
 </html>
