@@ -7,20 +7,16 @@
 
   <%#= link_to "See last payslip", contract_payslip_path(contract, contract.payslips.last), class: "btn btn-outline-primary"%>
 
-<div class="dropdown">
-  <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-    See all months
-  </button>
-  <ul class="dropdown-menu">
-    <% @payslip.contract.payslips.each do |payslip| %>
-      <%= link_to payslip.month_of_payslip.strftime("%B %Y"), contract_payslip_path(payslip.contract, payslip), class: "dropdown-item" %>
-    <% end %>
-  </ul>
-</div>
-
-<% if  %>
-
-
+  <div class="dropdown">
+    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+      See all months
+    </button>
+    <ul class="dropdown-menu">
+      <% @payslip.contract.payslips.each do |payslip| %>
+        <%= link_to payslip.month_of_payslip.strftime("%B %Y"), contract_payslip_path(payslip.contract, payslip), class: "dropdown-item" %>
+      <% end %>
+    </ul>
+  </div>
 
   <ul>
     <li>Contract ID : <%=@payslip.contract.id  %></li>
