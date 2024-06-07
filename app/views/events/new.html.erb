@@ -1,10 +1,10 @@
-<div class="border p-5 m-5 rounded-2">
+<div class="container border p-5 m-5 rounded-5 bg-white">
 
-  <div>
+  <div class="header text-center mb-4">
     <h1>Ajouter un Evenement</h1>
   </div>
 
-  <div>
+  <div class="form-container p-4 rounded-5 shadow-lg">
       <%= simple_form_for(@event) do |f| %>
       <%= f.input :child, collection: current_user.children, label_method: :first_name, label: 'Enfant' %>
       <%= f.association :contract, collection: current_user.parent_contracts, label_method: :display_nanny_first_name, label: "Nanny" %>
@@ -12,7 +12,7 @@
       <%= f.input :type, collection: ["RTT", "Congés", "Absence", "Médicament"] %>
       <%= f.input :description, as: :text, label: 'Commentaires' %>
       <%= f.input :photo, as: :file, label: "Ajouter une photo" %>
-      <%= f.submit %>
+      <%= f.submit class: 'btn btn-outline-light rounded-5 m-3'%>
     <% end %>
   </div>
 </div>

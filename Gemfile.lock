@@ -348,7 +348,6 @@ DEPENDENCIES
   tzinfo-data
   web-console
 
-
 RUBY VERSION
    ruby 3.1.2p20
 

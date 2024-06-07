@@ -1,23 +1,25 @@
-<div class="border p-5 m-5 rounded-2">
+<div class="container border p-5 m-5 rounded-5 bg-white">
 
-  <div>
-    <h1>Créer un nouveau contract</h1>
+  <div class="header text-center mb-4">
+    <h1>Créer un nouveau contrat</h1>
   </div>
 
-  <div class="breadcrumb">
-    <ol>
-      <li class="active">Choix de la Nanny</li>
-      <li>Informations du Contrat</li>
-      <li>Confirmation</li>
+  <div class="breadcrumb-container mb-4">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item active">Choix de la Nanny</li>
+      <li class="breadcrumb-item">Informations du Contrat</li>
+      <li class="breadcrumb-item">Confirmation</li>
     </ol>
   </div>
 
-  <div>
+  <div class="form-container p-4 rounded-5 shadow-lg">
     <%= simple_form_for(@nanny_contract) do |f| %>
       <%= f.input :nanny_id, collection: User.all_nannies, label_method: -> (nanny) {
-        "<p>#{nanny.first_name} #{nanny.last_name}</p>".html_safe
-      }, label: 'Choix de la Nanny'  %>
-      <%= f.submit 'Suivant' %>
+        "#{nanny.first_name} #{nanny.last_name}"
+      }, label: 'Choix de la Nanny', input_html: { class: 'form-control' }, label_html: { class: 'form-label' } %>
+      <div class="text-center mt-4">
+        <%= f.submit 'Suivant', class: 'btn btn-outline-light btn-lg rounded-5' %>
+      </div>
     <% end %>
   </div>
 </div>

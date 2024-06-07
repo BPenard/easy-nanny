@@ -1,18 +1,18 @@
-<div class="container">
-
-<h1>Children Index</h1>
-  <% @children.each do |child|%>
-  <ul>
-    <li>
-        <%= child.first_name %>
-        <%= child.last_name %>
-        <%= link_to "edit", edit_child_path(child)%>
-    </li>
-  </ul>
-
-  <% end %>
-
-  <%= link_to "Add a child", new_child_path%>
-
-
+<div class="container border p-5 m-5 rounded-5 bg-white">
+  <div class="header text-center mb-4">
+    <h1>Mes enfants</h1>
+  </div>
+  <div class="d-flex flex-column">
+    <div class="m-2 p-2 border rounded-5 w-50 mx-auto">
+      <% @children.each do |child| %>
+        <div class="form-container p-4 m-2 rounded-5">
+          <%= child.first_name %>
+          <%= child.last_name %>
+          <%= link_to "Modifier", edit_child_path(child), class: 'btn btn-outline-light rounded-5 ms-5' %>
+        </div>
+      <% end %>
+      <div class="d-flex mx-auto"></div>
+        <%= link_to "Add a child", new_child_path, class: 'btn btn-primary rounded-5 m-3'%>
+      </div>
+  </div>
 </div>

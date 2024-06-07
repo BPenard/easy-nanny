@@ -1,14 +1,16 @@
-<div class="container">
-<h2>Mes contrats</h2>
-
-<div class="d-flex">
+<div class="container border p-5 m-5 rounded-5 bg-white">
+  <div class="header text-center mb-4">
+    <h1>Mes contrats</h1>
+  </div>
+<div class="d-flex flex-column mx-auto">
   <% @contracts.each do |contract| %>
-    <div class="card p-4 m-4">
+    <div class="form-container p-4 m-2 rounded-5 w-50">
       <div class="d-flex">
         <%= contract.nanny.first_name %>
         <%= contract.nanny.last_name %>
       </div>
       <p>Contract id : <%= contract.id %></p>
+
 
 
       <% if contract.has_payslip? %>
@@ -24,6 +26,7 @@
 
       <% end %>
     </div>
+
   <% end %>
 </div>
 

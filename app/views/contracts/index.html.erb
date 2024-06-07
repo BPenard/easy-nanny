@@ -1,16 +1,18 @@
-<div class="container w-80 mt-5 ms-5">
-  <div><h1>Mes Contrats</h1></div>
+<div class="container border p-5 m-5 rounded-5 bg-white">
+  <div class="header text-center mb-4">
+    <h1>Mes contrats</h1>
+  </div>
   <div class="d-flex flex-column">
     <% @contracts.each do |contract| %>
-      <div class="m-2 p-2 border rounded-3 w-50">
-        <div class="border p-2 mb-2">
+      <div class="m-2 p-2 border rounded-5 w-75 mx-auto">
+        <div class="form-container p-4 m-2 rounded-5">
           <div>
           <h4> <%= contract.nanny.first_name %> <%= contract.nanny.last_name %> </h4>
           </div>
           <div> Adresse : <%= contract.nanny.address %></div>
 
         </div>
-        <div class="border p-2">
+        <div class="form-container m-2 p-4 rounded-5">
           <div>Enfant(s) gardé(s): </div>
           <% contract.children.each do |child| %>
             <div> <%= child.first_name %> <%= child.last_name %></div>
@@ -20,8 +22,8 @@
           <div> Type de contrat : <%= contract.type %></div>
           <div> Nombre d'heures hebdomadaires : <%= contract.weekly_worked_hours %></div>
           <div> Taux horaire : <%= contract.gross_hourly_rate %></div>
-          <%= link_to 'Télécharger le contrat', contract_path(contract, format: :pdf), class: 'btn btn-primary m-3', target: '_blank' %>
-          <%= link_to 'Modifier le contrat', edit_contract_path(contract), class: 'btn btn-primary m-3', target: '_blank' %>
+          <%= link_to 'Télécharger le contrat', contract_path(contract, format: :pdf), class: 'btn btn-outline-light rounded-5 m-3', target: '_blank' %>
+          <%= link_to 'Modifier le contrat', edit_contract_path(contract), class: 'btn btn-outline-light rounded-5 m-3', target: '_blank' %>
 
 
         </div>
@@ -29,16 +31,3 @@
     <% end %>
   </div>
 </div>
-
-
-<%# t.date "start_date"
-    t.date "end_date"
-    t.string "type"
-    t.integer "weekly_worked_hours"
-    t.float "gross_hourly_rate"
-    t.integer "nanny_id", null: false
-    t.integer "parent_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["nanny_id"], name: "index_contracts_on_nanny_id"
-    t.index ["parent_id"], name: "index_contracts_on_parent_id" %> %>
