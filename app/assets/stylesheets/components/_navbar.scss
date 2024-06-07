@@ -43,6 +43,7 @@ main {
 .btn-toggle[aria-expanded="true"] {
   color: rgba(var(--bs-emphasis-color-rgb), 0.85);
 }
+
 .btn-toggle[aria-expanded="true"]::before {
   transform: rotate(90deg);
 }
@@ -52,7 +53,9 @@ main {
   margin-top: 0.125rem;
   margin-left: 1.25rem;
 }
+
 .btn-toggle-nav a:hover,
+
 .btn-toggle-nav a:focus {
   background-color: var(--bs-tertiary-bg);
 }
@@ -67,7 +70,7 @@ main {
 }
 
 .nav-link.active {
-  background-color: #800080 !important;
+  background-color: $purple !important;
   color: white !important;
   border-radius: 50px !important;
   background-color: transparent;

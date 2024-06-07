@@ -1,39 +1,34 @@
 <div class="container">
-  <div>
-    <h1><%=@payslip.contract.nanny.first_name %> <%=  @payslip.contract.nanny.last_name %></h1>
-    <h2><%=@payslip.month_of_payslip.strftime("%B %Y")%></h2>
+  <div class="m-2 p-2 border rounded-5 w-75 mx-auto">
+    <div class="form-container m-2 p-4 rounded-5">
+      <div>
+        <h1><%=@payslip.contract.nanny.first_name %> <%=  @payslip.contract.nanny.last_name %></h1>
+        <h2><%=@payslip.month_of_payslip.strftime("%B %Y")%></h2>
+      </div>
+    </div>
+
+      <%#= link_to "See last payslip", contract_payslip_path(contract, contract.payslips.last), class: "btn btn-outline-primary"%>
+
+      <%# <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+          See all months
+        </button>
+        <ul class="dropdown-menu"> %>
+          <%# @payslip.contract.payslips.each do |payslip| %>
+            <%#= link_to payslip.month_of_payslip.strftime("%B %Y"), contract_payslip_path(payslip.contract, payslip), class: "dropdown-item" %>
+          <%# end %>
+        <%# </ul>
+    </div> %>
+    <div class="form-container m-2 p-4 rounded-5">
+      <ul>
+        <li>Business days of the month : <%=@business_days%></li>
+        <li>Gross salary : <%= @payslip.gross_salary %></li>
+        <li>Employer contributions : <%= @payslip.employer_contributions %></li>
+        <li>Employee contributions : <%= @payslip.employee_contributions %></li>
+        <li>Paid amount : <%=@payslip.paid_amount  %></li>
+      </ul>
+    </div>
+
+
   </div>
-
-
-  <%#= link_to "See last payslip", contract_payslip_path(contract, contract.payslips.last), class: "btn btn-outline-primary"%>
-
-<div class="dropdown">
-  <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-    See all months
-  </button>
-  <ul class="dropdown-menu">
-    <% @payslip.contract.payslips.each do |payslip| %>
-      <%= link_to payslip.month_of_payslip.strftime("%B %Y"), contract_payslip_path(payslip.contract, payslip), class: "dropdown-item" %>
-    <% end %>
-  </ul>
-</div>
-
-<% if  %>
-
-
-
-  <ul>
-    <li>Contract ID : <%=@payslip.contract.id  %></li>
-    <li>Month of payslip : <%=@payslip.month_of_payslip.strftime("%B %Y")  %></li>
-    <li>Business days of the month : <%=@business_days%></li>
-    <li>Paid amount : <%=@payslip.paid_amount  %></li>
-    <li>Payment Date : <%= @payslip.payment_date %></li>
-    <li>Employer contributions : <%= @payslip.employer_contributions %></li>
-    <li>Employee contributions : <%= @payslip.employee_contributions %></li>
-    <li>Gross salary : <%= @payslip.gross_salary %></li>
-    <li>Tax rate : <%= @payslip.tax_rate %></li>
-  </ul>
-
-
-
 </div>

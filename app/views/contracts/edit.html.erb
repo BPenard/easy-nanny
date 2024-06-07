@@ -1,17 +1,16 @@
-<div class="border p-5 m-5 rounded-2">
-
-  <div>
+<div class="container border p-5 m-5 rounded-5 bg-white">
+  <div class="header text-center mb-4">
     <h1>Modification du contrat</h1>
   </div>
 
-  <div>
+  <div class="form-container p-4 rounded-5 shadow-lg">
     <%= simple_form_for(@contract) do |f| %>
       <%= f.input :start_date, as: :date, label: 'Date de début' %>
       <%= f.input :end_date, as: :date, label: 'Date de fin' %>
       <%= f.input :type, collection: ["cdd", "cdi"], label: 'Type de contrat' %>
       <%= f.input :gross_hourly_rate, as: :float, label: 'Taux horaire' %>
       <%= f.input :weekly_worked_hours, collection: (30..50), label: 'Temps de travail hebdomadaire' %>
-      <%= f.submit 'Modifier le contrat' %>
+      <%= f.submit 'Modifier le contrat', class: 'btn btn-outline-light btn-lg rounded-5' %>
     <% end %>
   </div>
 </div>

@@ -2,12 +2,12 @@
 body {
   margin: 0;
   padding: 0;
-  height: 100vh;
+  // height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
   font-family: Arial, sans-serif;
-  overflow: hidden; /* Empêche le défilement de la page */
+  // overflow: hidden; /* Empêche le défilement de la page */
   position: relative; /* Nécessaire pour le positionnement absolu de la vidéo */
 }
 .background-video {
@@ -38,7 +38,7 @@ body {
 
 h1 {
   margin-bottom: 20px;
-  font-size: 66px;
+  font-size: 36px;
 }
 
 .nav-links {

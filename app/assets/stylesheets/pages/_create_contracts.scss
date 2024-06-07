@@ -15,7 +15,7 @@
 }
 .breadcrumb li.active {
   font-weight: bold;
-  border-bottom: 2px solid #007bff;
+  border-bottom: 2px solid $purple;
 }
 
 .bg-light-purple {
@@ -25,7 +25,7 @@
   background-color: #ffffff;
 }
 .header h1 {
-  color: #6a1b9a;
+  color: $purple;
 }
 .breadcrumb-container {
   text-align: center;
@@ -47,7 +47,7 @@
 }
 .breadcrumb-item.active {
   font-weight: bold;
-  color: #6a1b9a;
+  color: $purple;
 }
 .breadcrumb-item::before {
   content: '>';
@@ -59,7 +59,7 @@
   content: '';
 }
 .form-container {
-  background-color: #6a1b9a;
+  background-color: $purple;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 .form-label {
@@ -70,7 +70,6 @@
   border-color: #8e24aa;
 }
 .btn-primary:hover {
-  background-color: #6a1b9a;
-  border-color: #6a1b9a;
+  background-color: $purple;
+  border-color: $purple;
 }
-
