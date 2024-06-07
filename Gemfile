@@ -57,7 +57,7 @@ gem 'rails-i18n', '~> 7.0.0'
 
 # Wiked PDF
 gem 'wicked_pdf'
-gem 'wkhtmltopdf-binary'
+# gem 'wkhtmltopdf-binary', require: false
 
 group :development, :test do
   gem "dotenv-rails"
