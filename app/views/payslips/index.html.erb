@@ -2,34 +2,27 @@
   <div class="header text-center mb-4">
     <h1>Mes contrats</h1>
   </div>
-<div class="d-flex flex-column mx-auto">
-  <% @contracts.each do |contract| %>
-    <div class="form-container p-4 m-2 rounded-5 w-50">
-      <div class="d-flex">
-        <%= contract.nanny.first_name %>
-        <%= contract.nanny.last_name %>
-      </div>
-      <p>Contract id : <%= contract.id %></p>
+  <div class="d-flex flex-column mx-auto">
+    <% @contracts.each do |contract| %>
+      <div class="form-container p-4 m-2 rounded-5 w-50">
+        <div class="d-flex">
+          <%= contract.nanny.first_name %>
+          <%= contract.nanny.last_name %>
+        </div>
+        <p>Contract id : <%= contract.id %></p>
 
-
-
-      <% if contract.has_payslip? %>
-        <p>last payslip : <%= contract.payslips.last.month_of_payslip.strftime("%B %Y") %> </p>
-        <%= link_to "See last payslip", contract_payslip_path(contract, contract.payslips.last), class: "btn btn-outline-primary"%>
-        <% unless Date.today.month == contract.payslips.last.month_of_payslip.month && Date.today.year == contract.payslips.last.month_of_payslip.year %>
+        <% if contract.has_payslip? %>
+          <p>last payslip : <%= contract.payslips.last.month_of_payslip.strftime("%B %Y") %> </p>
+          <%= link_to "See last payslip", contract_payslip_path(contract, contract.payslips.last), class: "btn btn-outline-primary"%>
+          <% unless Date.today.month == contract.payslips.last.month_of_payslip.month && Date.today.year == contract.payslips.last.month_of_payslip.year %>
+            <%= link_to "Create new payslip on this contract", contract_payslips_path(contract), data: {turbo_method: :post}, class: "btn btn-primary"%>
+          <% end %>
+        <% else %>
           <%= link_to "Create new payslip on this contract", contract_payslips_path(contract), data: {turbo_method: :post}, class: "btn btn-primary"%>
-
         <% end %>
-      <% else %>
-        <%= link_to "Create new payslip on this contract", contract_payslips_path(contract), data: {turbo_method: :post}, class: "btn btn-primary"%>
-
-
-      <% end %>
-    </div>
-
-  <% end %>
-</div>
-
+      </div>
+    <% end %>
+  </div>
 </div>
 
 
