@@ -55,9 +55,8 @@ gem "simple_calendar"
 gem 'cloudinary'
 gem 'rails-i18n', '~> 7.0.0'
 
-# Wiked PDF
-gem 'wicked_pdf'
-# gem 'wkhtmltopdf-binary', require: false
+gem 'prawn', '~> 2.4'
+# gem 'prawn-table', '~> 0.2.2'
 
 group :development, :test do
   gem "dotenv-rails"
