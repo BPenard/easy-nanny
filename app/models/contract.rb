@@ -20,6 +20,10 @@ class Contract < ApplicationRecord
     nanny.first_name
   end
 
+  def has_payslip?
+    payslips.exists?
+  end
+  
   def to_pdf
     ContractPdfGeneratorService.call(self)
   end
