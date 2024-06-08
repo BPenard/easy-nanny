@@ -13,9 +13,11 @@ class PayslipsController < ApplicationController
   end
 
   def create
-    @payslip = Payslip.new
     @contract = Contract.find(params[:contract_id])
-    @payslip = payslip_calcul(@payslip, @contract)
+    # @payslip = Payslip.new
+    # @payslip = payslip_calcul(@payslip, @contract)
+    temp_date = Date.today
+    @payslip = @contract.new_payslip(temp_date)
 
     if @payslip.save!
       flash[:notice] = "La fiche de paie a été créée avec succès"

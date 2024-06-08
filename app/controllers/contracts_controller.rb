@@ -39,9 +39,15 @@ class ContractsController < ApplicationController
     redirect_to contracts_path
   end
 
+
+
+
   private
 
   def contract_params
     params.require(:contract).permit(:nanny_id, :parent_id, :start_date, :end_date, :type, :gross_hourly_rate, :weekly_worked_hours)
   end
+
+
+
 end
