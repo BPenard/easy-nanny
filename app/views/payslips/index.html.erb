@@ -1,29 +1,25 @@
 <div class="container border p-5 m-5 rounded-5 bg-white">
   <div class="header text-center mb-4">
-    <h1>Mes contrats</h1>
+    <h1>Mes fiches de paie</h1>
   </div>
-  <div class="d-flex flex-column mx-auto">
-    <% @contracts.each do |contract| %>
-      <div class="form-container p-4 m-2 mx-auto rounded-5 w-50">
-        <div>
-          <div>
-            <%= contract.nanny.first_name %>
-            <%= contract.nanny.last_name %>
-          </div>
-          <div><p>Contract id : <%= contract.id %></p></div>
-        </div>
+  <div class="d-flex flex-column mx-auto" data-controller="display-payslip">
+      <% @payslips.each do |payslip| %>
+        <ul>
+          <li class="form-container p-4 m-2 mx-auto rounded-5">
+            <%= payslip.month_of_payslip %>
+          </li>
+        </ul>
+      <% end %>
 
-        <% if contract.has_payslip? %>
-          <p>last payslip : <%= contract.payslips.last.month_of_payslip.strftime("%B %Y") %> </p>
-          <%= link_to "See last payslip", contract_payslip_path(contract, contract.payslips.last), class: "btn btn-outline-light rounded-5 m-3"%>
-          <% unless Date.today.month == contract.payslips.last.month_of_payslip.month && Date.today.year == contract.payslips.last.month_of_payslip.year %>
-            <%= link_to "Create new payslip on this contract", contract_payslips_path(contract), data: {turbo_method: :post}, class: "btn btn-outline-light rounded-5 m-3"%>
-          <% end %>
-        <% else %>
-          <%= link_to "Create new payslip on this contract", contract_payslips_path(contract), data: {turbo_method: :post}, class: "btn btn-outline-light rounded-5 m-3"%>
-        <% end %>
-      </div>
-    <% end %>
+    <div class="form-container m-2 p-4 rounded-5">
+      <ul>
+        <li>Gross salary : <%#= @payslip.gross_salary %></li>
+        <li>Employer contributions : <%#= @payslip.employer_contributions %></li>
+        <li>Employee contributions : <%#= @payslip.employee_contributions %></li>
+        <li>Paid amount : <%#=@payslip.paid_amount  %></li>
+      </ul>
+    </div>
+
   </div>
 </div>
 

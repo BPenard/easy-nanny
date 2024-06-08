@@ -1,5 +1,6 @@
 class Payslip < ApplicationRecord
   belongs_to :contract
+  belongs_to :nanny
 
   # validates :month_of_payslip, presence: true
   # validates :payment_date, presence: true
