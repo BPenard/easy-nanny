@@ -36,7 +36,7 @@ class Contract < ApplicationRecord
   def new_payslip(date)
     ## Constantes temp pour calculer la payslip
     start_date = Date.new(date.year, date.month, 1)
-    end_date = Date.new(date.year, date.month + 1, 1).prev_day
+    end_date = start_date.next_month.prev_day
     payslip_period = { start_date:, end_date: }
     event_types = ["Congés", "RTT"]
 
@@ -52,6 +52,26 @@ class Contract < ApplicationRecord
     payslip.employee_contributions = employee_contributions(payslip.gross_salary)
     payslip.paid_amount = paid_amount(payslip.gross_salary, payslip.employee_contributions)
     return payslip
+  end
+
+  def create_previous_payslips_on_creation
+    # La close guard s'applique si le contrat est sur un unique mois,
+    # le test sur le nil permet que les cdi ne soient pas inclus
+    return unless end_date.nil? || (start_date.month != end_date.month && start_date.year != end_date.year)
+
+    ## cas à gérer : contrat en CDI et/ou pas de fin de contrat
+    if end_date.nil?
+      end_date = Date.today
+    else
+      end_date = self.end_date # cette ligne permet de garder la valeur de end_date sinon elle est mise à nil
+    end
+
+    current_date = Date.new(start_date.year, start_date.month, 1)
+    while current_date <= end_date.prev_month
+      payslip = new_payslip(current_date)
+      payslip.save!
+      current_date = current_date.next_month
+    end
   end
 
   private
@@ -87,4 +107,6 @@ class Contract < ApplicationRecord
   def paid_amount(gross_salary, employee_contributions)
     gross_salary - employee_contributions
   end
+
+
 end
