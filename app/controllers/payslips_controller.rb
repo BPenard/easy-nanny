@@ -30,6 +30,13 @@ class PayslipsController < ApplicationController
     authorize @contract
   end
 
+  def save_pajeemploi_date
+    # Remplace ceci par la logique réelle d'enregistrement
+    render json: { message: "Date saved successfully", date: Time.now }, status: :ok
+    Raise
+  end
+
+
   private
 
   def business_days_in_month(date)
