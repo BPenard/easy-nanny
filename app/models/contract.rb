@@ -60,8 +60,9 @@ class Contract < ApplicationRecord
     return unless end_date.nil? || (start_date.month != end_date.month && start_date.year != end_date.year)
 
     ## cas à gérer : contrat en CDI et/ou pas de fin de contrat
-    if end_date.nil?
+    if end_date.nil? || end_date > Date.today
       end_date = Date.today
+
     else
       end_date = self.end_date # cette ligne permet de garder la valeur de end_date sinon elle est mise à nil
     end
