@@ -7,15 +7,16 @@ class PayslipsController < ApplicationController
 
   def show
     @payslip = Payslip.find(params[:id])
+    ## TODO : modifier cette gestion et ajouter le nb de jours travaillés
     @business_days = business_days_in_month(@payslip.month_of_payslip)
 
     authorize @payslip
   end
 
   def create
-    @payslip = Payslip.new
     @contract = Contract.find(params[:contract_id])
-    @payslip = payslip_calcul(@payslip, @contract)
+    temp_date = Date.today ## a adapter pour gérer les différentes dates
+    @payslip = @contract.new_payslip(temp_date)
 
     if @payslip.save!
       flash[:notice] = "La fiche de paie a été créée avec succès"
@@ -45,32 +46,5 @@ class PayslipsController < ApplicationController
     end
 
     business_days
-  end
-
-  def gross_salary(business_days, contract)
-    contract.weekly_worked_hours / 5 * contract.gross_hourly_rate * business_days
-  end
-
-  def employer_contributions(gross_salary)
-    gross_salary * 0.44
-  end
-
-  def employee_contributions(gross_salary)
-    gross_salary * 0.22
-  end
-
-  def paid_amount(gross_salary, employee_contributions)
-    gross_salary - employee_contributions
-  end
-
-  def payslip_calcul(payslip, contract)
-    payslip.contract = contract
-    payslip.month_of_payslip = Date.today
-    number_of_days = business_days_in_month(payslip.month_of_payslip)
-    payslip.gross_salary = gross_salary(number_of_days, contract)
-    payslip.employer_contributions = employer_contributions(payslip.gross_salary)
-    payslip.employee_contributions = employee_contributions(payslip.gross_salary)
-    payslip.paid_amount = paid_amount(payslip.gross_salary, payslip.employee_contributions)
-    return payslip
   end
 end

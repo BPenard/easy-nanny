@@ -126,18 +126,6 @@ nancy = Child.new(
 nancy.user = jane_smith
 nancy.save!
 
-# children = [jane, mike, dustin, lucas, nancy]
-
-# children.each do |child|
-#   new_child = Child.new(
-#     first_name: child[:first_name],
-#     last_name: child[:last_name],
-#     birthdate: child[:birthdate]
-#   )
-#   new_child.user = User.all.sample
-#   new_child.save!
-# end
-
 puts 'Creating 2 contracts'
 
 first_contract = Contract.new(
@@ -165,7 +153,7 @@ second_contract.save!
 
 puts "Creating ChildContracts"
 User.all.each do |user|
-  if user.children.count > 0 && user.role == "parent"
+  if user.children.count.positive? && user.role == "parent"
     user.children.each do |child|
       child.first_name
       new_user_contract = ChildContract.new
@@ -247,8 +235,16 @@ event7 = Event.new(
 event7.contract = first_contract
 event7.child = dustin
 event7.save!
+
+puts 'Creating previous payslips on contracts'
+
+Contract.all.each do |contract|
+  contract.create_previous_payslips_on_creation
+end
+
 puts "- #{User.count} users created"
 puts "- #{Contract.count} contracts created"
 puts "- #{Child.count} children created"
 puts "- #{ChildContract.count} child_contracts created"
 puts "- #{Event.count} events created"
+puts "- #{Payslip.count} payslips created"
