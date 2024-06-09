@@ -1,6 +1,7 @@
 class Payslip < ApplicationRecord
   belongs_to :contract
-  belongs_to :nanny
+  # belongs_to :nanny # Pourquoi cette ligne fait péter l'enregistrement de la seed ?
+
 
   # validates :month_of_payslip, presence: true
   # validates :payment_date, presence: true

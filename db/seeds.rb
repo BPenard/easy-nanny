@@ -130,7 +130,7 @@ puts 'Creating 2 contracts'
 
 first_contract = Contract.new(
   start_date: "01-04-2024",
-  end_date: "31-12-2024",
+  end_date: "09-06-2024",
   type: "cdi",
   weekly_worked_hours: 35,
   gross_hourly_rate: 10
