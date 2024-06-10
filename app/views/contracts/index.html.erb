@@ -1,33 +1,58 @@
-<div class="container border p-5 m-5 rounded-5 bg-white">
+<div class="container border p-2">
   <div class="header text-center mb-4">
     <h1>Mes contrats</h1>
   </div>
-  <div class="d-flex flex-column">
+
+  <div class="contract-grid">
     <% @contracts.each do |contract| %>
-      <div class="m-2 p-2 border rounded-5 w-75 mx-auto">
-        <div class="form-container p-4 m-2 rounded-5">
-          <div>
-          <h4> <%= contract.nanny.first_name %> <%= contract.nanny.last_name %> </h4>
-          </div>
-          <div> Adresse : <%= contract.nanny.address %></div>
 
+      <div class="form-container contract-card " data-bs-toggle="modal" data-bs-target="#<%= contract.id%>">
+        <div class="d-flex align-items-center ">
+          <%= image_tag "avatar-homme.png", class: "avatar", alt: "user avatar" %>
+          <h3> <%= contract.nanny.first_name %> <%= contract.nanny.last_name %> </h3>
         </div>
-        <div class="form-container m-2 p-4 rounded-5">
-          <div>Enfant(s) gardé(s): </div>
-          <% contract.children.each do |child| %>
-            <div> <%= child.first_name %> <%= child.last_name %></div>
+        <div>
+          <p class="mt-2 mb-0 p-0"><%= contract.type %> depuis le <%= contract.start_date.strftime("%e %B %Y") %></p>
+          <p class="m-0 p-0"><%= contract.weekly_worked_hours %>h par semaine</p>
+        </div>
+        <div class="grouped-children-avatar">
+        <% contract.children.each do |child| %>
+          <%= image_tag "avatar-homme.png", class: "avatar", alt: "user avatar" %>
           <% end %>
-          <div> Début du contrat : <%= contract.start_date %></div>
-          <div> Fin du contrat : <%= contract.end_date %></div>
-          <div> Type de contrat : <%= contract.type %></div>
-          <div> Nombre d'heures hebdomadaires : <%= contract.weekly_worked_hours %></div>
-          <div> Taux horaire : <%= contract.gross_hourly_rate %></div>
-          <%= link_to 'Télécharger le contrat', contract_path(contract, format: :pdf), class: 'btn btn-outline-light rounded-5 m-3', target: '_blank' %>
-          <%= link_to 'Modifier le contrat', edit_contract_path(contract), class: 'btn btn-outline-light rounded-5 m-3', target: '_blank' %>
-
-
         </div>
       </div>
+
+<!-- Modal -->
+<div class="modal fade" id="<%= contract.id%>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">
+          <%= contract.nanny.first_name %> <%= contract.nanny.last_name %>
+        </h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div> Début du contrat : <%= contract.start_date %></div>
+        <div> Fin du contrat : <%= contract.end_date %></div>
+        <div> Type de contrat : <%= contract.type %></div>
+        <div> Nombre d'heures hebdomadaires : <%= contract.weekly_worked_hours %></div>
+        <div> Taux horaire : <%= contract.gross_hourly_rate %></div>
+        <%= link_to 'Télécharger le contrat', contract_path(contract, format: :pdf), class: 'btn btn-outline-primary', target: '_blank' %>
+        <%#= link_to 'Consulter la dernière fiche de paie', payslip_path(contract.payslips.last), class: 'btn btn-outline-primary', target: '_blank' %>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Close</button>
+        <%= link_to 'Modifier le contrat', edit_contract_path(contract), class: 'btn btn-primary', target: '_blank' %>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
     <% end %>
+
   </div>
 </div>

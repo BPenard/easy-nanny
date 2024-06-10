@@ -11,3 +11,9 @@
 .hidden {
   display: none;
 }
+
+.grouped-children-avatar {
+  display: flex;
+  flex-direction:row;
+  justify-content: end;
+}

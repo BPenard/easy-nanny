@@ -1,0 +1,20 @@
+.contract-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  // display: flex-wrap;
+  gap: 10px;
+  grid-auto-rows: minmax(100px, auto);
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+
+.contract-card {
+  width: 25rem;
+
+}
+
+.contract-card :hover {
+  cursor: pointer
+
+}
