@@ -32,20 +32,20 @@
   background-color: #fff;
   cursor: pointer;
   transition: background-color 0.3s, border-color 0.3s, color 0.3s;
-  color: #6A0DAD;
+  color: $beige;
   margin: 20px;
   margin-left: 0px;
 }
 
 .radio-input:checked + .radio-label {
-  background-color: #4CAF50; /* Vert pour CDD */
-  border-color: #4CAF50;
+  background-color: $brown; /* Vert pour CDD */
+  border-color: $brown;
   color: #fff;
 }
 
 .radio-input#cdi:checked + .radio-label {
-  background-color: #FF9800; /* Orange pour CDI */
-  border-color: #FF9800;
+  background-color: $brown; /* Orange pour CDI */
+  border-color: $brown;
   color: #fff;
 }
 

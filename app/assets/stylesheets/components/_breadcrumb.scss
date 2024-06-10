@@ -18,17 +18,17 @@
 
 .step {
   position: relative;
-  padding: 7px 7px;
+  padding: 10px 10px;
   background: #fff;
   border-radius: 50%;
   border: 2px solid #ccc;
   text-align: center;
-  margin: 50px 100px;
+  margin: 60px 100px;
   font-size: 5px;
 }
 
 .step.current {
-  background: black;
-  border-color: black;
+  background: $brown;
+  border-color: $brown;
   color: #fff;
 }

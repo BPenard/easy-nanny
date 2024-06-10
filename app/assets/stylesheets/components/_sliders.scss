@@ -1,6 +1,5 @@
 
 .slider-group {
-  padding: 20px;
   width: 100%;
   color: #fff;
 }
@@ -8,7 +7,6 @@
 .slider-group label {
   display: block;
   margin-bottom: 10px;
-  font-weight: bold;
 }
 
 .slider {
@@ -32,7 +30,7 @@
   width: 25px;
   height: 25px;
   border-radius: 50%;
-  background: #4CAF50;
+  background: $brown;
   cursor: pointer;
 }
 
