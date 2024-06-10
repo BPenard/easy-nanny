@@ -1,25 +1,14 @@
-// body {
-//   margin: 0;
-//   padding: 0;
-//   background: linear-gradient(
-//     to bottom,
-//     #ffe4d7,
-//     #f6bc85
-//   ); /* Dégradé du rose au orange */
-//   height: 100vh; /* S'assure que le dégradé couvre toute la hauteur de la page */
-// }
-
 .simple-calendar {
   table {
-    min-height: 70vh;
+    min-height: 20vh;
   }
   .today {
-    background-color: #f9eec8;
-    border: 4px dotted #f4bb00;
+    background-color: beige;
+    border: 4px dotted white;
     color: black;
   }
   .past {
-    background-color: #e0e0f5;
+    background-color: #eaeaff;
     opacity: 0.5;
   }
 
@@ -36,7 +25,6 @@
 }
 
 .calendar-heading {
-  color: red;
   font-weight: bold;
 }
 
@@ -45,16 +33,16 @@
   padding: 8px 24px;
   border-radius: 4px;
   background: transparent;
-  border: 2px solid $beige;
-  transition: background 0.3s ease;
+  border: 2px solid beige;
+  transition: 0.3s ease;
   position: relative;
 }
 
 .event:hover {
-  background: $brown;
-  color: white;
+  color: white !important;
   .toggle {
     display: block;
+    color: white !important;
   }
 }
 
