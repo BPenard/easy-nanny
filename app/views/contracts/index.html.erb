@@ -1,7 +1,19 @@
-<div class="container border p-5 m-5 rounded-5 bg-white">
+<div class="container border p-2">
   <div class="header text-center mb-4">
     <h1>Mes contrats</h1>
   </div>
+
+  <% @contracts.each do |contract| %>
+
+    <div class="card">
+      <h4> <%= contract.nanny.first_name %> <%= contract.nanny.last_name %> </h4>
+
+    </div>
+
+  <% end %>
+
+
+
   <div class="d-flex flex-column">
     <% @contracts.each do |contract| %>
       <div class="m-2 p-2 border rounded-5 w-75 mx-auto">
