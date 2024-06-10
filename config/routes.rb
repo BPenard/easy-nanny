@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   devise_for :users
   root to: "pages#home"
 
-  resources :children, only: %i[new create index show edit update]
+  resources :children, only: %i[index create update]
   resources :contracts, only: %i[new create index show edit update] do
     resources :payslips, only: %i[create]
   end
