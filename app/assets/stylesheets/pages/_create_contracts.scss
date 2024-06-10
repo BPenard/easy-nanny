@@ -1,23 +1,3 @@
-.breadcrumb {
-  margin: 10px 0;
-}
-.breadcrumb ol {
-  padding: 0;
-  list-style: none;
-  display: flex;
-  justify-content: space-between;
-}
-.breadcrumb li {
-  flex: 1;
-  text-align: center;
-  padding: 10px;
-  border-bottom: 2px solid #ccc;
-}
-.breadcrumb li.active {
-  font-weight: bold;
-  border-bottom: 2px solid $purple;
-}
-
 .bg-light-purple {
   background-color: #f3e5f5;
 }
@@ -27,37 +7,7 @@
 .header h1 {
   color: $purple;
 }
-.breadcrumb-container {
-  text-align: center;
-}
-.breadcrumb {
-  display: flex;
-  justify-content: center;
-  padding: 0;
-  list-style: none;
-  background: none;
-  margin: 0;
-}
-.breadcrumb-item {
-  display: inline-block;
-  margin: 0 10px;
-  font-size: 18px;
-  color: #9c27b0;
-  position: relative;
-}
-.breadcrumb-item.active {
-  font-weight: bold;
-  color: $purple;
-}
-.breadcrumb-item::before {
-  content: '>';
-  position: absolute;
-  left: -15px;
-  color: #9c27b0;
-}
-.breadcrumb-item:first-child::before {
-  content: '';
-}
+
 .form-container {
   background-color: $purple;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
