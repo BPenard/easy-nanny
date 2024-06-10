@@ -1,18 +1,19 @@
 
-.form-group {
-  background-color: #6A0DAD; /* Violet de fond */
-  padding: 20px;
-  border-radius: 10px;
-  width: 500px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  color: #fff;
-}
+// Class inutilisée ?
+// .form-group {
+//   background-color: $brown; /* Violet de fond */
+//   padding: 20px;
+//   border-radius: 10px;
+//   width: 500px;
+//   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+//   color: #fff;
+// }
 
-.form-group label {
-  display: block;
-  margin-bottom: 10px;
-  font-weight: bold;
-}
+// .form-group label {
+//   display: block;
+//   margin-bottom: 10px;
+//   font-weight: bold;
+// }
 
 .contract-type {
   display: flex;
@@ -51,22 +52,4 @@
 
 .radio-label:hover {
   background-color: #e0e0e0;
-}
-
-.btn {
-  display: inline-block;
-  padding: 10px 20px;
-  margin-top: 20px;
-  border: 2px solid #fff;
-  border-radius: 5px;
-  background-color: transparent;
-  color: #fff;
-  text-align: center;
-  cursor: pointer;
-  transition: background-color 0.3s, border-color 0.3s, color 0.3s;
-}
-
-.btn:hover {
-  background-color: #fff;
-  color: #6A0DAD;
 }

@@ -1,4 +1,4 @@
-<div class="container border p-2">
+<div class="container p-2">
   <div class="header text-center mb-4">
     <h1>Mes contrats</h1>
   </div>
@@ -22,34 +22,40 @@
         </div>
       </div>
 
-<!-- Modal -->
-<div class="modal fade" id="<%= contract.id%>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">
-          <%= contract.nanny.first_name %> <%= contract.nanny.last_name %>
-        </h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <div> Début du contrat : <%= contract.start_date %></div>
-        <div> Fin du contrat : <%= contract.end_date %></div>
-        <div> Type de contrat : <%= contract.type %></div>
-        <div> Nombre d'heures hebdomadaires : <%= contract.weekly_worked_hours %></div>
-        <div> Taux horaire : <%= contract.gross_hourly_rate %></div>
-        <%= link_to 'Télécharger le contrat', contract_path(contract, format: :pdf), class: 'btn btn-outline-primary', target: '_blank' %>
-        <%#= link_to 'Consulter la dernière fiche de paie', payslip_path(contract.payslips.last), class: 'btn btn-outline-primary', target: '_blank' %>
+      <!-- Modal -->
+      <div class="modal fade" id="<%= contract.id%>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl modal-dialog-centered w-70">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">
+                <%= contract.nanny.first_name %> <%= contract.nanny.last_name %>
+              </h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <div> Début du contrat : <%= contract.start_date %></div>
+              <div> Fin du contrat : <%= contract.end_date %></div>
+              <div> Type de contrat : <%= contract.type %></div>
+              <div> Nombre d'heures hebdomadaires : <%= contract.weekly_worked_hours %></div>
+              <div> Taux horaire : <%= contract.gross_hourly_rate %></div>
+            </div>
+            <div class="modal-footer">
+              <%= link_to 'Modifier le contrat', edit_contract_path(contract), class: 'btn btn-outline-primary', target: '_blank' %>
+              <%= link_to 'Télécharger le contrat', contract_path(contract, format: :pdf), class: 'btn btn-outline-primary', target: '_blank' %>
 
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Close</button>
-        <%= link_to 'Modifier le contrat', edit_contract_path(contract), class: 'btn btn-primary', target: '_blank' %>
+              <% if contract.has_payslip? %>
+                <%= link_to "Dernière fiche de paie : #{contract.payslips.last.month_of_payslip.strftime("%B %Y")}", payslip_path(contract.payslips.last), class: "btn btn-outline-primary"%>
+                <% unless Date.today.month == contract.payslips.last.month_of_payslip.month && Date.today.year == contract.payslips.last.month_of_payslip.year %>
+                  <%= link_to "Créer une nouvelle fiche de paie", contract_payslips_path(contract), data: {turbo_method: :post}, class: "btn btn-primary"%>
+                <% end %>
+              <% else %>
+                <%= link_to "Créer une nouvelle fiche de paie", contract_payslips_path(contract), data: {turbo_method: :post}, class: "btn btn-primary"%>
+              <% end %>
 
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
-</div>
 
 
     <% end %>
