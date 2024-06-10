@@ -57,7 +57,8 @@ class Contract < ApplicationRecord
   def create_previous_payslips_on_creation
     # La close guard s'applique si le contrat est sur un unique mois,
     # le test sur le nil permet que les cdi ne soient pas inclus
-    return unless end_date.nil? || (start_date.month != end_date.month && start_date.year != end_date.year)
+    return if end_date.nil? == false && (start_date.month != end_date.month && start_date.year != end_date.year)
+
 
     ## cas à gérer : contrat en CDI et/ou pas de fin de contrat
     if end_date.nil?
@@ -74,6 +75,8 @@ class Contract < ApplicationRecord
     end
   end
 
+  private
+
   def count_of_leave(event_types, payslip_period)
     events.where(type: event_types, date: payslip_period[start_date]..payslip_period[end_date]).count
   end
@@ -89,8 +92,6 @@ class Contract < ApplicationRecord
 
     business_days
   end
-
-  private
 
   def gross_salary(worked_days, contract)
     contract.weekly_worked_hours / 5 * contract.gross_hourly_rate * worked_days
