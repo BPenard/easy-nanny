@@ -25,37 +25,10 @@
   background-color: #ffffff;
 }
 
-.breadcrumb-container {
-  text-align: center;
+.header h1 {
+  color: $purple;
 }
-.breadcrumb {
-  display: flex;
-  justify-content: center;
-  padding: 0;
-  list-style: none;
-  background: none;
-  margin: 0;
-}
-.breadcrumb-item {
-  display: inline-block;
-  margin: 0 10px;
-  font-size: 18px;
-  color: $primary;
-  position: relative;
-}
-.breadcrumb-item.active {
-  font-weight: bold;
-  color: $secondary;
-}
-.breadcrumb-item::before {
-  content: '>';
-  position: absolute;
-  left: -15px;
-  color: $primary;
-}
-.breadcrumb-item:first-child::before {
-  content: '';
-}
+
 .form-container {
   background-color: $primary;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
