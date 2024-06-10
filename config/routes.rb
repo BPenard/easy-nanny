@@ -4,9 +4,9 @@ Rails.application.routes.draw do
 
   resources :children, only: %i[new create index show edit update]
   resources :contracts, only: %i[new create index show edit update] do
-    resources :payslips, only: %i[show create]
+    resources :payslips, only: %i[create]
   end
-  resources :payslips, only: %i[index]
+  resources :payslips, only: %i[index show]
   post 'payslip/:id/save_pajeemploi_date', to: 'payslips#save_pajeemploi_date', as: 'save_pajeemploi_date'
   post 'payslip/:id/save_bank_date', to: 'payslips#save_bank_date', as: 'save_bank_date'
 

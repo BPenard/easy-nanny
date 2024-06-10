@@ -74,8 +74,6 @@ class Contract < ApplicationRecord
     end
   end
 
-  private
-
   def count_of_leave(event_types, payslip_period)
     events.where(type: event_types, date: payslip_period[start_date]..payslip_period[end_date]).count
   end
@@ -91,6 +89,8 @@ class Contract < ApplicationRecord
 
     business_days
   end
+
+  private
 
   def gross_salary(worked_days, contract)
     contract.weekly_worked_hours / 5 * contract.gross_hourly_rate * worked_days

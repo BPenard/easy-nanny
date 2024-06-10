@@ -13,21 +13,23 @@
   <div class="row align-items-start justify-content-between m-2">
     <div class="col-4 form-container rounded-3 p-2">
       <div class="d-flex justify-content-between">
-        <h3><%=@contract.start_date.strftime(" %B %Y")%></h3>
+        <h3><%=@payslip.month_of_payslip.strftime(" %B %Y")%></h3>
         <div class="dropdown">
           <button class="btn btn-primary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
             Mois précédents
           </button>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Action</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
+          <% @contract.payslips.all.each do |payslip| %>
+            <li> <%= link_to payslip.month_of_payslip.strftime(" %B %Y"), payslip_path(payslip), class: "dropdown-item" %></li>
+            <% end %>
           </ul>
         </div>
       </div>
       <div>
-        <p>XX jours travaillés</p>
-        <p>XX jours d'absence</p>
+      <%= @payslip.month_of_payslip %>
+      <%# Ne fonctionne pas car je dois envoyer une période dans les méthodes et pas uniquement une date %>
+        <p><%#= @payslip.contract.business_days_in_month(@payslip.month_of_payslip) - @payslip.contract.count_of_leave(["Congés", "RTT"],@payslip.month_of_payslip) %> jours travaillés</p>
+        <p> <%#= @payslip.contract.count_of_leave(["Congés", "RTT"],@payslip.month_of_payslip) %> jours d'absence</p>
       </div>
 
 
@@ -41,16 +43,32 @@
       </ul>
 
       <div class="d-flex justify-content-between" data-controller="payslip-update" data-payslip-update-id-value="<%= @payslip.id %>" >
-        <div class="d-flex align-items-center">
-          <button class="btn btn-primary btn-sm" data-action="click->payslip-update#bankUpdate" >Virer le salaire</button>
-          <i class="fas fa-sync-alt fa-spin payslip-icons p-2 hidden" data-payslip-update-target="bankLoader"></i>
-          <i class="fa-solid fa-check payslip-icons p-2 hidden" data-payslip-update-target="bankSuccess"></i>
+
+        <% if @payslip.bank_send_date.nil? %>
+          <div class="d-flex align-items-center">
+            <button class="btn btn-primary btn-sm" data-action="click->payslip-update#bankUpdate" >Virer le salaire</button>
+            <i class="fas fa-sync-alt fa-spin payslip-icons p-2 hidden" data-payslip-update-target="bankLoader"></i>
+            <i class="fa-solid fa-check payslip-icons p-2 hidden" data-payslip-update-target="bankSuccess"></i>
+          </div>
+        <% else %>
+        <div>
+          <button class="btn btn-primary btn-sm disabled" >Virer le salaire</button>
+          <p class="small-italic-txt">Virement fait le <%= @payslip.bank_send_date.strftime("%e %B %Y") %></p>
         </div>
-        <div class="d-flex align-items-center"   >
-          <button class="btn btn-primary btn-sm"  data-action="click->payslip-update#pajeEmploiUpdate" >Transmettre à PAJEemploi</button>
-          <i class="fas fa-sync-alt fa-spin payslip-icons p-2 hidden" data-payslip-update-target="pajeEmploiLoader"></i>
-          <i class="fa-solid fa-check payslip-icons p-2 hidden" data-payslip-update-target="pajeEmploisuccess"></i>
-        </div>
+        <% end %>
+
+        <% if @payslip.paje_emploi_send_date.nil? %>
+          <div class="d-flex align-items-center"   >
+              <button class="btn btn-primary btn-sm"  data-action="click->payslip-update#pajeEmploiUpdate" >Transmettre à PAJEemploi</button>
+              <i class="fas fa-sync-alt fa-spin payslip-icons p-2 hidden" data-payslip-update-target="pajeEmploiLoader"></i>
+              <i class="fa-solid fa-check payslip-icons p-2 hidden" data-payslip-update-target="pajeEmploisuccess"></i>
+          </div>
+        <% else %>
+          <div>
+            <button class="btn btn-primary btn-sm disabled">Transmettre à PAJEemploi</button>
+            <p class="small-italic-txt">Transmission faite le <%= @payslip.paje_emploi_send_date.strftime("%e %B %Y") %></p>
+          </div>
+        <% end %>
       </div>
     </div>
 

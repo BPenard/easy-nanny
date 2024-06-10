@@ -57,7 +57,7 @@ export default class extends Controller {
 
     }, 2000)
 
-    const url = `/payslip/${this.idValue}/save_pajeemploi_date`
+    const url = `/payslip/${this.idValue}/save_bank_date`
 
 
     fetch(url, {

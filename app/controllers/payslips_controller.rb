@@ -7,13 +7,13 @@ class PayslipsController < ApplicationController
 
   def show
     @payslip = Payslip.find(params[:id])
-    @contract = Contract.find(params[:contract_id])
+    @contract = @payslip.contract
 
     ## TODO : modifier cette gestion et ajouter le nb de jours travaillés
     @business_days = business_days_in_month(@payslip.month_of_payslip)
 
     authorize @payslip
-    authorize @contract
+    # authorize @contract
   end
 
   def create
