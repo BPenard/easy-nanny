@@ -45,13 +45,13 @@
   padding: 8px 24px;
   border-radius: 4px;
   background: transparent;
-  border: 2px solid #97a1cd;
+  border: 2px solid $beige;
   transition: background 0.3s ease;
   position: relative;
 }
 
 .event:hover {
-  background: #bff0db;
+  background: $brown;
   color: white;
   .toggle {
     display: block;

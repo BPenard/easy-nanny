@@ -15,18 +15,16 @@
 }
 .breadcrumb li.active {
   font-weight: bold;
-  border-bottom: 2px solid $purple;
+  border-bottom: 2px solid $primary;
 }
 
 .bg-light-purple {
-  background-color: #f3e5f5;
+  background-color: $body-color;
 }
 .bg-white {
   background-color: #ffffff;
 }
-.header h1 {
-  color: $purple;
-}
+
 .breadcrumb-container {
   text-align: center;
 }
@@ -42,34 +40,34 @@
   display: inline-block;
   margin: 0 10px;
   font-size: 18px;
-  color: #9c27b0;
+  color: $primary;
   position: relative;
 }
 .breadcrumb-item.active {
   font-weight: bold;
-  color: $purple;
+  color: $secondary;
 }
 .breadcrumb-item::before {
   content: '>';
   position: absolute;
   left: -15px;
-  color: #9c27b0;
+  color: $primary;
 }
 .breadcrumb-item:first-child::before {
   content: '';
 }
 .form-container {
-  background-color: $purple;
+  background-color: $primary;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 .form-label {
   color: white;
 }
 .btn-primary {
-  background-color: #8e24aa;
-  border-color: #8e24aa;
+  background-color: $primary;
+  border-color: white;
 }
 .btn-primary:hover {
-  background-color: $purple;
-  border-color: $purple;
+  background-color: $secondary;
+  border-color: $secondary;
 }
