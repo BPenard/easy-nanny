@@ -18,3 +18,6 @@ Je veux faire de l'AJAX pour gérer 2 cas :
     comment je peux faire pour identifier quel payslip j'affiche dans mon contrôleur ?
     -> Mon envie ce serait de passer dans les query params l'id du contrat et le mois de la payslip
       récupérer les éléments et les intégrer dans une page skeleton html.
+
+
+TODO : remettre la seed correctement

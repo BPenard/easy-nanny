@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   end
   resources :payslips, only: %i[index]
   post 'payslip/:id/save_pajeemploi_date', to: 'payslips#save_pajeemploi_date', as: 'save_pajeemploi_date'
+  post 'payslip/:id/save_bank_date', to: 'payslips#save_bank_date', as: 'save_bank_date'
+
   resources :events, only: %i[index show new create]
 
   resources :user_contracts

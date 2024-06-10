@@ -12,4 +12,14 @@ class PayslipPolicy < ApplicationPolicy
       # scope.where(contract.parent_id: user)
     end
   end
+
+  def save_pajeemploi_date?
+    record.contract.parent == user
+    # true
+  end
+
+  def save_bank_date?
+    record.contract.parent == user
+    # true
+  end
 end
