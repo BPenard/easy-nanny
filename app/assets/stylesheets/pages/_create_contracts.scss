@@ -1,25 +1,46 @@
+.breadcrumb {
+  margin: 10px 0;
+}
+.breadcrumb ol {
+  padding: 0;
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+}
+.breadcrumb li {
+  flex: 1;
+  text-align: center;
+  padding: 10px;
+  border-bottom: 2px solid #ccc;
+}
+.breadcrumb li.active {
+  font-weight: bold;
+  border-bottom: 2px solid $primary;
+}
+
 .bg-light-purple {
-  background-color: #f3e5f5;
+  background-color: $body-color;
 }
 .bg-white {
   background-color: #ffffff;
 }
+
 .header h1 {
   color: $purple;
 }
 
 .form-container {
-  background-color: $purple;
+  background-color: $primary;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 .form-label {
   color: white;
 }
 .btn-primary {
-  background-color: #8e24aa;
-  border-color: #8e24aa;
+  background-color: $primary;
+  border-color: white;
 }
 .btn-primary:hover {
-  background-color: $purple;
-  border-color: $purple;
+  background-color: $secondary;
+  border-color: $secondary;
 }

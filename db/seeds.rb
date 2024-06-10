@@ -129,8 +129,8 @@ nancy.save!
 puts 'Creating 2 contracts'
 
 first_contract = Contract.new(
-  start_date: "01-09-2021",
-  end_date: "30-06-2023",
+  start_date: "01-01-2024",
+  end_date: "09-06-2024",
   type: "cdi",
   weekly_worked_hours: 35,
   gross_hourly_rate: 10

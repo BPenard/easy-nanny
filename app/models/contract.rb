@@ -57,7 +57,8 @@ class Contract < ApplicationRecord
   def create_previous_payslips_on_creation
     # La close guard s'applique si le contrat est sur un unique mois,
     # le test sur le nil permet que les cdi ne soient pas inclus
-    return unless end_date.nil? || (start_date.month != end_date.month && start_date.year != end_date.year)
+    return if end_date.nil? == false && (start_date.month != end_date.month && start_date.year != end_date.year)
+
 
     ## cas à gérer : contrat en CDI et/ou pas de fin de contrat
     if end_date.nil? || end_date > Date.today
