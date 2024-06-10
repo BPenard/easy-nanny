@@ -9,7 +9,7 @@
   color: #642817 !important;
   width: 100%;
   height: 10vh;
-  background-color: rgba(255, 255, 255, 0.3);
+  background-color: rgba(255, 255, 255, 0.4);
   text-decoration: none;
   display: flex;
   justify-content: center;
@@ -104,4 +104,21 @@ h3-home {
 .text1 {
   margin: 20px;
   border-radius: 4px;
+}
+
+.nav-links {
+  border-radius: 5px;
+  text-decoration: none;
+  color: #642817;
+  border-color: #ffffff;
+  padding: 6px;
+  margin-top: 6px;
+  margin-right: 6px;
+}
+
+.nav-links:hover {
+  color: #642817;
+  background-color: #ffffff;
+  border-color: #642817;
+  border: solid 1px;
 }

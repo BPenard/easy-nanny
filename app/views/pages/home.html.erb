@@ -1,13 +1,13 @@
   <div class="main-home">
     <div class="top-navbar">
-      <%= link_to welcome_path, class: " nav-links nav-logo" do %>
+      <%= link_to welcome_path, class: "nav-logo" do %>
         <%= image_tag "logo3.png", alt: "Logo Easy Nanny" %>
       <% end %>
       <%= link_to "Qui sommes nous ?", welcome_path, class: "nav-link" %>
       <%= link_to "F.A.Q", welcome_path, class: "nav-link" %>
       <%= link_to "Mentions Légales", welcome_path, class: "nav-link" %>
       <%= link_to "Presse", welcome_path, class: "nav-link" %>
-      <%= link_to "Me connecter", new_user_session_path, class: "nav-connect nav-links btn btn-outline-light rounded-5 m-1" %>
+      <%= link_to "Me connecter", new_user_session_path, class: "nav-connect nav-links" %>
     </div>
 
 
@@ -18,7 +18,7 @@
     </div>
 
     <div class="content-section">
-        <h2>1. Votre garde d'enfants, simplifiée</h2>
+        <h2>Votre garde d'enfants, simplifiée</h2>
         <div class="container-home">
           <div class="text1">
             <%= image_tag "easy_happy.svg", alt: "Esprit libre", width: "200", height: "150" %>
@@ -39,7 +39,7 @@
 
     </div>
         <div class="content-section2">
-        <h2>2. Gestion de A à Z.</h2>
+        <h2>Gestion de A à Z.</h2>
         <div class="container-home">
           <div class="text1">
             <%= image_tag "contrat.svg", alt: "Contrat" %>
@@ -61,7 +61,7 @@
     </div>
 
         <div class="content-section">
-        <h2>3. Echanges continus et sécurisés </h2>
+        <h2>Echanges continus et sécurisés </h2>
         <div class="container-home">
           <div class="text1">
             <%= image_tag "calendar.svg", alt: "Agenda partagé", width: "200", height: "150" %>
