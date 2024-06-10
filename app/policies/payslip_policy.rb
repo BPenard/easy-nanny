@@ -9,6 +9,17 @@ class PayslipPolicy < ApplicationPolicy
     # NOTE: Be explicit about which records you allow access to!
     def resolve
       scope.all # TODO : modifier pour n'afficher que les payslips du contract des users
+      # scope.where(contract.parent_id: user)
     end
+  end
+
+  def save_pajeemploi_date?
+    record.contract.parent == user
+    # true
+  end
+
+  def save_bank_date?
+    record.contract.parent == user
+    # true
   end
 end

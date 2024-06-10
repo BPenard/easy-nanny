@@ -7,10 +7,13 @@ class PayslipsController < ApplicationController
 
   def show
     @payslip = Payslip.find(params[:id])
+    @contract = @payslip.contract
+
     ## TODO : modifier cette gestion et ajouter le nb de jours travaillés
     @business_days = business_days_in_month(@payslip.month_of_payslip)
 
     authorize @payslip
+    # authorize @contract
   end
 
   def create
@@ -29,6 +32,25 @@ class PayslipsController < ApplicationController
     authorize @payslip
     authorize @contract
   end
+
+  def save_pajeemploi_date
+    # Remplace ceci par la logique réelle d'enregistrement
+    @payslip = Payslip.find(params[:id])
+    @payslip.update(paje_emploi_send_date: Date.today)
+    authorize @payslip
+    render json: { message: "Date saved successfully", date: Time.now }
+
+  end
+
+  def save_bank_date
+    # Remplace ceci par la logique réelle d'enregistrement
+    @payslip = Payslip.find(params[:id])
+    @payslip.update(bank_send_date: Date.today)
+    authorize @payslip
+    render json: { message: "Date saved successfully", date: Time.now }
+
+  end
+
 
   private
 

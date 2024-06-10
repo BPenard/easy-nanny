@@ -27,6 +27,10 @@ class ContractsController < ApplicationController
     end
   end
 
+  def recap
+    @contract = Contract.find(params[:id])
+  end
+
   def edit
     @contract = Contract.find(params[:id])
     authorize @contract

@@ -1,34 +1,80 @@
-<div class="container">
-  <div class="m-2 p-2 border rounded-5 w-75 mx-auto">
-    <div class="form-container m-2 p-4 rounded-5">
-      <div>
-        <h1><%=@payslip.contract.nanny.first_name %> <%=  @payslip.contract.nanny.last_name %></h1>
-        <h2><%=@payslip.month_of_payslip.strftime("%B %Y")%></h2>
+<div class="container border p-5 m-2 rounded-3 bg-white" style="height: 98vh;">
+  <div class="form-container m-2 p-4 rounded-3 d-flex">
+      <%= image_tag("marry_poppins.png", class: "payslip_avatar")%>
+      <div class="m-2">
+        <h2 class= "p-0 m-0"><%= @contract.nanny.last_name %> <%= @contract.nanny.first_name %></h1>
+        <p class= "p-0 m-0">Nounou à domicile</h2>
+        <p class= "p-0 m-0">En contract depuis le <%= @contract.start_date.strftime("%e %B %Y")  %></p>
       </div>
-    </div>
+        <div class="btn btn-primary align-self-end ms-auto">Consulter le contrat</div>
 
-      <%#= link_to "See last payslip", contract_payslip_path(contract, contract.payslips.last), class: "btn btn-outline-primary"%>
+  </div>
 
-      <%# <div class="dropdown">
-        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-          See all months
-        </button>
-        <ul class="dropdown-menu"> %>
-          <%# @payslip.contract.payslips.each do |payslip| %>
-            <%#= link_to payslip.month_of_payslip.strftime("%B %Y"), contract_payslip_path(payslip.contract, payslip), class: "dropdown-item" %>
-          <%# end %>
-        <%# </ul>
-    </div> %>
-    <div class="form-container m-2 p-4 rounded-5">
+  <div class="row align-items-start justify-content-between m-2">
+    <div class="col-4 form-container rounded-3 p-2">
+      <div class="d-flex justify-content-between">
+        <h3><%=@payslip.month_of_payslip.strftime(" %B %Y")%></h3>
+        <div class="dropdown">
+          <button class="btn btn-primary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Mois précédents
+          </button>
+          <ul class="dropdown-menu">
+          <% @contract.payslips.all.each do |payslip| %>
+            <li> <%= link_to payslip.month_of_payslip.strftime(" %B %Y"), payslip_path(payslip), class: "dropdown-item" %></li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+      <div>
+      <%= @payslip.month_of_payslip %>
+      <%# Ne fonctionne pas car je dois envoyer une période dans les méthodes et pas uniquement une date %>
+        <p><%#= @payslip.contract.business_days_in_month(@payslip.month_of_payslip) - @payslip.contract.count_of_leave(["Congés", "RTT"],@payslip.month_of_payslip) %> jours travaillés</p>
+        <p> <%#= @payslip.contract.count_of_leave(["Congés", "RTT"],@payslip.month_of_payslip) %> jours d'absence</p>
+      </div>
+
+
+      </div>
+    <div class="col-6 form-container rounded-3 p-2">
       <ul>
-        <li>Business days of the month : <%=@business_days%></li>
         <li>Gross salary : <%= @payslip.gross_salary %></li>
         <li>Employer contributions : <%= @payslip.employer_contributions %></li>
         <li>Employee contributions : <%= @payslip.employee_contributions %></li>
         <li>Paid amount : <%=@payslip.paid_amount  %></li>
       </ul>
+
+      <div class="d-flex justify-content-between" data-controller="payslip-update" data-payslip-update-id-value="<%= @payslip.id %>" >
+
+        <% if @payslip.bank_send_date.nil? %>
+          <div class="d-flex align-items-center">
+            <button class="btn btn-primary btn-sm" data-action="click->payslip-update#bankUpdate" >Virer le salaire</button>
+            <i class="fas fa-sync-alt fa-spin payslip-icons p-2 hidden" data-payslip-update-target="bankLoader"></i>
+            <i class="fa-solid fa-check payslip-icons p-2 hidden" data-payslip-update-target="bankSuccess"></i>
+          </div>
+        <% else %>
+        <div>
+          <button class="btn btn-primary btn-sm disabled" >Virer le salaire</button>
+          <p class="small-italic-txt">Virement fait le <%= @payslip.bank_send_date.strftime("%e %B %Y") %></p>
+        </div>
+        <% end %>
+
+        <% if @payslip.paje_emploi_send_date.nil? %>
+          <div class="d-flex align-items-center"   >
+              <button class="btn btn-primary btn-sm"  data-action="click->payslip-update#pajeEmploiUpdate" >Transmettre à PAJEemploi</button>
+              <i class="fas fa-sync-alt fa-spin payslip-icons p-2 hidden" data-payslip-update-target="pajeEmploiLoader"></i>
+              <i class="fa-solid fa-check payslip-icons p-2 hidden" data-payslip-update-target="pajeEmploisuccess"></i>
+          </div>
+        <% else %>
+          <div>
+            <button class="btn btn-primary btn-sm disabled">Transmettre à PAJEemploi</button>
+            <p class="small-italic-txt">Transmission faite le <%= @payslip.paje_emploi_send_date.strftime("%e %B %Y") %></p>
+          </div>
+        <% end %>
+      </div>
     </div>
 
-
   </div>
+
+
+
+
 </div>
