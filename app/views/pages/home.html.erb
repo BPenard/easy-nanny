@@ -1,17 +1,76 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome</title>
-    <%= stylesheet_link_tag 'application', media: 'all' %> <!-- Inclut votre feuille de style principale -->
-  </head>
-  <body>
-  <div class="video-overlay"></div>
-  <%= video_tag 'baby.mp4', class: 'background-video', autoplay: true, muted: true, loop: true %>
-  <%= link_to "Me connecter", new_user_session_path, class: "nav-links btn btn-outline-light rounded-5 m-3" %>
-  <div class="container d-flex justify-content-center align-items-center" style="height: 100vh;">
-    <h1 class="text-center text-banner">Easy Nanny</h1>
+  <div class="main-home">
+    <div class="top-navbar">
+      <%= link_to welcome_path, class: " nav-links nav-logo" do %>
+        <%= image_tag "logo3.png", alt: "Logo Easy Nanny" %>
+      <% end %>
+      <%= link_to "Qui sommes nous ?", welcome_path, class: "nav-link" %>
+      <%= link_to "F.A.Q", welcome_path, class: "nav-link" %>
+      <%= link_to "Mentions Légales", welcome_path, class: "nav-link" %>
+      <%= link_to "Presse", welcome_path, class: "nav-link" %>
+      <%= link_to "Me connecter", new_user_session_path, class: "nav-connect nav-links btn btn-outline-light rounded-5 m-1" %>
+    </div>
+
+
+    <div class="bg-img-container">
+        <div class="container justify-content-center align-items-center banner-content">
+            <h1 class="text-center text-banner">Easy Nanny</h1>
+        </div>
+    </div>
+
+    <div class="content-section">
+        <h2>1. Votre garde d'enfants, simplifiée</h2>
+        <div class="container-home">
+          <div class="text1">
+            <h3>Contrat</h3>
+            <p> Préparez rapidement un contrat complet et adapté à votre situation. Il est robuste, conforme à la législation en vigueur et vérifié par des experts juridiques.</p>
+          </div>
+          <div class="text1">
+            <h3>Paie</h3>
+            <p> Préparez rapidement un contrat complet et adapté à votre situation. Il est robuste, conforme à la législation en vigueur et vérifié par des experts juridiques.</p>
+          </div>
+          <div class="text1">
+            <h3>Connexion à Pajemploi</h3>
+            <p> Préparez rapidement un contrat complet et adapté à votre situation. Il est robuste, conforme à la législation en vigueur et vérifié par des experts juridiques.</p>
+          </div>
+        </div>
+
+    </div>
+        <div class="content-section2">
+        <h2>2. Intégration avec Pajemploi</h2>
+        <div class="container-home">
+          <div class="text1">
+            <h3>Contrat</h3>
+            <p> Préparez rapidement un contrat complet et adapté à votre situation. Il est robuste, conforme à la législation en vigueur et vérifié par des experts juridiques.</p>
+          </div>
+          <div class="text1">
+            <h3>Paie</h3>
+            <p> Préparez rapidement un contrat complet et adapté à votre situation. Il est robuste, conforme à la législation en vigueur et vérifié par des experts juridiques.</p>
+          </div>
+          <div class="text1">
+            <h3>Connexion à Pajemploi</h3>
+            <p> Préparez rapidement un contrat complet et adapté à votre situation. Il est robuste, conforme à la législation en vigueur et vérifié par des experts juridiques.</p>
+          </div>
+        </div>
+
+    </div>
+
+        <div class="content-section">
+        <h2>3. Echanges continus et sécurisés </h2>
+        <div class="container-home">
+          <div class="text1">
+            <%= image_tag "contrat.svg", alt: "Contrat" %>
+            <h3>Contrat</h3>
+            <p> Préparez rapidement un contrat complet et adapté à votre situation. Il est robuste, conforme à la législation en vigueur et vérifié par des experts juridiques.</p>
+          </div>
+          <div class="text1">
+            <h3>Paie</h3>
+            <p> Préparez rapidement un contrat complet et adapté à votre situation. Il est robuste, conforme à la législation en vigueur et vérifié par des experts juridiques.</p>
+          </div>
+          <div class="text1">
+            <h3>Connexion à Pajemploi</h3>
+            <p> Préparez rapidement un contrat complet et adapté à votre situation. Il est robuste, conforme à la législation en vigueur et vérifié par des experts juridiques.</p>
+          </div>
+        </div>
+
+    </div>
   </div>
-</body>
-</html>
