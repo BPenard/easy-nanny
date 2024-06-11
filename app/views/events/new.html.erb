@@ -8,7 +8,7 @@
       <%= simple_form_for(@event) do |f| %>
       <%= f.input :child, collection: current_user.children, label_method: :first_name, label: 'Enfant' %>
       <%= f.association :contract, collection: current_user.parent_contracts, label_method: :display_nanny_first_name, label: "Nanny" %>
-      <%= f.input :date, as: :date, label: 'Jour concerné' %>
+      <%= f.input :start_date, as: :date, label: 'Jour concerné' %>
       <%= f.input :type, collection: ["RTT", "Congés", "Absence", "Médicament"] %>
       <%= f.input :description, as: :text, label: 'Commentaires' %>
       <%= f.input :photo, as: :file, label: "Ajouter une photo" %>
