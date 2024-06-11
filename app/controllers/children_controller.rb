@@ -16,7 +16,7 @@ class ChildrenController < ApplicationController
 
     authorize @child
   end
-  
+
   def update
     @child = Child.find(params[:id])
     @child.update(child_params)
@@ -26,6 +26,6 @@ class ChildrenController < ApplicationController
 
   private
   def child_params
-    params.require(:child).permit(:last_name, :first_name, :birthdate)
+    params.require(:child).permit(:last_name, :first_name, :birthdate, :photo)
   end
 end
