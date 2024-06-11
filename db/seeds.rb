@@ -62,6 +62,7 @@ mary_poppins = User.new(
   role: "nanny",
   phone_number: "07.12.21.47.23"
 )
+mary_poppins.photo.attach(io: File.open("app/assets/images/nannies/marypoppins.jpg"), filename: "iphigenie.png", content_type: "image/png")
 mary_poppins.save!
 
 iphigenie_doubtfire = User.new(
@@ -73,6 +74,7 @@ iphigenie_doubtfire = User.new(
   role: "nanny",
   phone_number: "06.18.26.57.13"
 )
+iphigenie_doubtfire.photo.attach(io: File.open("app/assets/images/nannies/iphigenie.jpg"), filename: "iphigenie.png", content_type: "image/png")
 iphigenie_doubtfire.save!
 
 # nannies.each do |nanny|

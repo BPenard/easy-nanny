@@ -24,6 +24,7 @@
                 required: true %>
     <%= f.input :phone_number %>
     <%= f.input :email, required: true %>
+    <%= f.input :photo, as: :file %>
 
     <%= f.input :password,
                 hint: "leave it blank if you don't want to change it",

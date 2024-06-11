@@ -5,10 +5,13 @@
 
   <div class="contract-grid">
     <% @contracts.each do |contract| %>
-
       <div class="form-container contract-card " data-bs-toggle="modal" data-bs-target="#<%= contract.id%>">
         <div class="d-flex align-items-center ">
-          <%= image_tag "avatar-homme.png", class: "avatar", alt: "user avatar" %>
+          <% if contract.nanny.photo.attached?  %>
+            <%= cl_image_tag contract.nanny.photo.key, class: "avatar-large", alt: "user avatar", width: 50, height: 50, crop: :thumb, gravity: :face %>
+          <% else  %>
+            <%= image_tag "avatar-homme.png", class: "avatar", alt: "user avatar" %>
+          <% end  %>
           <h3> <%= contract.nanny.first_name %> <%= contract.nanny.last_name %> </h3>
         </div>
         <div>
@@ -17,8 +20,12 @@
         </div>
         <div class="grouped-children-avatar">
         <% contract.children.each do |child| %>
-          <%= image_tag "avatar-homme.png", class: "avatar", alt: "user avatar" %>
+          <% if child.photo.attached? %>
+            <%= cl_image_tag child.photo.key, class: "avatar-large", alt: "user avatar", width: 50, height: 50, crop: :thumb, gravity: :face %>
+          <% else %>
+            <%= image_tag "avatar-homme.png", class: "avatar", alt: "user avatar" %>
           <% end %>
+        <% end %>
         </div>
       </div>
 
