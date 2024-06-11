@@ -7,11 +7,11 @@
   <div class=" m-3 p-0 border border-primary border-2 rounded-5 mx-auto">
     <div style="margin: 0 auto; max-width: 75%; padding: 10px;">
       <%= week_calendar(attribute: :date, events: @events) do |date, events| %>
-        <%= date %>
+        <%#= date %>
 
         <% events.each do |event| %>
           <div class="event">
-            <p><%= event.type %></p>
+            <p><%= event.type %> <%= event.date %></p>
             <div class="toggle"><%= event.description %></div>
           </div>
         <% end %>

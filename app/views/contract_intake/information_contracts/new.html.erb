@@ -1,15 +1,15 @@
-<div class="container border p-5 m-5 rounded-5 bg-white">
+<div class="container p-5">
 
-  <div class="header text-center mb-4">
-    <h1>Créer un nouveau contract</h1>
+  <div class="header mb-2">
+    <h2>Créer un nouveau contract</h2>
   </div>
 
   <div class="container d-flex flex-column align-items-center">
-    <div class="breadcrumb d-flex justify-content-center">
-          <div class="step"></div>
-          <div class="step current"></div>
-          <div class="step"></div>
-  </div>
+    <div class="breadcrumb d-flex justify-content-between">
+          <div class="step">1</div>
+          <div class="step current">2</div>
+          <div class="step">3</div>
+    </div>
 
   <div class="form-container p-4 w-50 rounded-5">
     <%= simple_form_for(@information_contract, url: contract_intake_information_contracts_path(contract: @contract)) do |f| %>
@@ -21,12 +21,12 @@
             <label for="cdi" class="radio-label">CDI</label>
           </div>
           <div class="d-flex justify-content-between">
-            <div><%= f.input :start_date, as: :string, label: 'Démarrage du contrat', input_html: { data: { controller: "datepicker" } } %></div>
+            <div><%= f.input :start_date, as: :string, label: 'Démarrage du contrat', required: false, input_html: { data: { controller: "datepicker" } } %></div>
             <div data-contract-type-target="endDate"><%= f.input :end_date, as: :string,label: 'Fin du contrat', input_html: { data: { controller: "datepicker" } } %></div>
           </div>
         </div>
       <div>
-        <div><%= f.input :weekly_worked_hours, label: 'Temps de travail hebdomadaire' %></div>
+        <div><%= f.input :weekly_worked_hours, required: false, label: 'Temps de travail hebdomadaire' %></div>
       </div>
       <div class="slider-group">
         <label for="gross_hourly_rate">Taux horaire (€)</label>
