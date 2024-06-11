@@ -2,7 +2,7 @@ import { Controller } from "@hotwired/stimulus";
 
 // Connects to data-controller="welcome"
 export default class extends Controller {
-  static targets = ["monday", "tuesday", "wednesday", "thursday", "friday"];
+  static targets = ["monday", "tuesday", "wednesday", "thursday", "friday","calendar"];
   // static values = { day: String }
 
   connect() {
@@ -49,33 +49,48 @@ export default class extends Controller {
 
   change_week() {
     console.log("change week");
+    const today = new Date();
 
-    const url = "/welcome?start_date=2024-06-05";
+    // Reculer de 7 jours pour obtenir une date de la semaine précédente
+    const lastWeekDate = new Date(today);
+    lastWeekDate.setDate(today.getDate() - 7);
 
-    // fetch(url,
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   }
-    // )
-    //   .then((response) => response.json())
-    //   .then((data) => console.log(data))
-    //   .catch((error) => console.error("Error:", error));
+    const url = `/welcome?start_date=${lastWeekDate}`;
 
     fetch(url, {
       method: "GET",
       headers: {
         Accept: "application/json",
-        // "X-CSRF-Token": document
-        //   .querySelector('meta[name="csrf-token"]')
-        //   .getAttribute("content"),
       },
     })
       .then((response) => response.json())
       .then((data) => {
-        document.querySelector(".toto").innerHTML = data.content;
+        this.calendarTarget.innerHTML = data.content;
+        const dayOfPreviousWeek = lastWeekDate.getDay();
+        const days = [
+          "sunday",
+          "monday",
+          "tuesday",
+          "wednesday",
+          "thursday",
+          "friday",
+          "saturday",
+        ];
+        // const contract_card = document.querySelectorAll('.contract-card');
+        const previousDayName = days[dayOfPreviousWeek];
+        console.log(previousDayName)
+        const dayEvents = document.querySelectorAll(`.contract-card[data-infos=${previousDayName}]`);
+        console.log(dayEvents)
+        dayEvents.forEach((dayEvent) => {
+          dayEvent.classList.remove("d-none");
+        });
       })
       .catch((error) => {
         console.error(error);
       });
+
+
+
+
   }
 }
