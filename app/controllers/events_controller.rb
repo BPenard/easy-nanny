@@ -2,7 +2,10 @@ class EventsController < ApplicationController
   def index
     @events = policy_scope(Event)
     start_date = params.fetch(:start_date, Date.today).to_date
-    @events = @events.where("start_date >= ?", start_date.beginning_of_week)
+
+    @events = @events.where("start_date >= ? AND start_date <= ?", start_date.beginning_of_week, start_date.end_of_week)
+
+    # @events = @events.where("start_date >= ?", start_date.beginning_of_week)
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: { content: (render_to_string partial: '/events/week-events', formats: :html, locals: {events: @events}, layout: false) } }

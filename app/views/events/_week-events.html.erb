@@ -1,6 +1,6 @@
 <div class="event-grid">
   <% events.each do |event| %>
-    <div class="form-container contract-card" data-infos="<%= event.start_date.strftime("%A").downcase %>" >
+    <div class="form-container contract-card d-none" data-infos="<%= event.start_date.strftime("%A").downcase %>" >
     <div class="d-flex justify-content-between">
       <div class="event-hour">
         <%= event.start_date.strftime("%k") %>h
