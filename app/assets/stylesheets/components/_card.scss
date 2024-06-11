@@ -4,7 +4,9 @@
   border-radius: 10px;
   transition: all 0.3s;
   margin: 3px;
-  width: 300px;
+  width: 150px;
+  height: 150px;
+  text-align: center;
 }
 
 .nanny-card:hover {
@@ -17,17 +19,46 @@
 }
 
 .card-img-top {
-  width: 100px;
-  height: 100px;
+  width: 56px;
+  height: 56px;
   object-fit: cover;
+  margin: 0px;
 }
 
 .card-title {
-  font-size: 1.2em;
-  margin: 0;
+  font-size: 1em;
+  margin: 10px;
+
 }
 
 .card-text {
   font-size: 0.9em;
   color: #666;
+}
+
+.form-check:has(.form-check-input[type="checkbox"]:checked) .nanny-card {
+  background-color: $brown !important;
+  color: $beige;
+}
+
+
+.form-check:has(.form-check-input[type="radio"]:checked) .nanny-card {
+  background-color: $brown !important;
+  color: $beige;
+}
+
+.new_contract_intake_nanny_contract legend {
+  width: 4rem!important;
+}
+
+.nanny-new {
+  cursor: pointer;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  transition: all 0.3s;
+  margin: 3px;
+  width: 150px;
+  height: 150px;
+  text-align: center;
+  margin-left: 1,5rem;
 }

@@ -10,6 +10,11 @@ module ContractIntake
         @contract = Contract.new(nanny_params)
         @contract.parent = current_user
         if @contract.save
+          params[:contract_intake_nanny_contract][:children_id].each do |child_id|
+            unless child_id == ""
+              ChildContract.create(contract: @contract, child_id: child_id)
+            end
+          end
           redirect_to new_contract_intake_information_contract_path(contract: @contract)
         end
       else
