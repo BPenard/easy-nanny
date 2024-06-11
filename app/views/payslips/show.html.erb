@@ -1,21 +1,20 @@
-<div class="container border p-5 m-2 rounded-3 bg-white" style="height: 98vh;">
-  <div class="form-container m-2 p-4 rounded-3 d-flex">
+<div class="container p-5 m-2 rounded-3" style="height: 98vh;">
+  <div class="form-container mx-2 mb-4 p-4 rounded-3 d-flex">
       <%= image_tag("marry_poppins.png", class: "payslip_avatar")%>
       <div class="m-2">
         <h2 class= "p-0 m-0"><%= @contract.nanny.last_name %> <%= @contract.nanny.first_name %></h1>
         <p class= "p-0 m-0">Nounou à domicile</h2>
         <p class= "p-0 m-0">En contract depuis le <%= @contract.start_date.strftime("%e %B %Y")  %></p>
       </div>
-        <div class="btn btn-primary align-self-end ms-auto">Consulter le contrat</div>
-
+      <%= link_to "Consulter le contrat", contracts_path, class: "btn btn-primary align-self-end ms-auto" %>
   </div>
 
   <div class="row align-items-start justify-content-between m-2">
     <div class="col-4 form-container rounded-3 p-2">
-      <div class="d-flex justify-content-between">
-        <h3><%=@payslip.month_of_payslip.strftime(" %B %Y")%></h3>
-        <div class="dropdown">
-          <button class="btn btn-primary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+      <div class="d-flex justify-content-between align-items-center">
+        <h3 class="m-0"><%=@payslip.month_of_payslip.strftime(" %B %Y")%></h3>
+        <%# <div class="dropdown m-0"> %>
+          <button class="btn btn-primary btn-sm dropdown-toggle m-0" type="button" data-bs-toggle="dropdown">
             Mois précédents
           </button>
           <ul class="dropdown-menu">
@@ -23,10 +22,9 @@
             <li> <%= link_to payslip.month_of_payslip.strftime(" %B %Y"), payslip_path(payslip), class: "dropdown-item" %></li>
             <% end %>
           </ul>
-        </div>
+        <%# </div> %>
       </div>
-      <div>
-      <%= @payslip.month_of_payslip %>
+      <div class="mt-4">
       <%# Ne fonctionne pas car je dois envoyer une période dans les méthodes et pas uniquement une date %>
         <p><%#= @payslip.contract.business_days_in_month(@payslip.month_of_payslip) - @payslip.contract.count_of_leave(["Congés", "RTT"],@payslip.month_of_payslip) %> jours travaillés</p>
         <p> <%#= @payslip.contract.count_of_leave(["Congés", "RTT"],@payslip.month_of_payslip) %> jours d'absence</p>
