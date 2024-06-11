@@ -1,16 +1,38 @@
-<div class="container border p-5 m-5 rounded-5 bg-white">
-  <div class="header text-center mb-4">
-    <h1>Modification du contrat</h1>
-  </div>
+<div class="container p-5">
 
-  <div class="form-container p-4 rounded-5 shadow-lg">
-    <%= simple_form_for(@contract) do |f| %>
-      <%= f.input :start_date, as: :date, label: 'Date de début' %>
-      <%= f.input :end_date, as: :date, label: 'Date de fin' %>
-      <%= f.input :type, collection: ["cdd", "cdi"], label: 'Type de contrat' %>
-      <%= f.input :gross_hourly_rate, as: :float, label: 'Taux horaire' %>
-      <%= f.input :weekly_worked_hours, collection: (30..50), label: 'Temps de travail hebdomadaire' %>
-      <%= f.submit 'Modifier le contrat', class: 'btn btn-outline-light btn-lg rounded-5' %>
-    <% end %>
+  <div class="header mb-2">
+    <h2>Modification du contrat</h2>
+  </div>
+  <div class="container d-flex flex-column align-items-center">
+    <div class="form-container p-4 mt-5 w-50 rounded-5">
+      <%= simple_form_for(@contract) do |f| %>
+        <%= f.input :nanny_id, required: false, collection: User.all_nannies, label_method: -> (nanny) {
+            "#{nanny.first_name} #{nanny.last_name}"
+          }, label: 'Choix de la Nanny', input_html: { class: 'form-control' }, label_html: { class: 'form-label' } %>
+        <div data-controller="contract-type">
+            <div class="contract-type d-flex">
+              <input type="radio" id="cdd" name="contract_intake_information_contract[type]" value="cdd" class="radio-input" data-action="change->contract-type#toggleEndDate">
+              <label for="cdd" class="radio-label">CDD</label>
+              <input type="radio" id="cdi" name="contract_intake_information_contract[type]" value="cdi" class="radio-input" data-action="change->contract-type#toggleEndDate">
+              <label for="cdi" class="radio-label">CDI</label>
+            </div>
+            <div class="d-flex justify-content-between">
+              <div><%= f.input :start_date, as: :string, label: 'Démarrage du contrat', required: false, input_html: { data: { controller: "datepicker" } } %></div>
+              <div data-contract-type-target="endDate"><%= f.input :end_date, as: :string,label: 'Fin du contrat', input_html: { data: { controller: "datepicker" } } %></div>
+            </div>
+        </div>
+        <div>
+          <div><%= f.input :weekly_worked_hours, required: false, label: 'Temps de travail hebdomadaire' %></div>
+        </div>
+        <div class="slider-group">
+          <label for="gross_hourly_rate">Taux horaire (€)</label>
+          <input type="range" id="gross_hourly_rate" name="contract_intake_information_contract[gross_hourly_rate]" min="0" max="20" step="0.1" class="slider" oninput="this.nextElementSibling.value = this.value">
+          <output>10</output> €
+        </div>
+        <div class="text-center mt-4">
+        <%= f.submit 'Modifier le contrat', class: 'btn btn-primary btn-lg rounded-5' %>
+        </div>
+      <% end %>
+    </div>
   </div>
 </div>

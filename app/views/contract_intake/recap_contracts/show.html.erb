@@ -16,7 +16,7 @@
         <div>
         <h4> <%= @contract.nanny.first_name %> <%= @contract.nanny.last_name %> </h4>
         </div>
-        <div> Adresse : <%= @contract.nanny.address %></div>
+        <div> <%= @contract.nanny.address %></div>
       </div>
       <div class="form-container m-2 p-4 rounded-5">
         <div>Enfant(s) gardé(s): </div>
@@ -28,8 +28,8 @@
         <div> Type de contrat : <%= @contract.type %></div>
         <div> Nombre d'heures hebdomadaires : <%= @contract.weekly_worked_hours %></div>
         <div> Taux horaire : <%= @contract.gross_hourly_rate %></div>
-        <%= link_to 'Télécharger le contrat', contract_path(@contract, format: :pdf), class: 'btn btn-outline-light rounded-5 m-3', target: '_blank' %>
-        <%= link_to 'Modifier le contrat', edit_contract_path(@contract), class: 'btn btn-outline-light rounded-5 m-3', target: '_blank' %>
+        <%= link_to 'Télécharger le contrat', contract_path(@contract, format: :pdf), class: 'btn btn-primary btn-lg rounded-5 me-5', target: '_blank' %>
+        <%= link_to 'Modifier le contrat', edit_contract_path(@contract), class: 'btn btn-primary btn-lg rounded-5', target: '_blank' %>
       </div>
     </div>
   </div>

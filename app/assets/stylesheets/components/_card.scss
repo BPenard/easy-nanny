@@ -1,0 +1,33 @@
+.nanny-card {
+  cursor: pointer;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  transition: all 0.3s;
+  margin: 3px;
+  width: 300px;
+}
+
+.nanny-card:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.nanny-card input:checked + label {
+  border: 2px solid #007bff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.card-img-top {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+}
+
+.card-title {
+  font-size: 1.2em;
+  margin: 0;
+}
+
+.card-text {
+  font-size: 0.9em;
+  color: #666;
+}

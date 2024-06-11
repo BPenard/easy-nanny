@@ -29,12 +29,6 @@
         <% end %>
       </li>
       <li>
-        <%= link_to new_event_path, class: "nav-link link-body-emphasis #{'active' if current_page?(new_event_path)}" do %>
-          Déclarer un événement
-          <% end %>
-        </a>
-      </li>
-      <li>
         <%= link_to children_path, class: "nav-link link-body-emphasis #{'active' if current_page?(children_path)}" do %>
           Voir mes enfants
           <% end %>
