@@ -10,14 +10,18 @@
         <% end %>
         <%= link_to t('simple_calendar.next', default: '>>'), calendar.url_for_next_view %>
       </div>
-    <%= link_to 'Ajouter un événement', new_event_path, class: 'btn btn-outline-info' %>
-  </div>
+      <%= link_to 'Ajouter un événement', new_event_path, class: 'btn btn-outline-info' %>
+    </div>
 
     <table class="table table-striped">
       <thead>
         <tr>
           <% date_range.select { |day| (1..5).include?(day.wday) }.each do |day| %>
-            <th><%= t('date.day_names')[day.wday] %></th>
+            <th>
+              <%= link_to new_event_path(date: day), class: 'add-event-link' do %>
+                <%= t('date.day_names')[day.wday] %>
+              <% end %>
+            </th>
           <% end %>
         </tr>
       </thead>
@@ -27,10 +31,13 @@
           <tr>
             <% week.select { |day| (1..5).include?(day.wday) }.each do |day| %>
               <%= content_tag :td, class: calendar.td_classes_for(day) do %>
-                <% if defined?(Haml) && respond_to?(:block_is_haml?) && block_is_haml?(passed_block) %>
-                  <% capture_haml(day, sorted_events.fetch(day, []), &passed_block) %>
-                <% else %>
-                  <% passed_block.call day, sorted_events.fetch(day, []) %>
+                <%= link_to new_event_path(date: day), class: 'full-column-link' do %>
+                  <%= day.day %> <!-- You can customize this part to display day details -->
+                  <% if defined?(Haml) && respond_to?(:block_is_haml?) && block_is_haml?(passed_block) %>
+                    <% capture_haml(day, sorted_events.fetch(day, []), &passed_block) %>
+                  <% else %>
+                    <% passed_block.call day, sorted_events.fetch(day, []) %>
+                  <% end %>
                 <% end %>
               <% end %>
             <% end %>
