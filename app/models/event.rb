@@ -5,7 +5,7 @@ class Event < ApplicationRecord
   belongs_to :child
   has_one_attached :photo
 
-  validates :start_datedate, presence: true
+  validates :start_date, presence: true
   validates :type, presence: true
   validates :type, inclusion: { in: %w[RTT Congés Absence Médicament] }
 end
