@@ -1,6 +1,5 @@
 .breadcrumb {
   display: flex;
-  align-items: center;
   position: relative;
   width: 100vh;
 }
@@ -18,13 +17,13 @@
 
 .step {
   position: relative;
-  padding: 10px 10px;
+  padding: 10px 15px;
   background: #fff;
   border-radius: 50%;
   border: 2px solid #ccc;
   text-align: center;
-  margin: 60px 100px;
-  font-size: 5px;
+  margin: 40px 100px;
+  font-size: 10px;
 }
 
 .step.current {

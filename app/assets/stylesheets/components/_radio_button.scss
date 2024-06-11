@@ -1,14 +1,3 @@
-
-// Class inutilisée ?
-.form-group {
-  background-color: $brown; /* Violet de fond */
-  padding: 20px;
-  border-radius: 10px;
-  width: 500px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  color: #fff;
-}
-
 .form-group label {
   display: block;
   margin-bottom: 10px;
@@ -23,7 +12,6 @@
 
 .radio-input {
   display: none;
-  margin: 15px;
 }
 
 .radio-label {
@@ -33,19 +21,19 @@
   background-color: #fff;
   cursor: pointer;
   transition: background-color 0.3s, border-color 0.3s, color 0.3s;
-  color: $beige;
+  color: $brown;
   margin: 20px;
   margin-left: 0px;
 }
 
 .radio-input:checked + .radio-label {
-  background-color: $brown; /* Vert pour CDD */
+  background-color: $brown;
   border-color: $brown;
   color: #fff;
 }
 
 .radio-input#cdi:checked + .radio-label {
-  background-color: $brown; /* Orange pour CDI */
+  background-color: $brown;
   border-color: $brown;
   color: #fff;
 }
