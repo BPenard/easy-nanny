@@ -2,6 +2,9 @@ puts 'Cleaning the database'
 Child.all.each do |child|
   child.photo.purge
 end
+Event.all.each do |event|
+  event.photo.purge
+end
 User.all.each do |user|
   user.photo.purge
 end
@@ -191,7 +194,7 @@ event1.save!
 
 event2 = Event.new(
   type: "RTT",
-  date: "2024-06-05",
+  date: "2024-06-12",
   description: "Pose d'un RTT"
 )
 
@@ -201,7 +204,7 @@ event2.save!
 
 event3 = Event.new(
   type: "Absence",
-  date: "2024-06-03",
+  date: "2024-06-13",
   description: "N'est pas venue au travail"
 )
 
@@ -221,7 +224,7 @@ event4.save!
 
 event5 = Event.new(
   type: "Congés",
-  date: "2024-06-06",
+  date: "2024-06-17",
   description: "Vacances bien méritées"
 )
 
@@ -231,7 +234,7 @@ event5.save!
 
 event6 = Event.new(
   type: "Congés",
-  date: "2024-06-07",
+  date: "2024-06-11",
   description: "Vacances bien méritées"
 )
 
@@ -241,7 +244,7 @@ event6.save!
 
 event7 = Event.new(
   type: "Médicament",
-  date: "2024-06-04",
+  date: "2024-06-14",
   description: "Dustin a été malade toute la nuit"
 )
 
