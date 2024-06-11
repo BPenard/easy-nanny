@@ -181,7 +181,7 @@ puts 'Creating 7 events'
 
 event1 = Event.new(
   type: "Médicament",
-  date: "2024-06-12",
+  start_date: "2024-06-12",
   description: "Enfant malade"
 )
 
@@ -191,7 +191,7 @@ event1.save!
 
 event2 = Event.new(
   type: "RTT",
-  date: "2024-06-05",
+  start_date: "2024-06-05",
   description: "Pose d'un RTT"
 )
 
@@ -201,7 +201,7 @@ event2.save!
 
 event3 = Event.new(
   type: "Absence",
-  date: "2024-06-03",
+  start_date: "2024-06-03",
   description: "N'est pas venue au travail"
 )
 
@@ -211,7 +211,7 @@ event3.save!
 
 event4 = Event.new(
   type: "RTT",
-  date: "2024-10-03",
+  start_date: "2024-10-03",
   description: "Les vacances au soleil"
 )
 
@@ -221,7 +221,7 @@ event4.save!
 
 event5 = Event.new(
   type: "Congés",
-  date: "2024-06-06",
+  start_date: "2024-06-06",
   description: "Vacances bien méritées"
 )
 
@@ -231,7 +231,7 @@ event5.save!
 
 event6 = Event.new(
   type: "Congés",
-  date: "2024-06-07",
+  start_date: "2024-06-07",
   description: "Vacances bien méritées"
 )
 
@@ -241,7 +241,7 @@ event6.save!
 
 event7 = Event.new(
   type: "Médicament",
-  date: "2024-06-04",
+  start_date: "2024-06-04",
   description: "Dustin a été malade toute la nuit"
 )
 
