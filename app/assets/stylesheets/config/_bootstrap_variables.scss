@@ -29,3 +29,7 @@ $border-radius-xl:            .5rem;
 $border-radius-xxl:           1rem;
 
 // Override other variables below!
+
+.form-select {
+  color: #642817 !important; // ça ne prend pas le pas sur le blanc de simple form
+}

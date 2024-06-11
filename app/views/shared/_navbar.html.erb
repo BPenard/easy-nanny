@@ -3,7 +3,7 @@
 <div class="global-nav d-flex flex-column flex-shrink-0 bg-body-tertiary" style="width: 300px; height: 100vh; position:sticky; top: 0px">
   <div class="d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
     <%= link_to "/welcome", class:"title-logo" do %>
-      <%= image_tag "logo3.png", alt: "Logo Easy Nanny", class: "logo", style: "width: 55px; height: 55px; margin-right: 8px;" %>
+      <%= image_tag "logo2.png", alt: "Logo Easy Nanny", class: "logo", style: "width: 55px; height: 55px; margin-right: 8px;" %>
       <span class="title-logo fs-4">Easy Nanny</span>
     <% end %>
   </div>
@@ -50,12 +50,10 @@
         <% end %>
       </a>
       <ul class="dropdown-menu text-small shadow">
-        <%# <li><a class="dropdown-item" href="#">New project...</a></li>
-        <li><a class="dropdown-item" href="#">Settings</a></li> %>
+
         <li class="dropdown-item "><%= link_to "Profile",  edit_user_registration_path%></li>
         <li><hr class="dropdown-divider"></li>
         <li class="dropdown-item "><%= link_to "Sign out", destroy_user_session_path, data: {turbo_method: :delete} %></li>
-        <%# <li><a class="dropdown-item" href="#">Sign out</a></li> %>
       </ul>
     </div>
   </div>

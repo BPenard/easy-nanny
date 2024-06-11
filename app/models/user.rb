@@ -5,6 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   # has_many :contracts
+  has_one_attached :photo
   has_many :children
   has_many :parent_contracts, class_name: 'Contract', foreign_key: 'parent_id'
   has_many :nannies, through: :parent_contracts, source: :nanny

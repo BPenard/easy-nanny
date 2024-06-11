@@ -1,4 +1,10 @@
 puts 'Cleaning the database'
+Child.all.each do |child|
+  child.photo.purge
+end
+User.all.each do |user|
+  user.photo.purge
+end
 Payslip.destroy_all
 ChildContract.destroy_all
 Event.destroy_all
@@ -56,6 +62,7 @@ mary_poppins = User.new(
   role: "nanny",
   phone_number: "07.12.21.47.23"
 )
+mary_poppins.photo.attach(io: File.open("app/assets/images/nannies/marypoppins.jpg"), filename: "iphigenie.png", content_type: "image/png")
 mary_poppins.save!
 
 iphigenie_doubtfire = User.new(
@@ -67,6 +74,7 @@ iphigenie_doubtfire = User.new(
   role: "nanny",
   phone_number: "06.18.26.57.13"
 )
+iphigenie_doubtfire.photo.attach(io: File.open("app/assets/images/nannies/iphigenie.jpg"), filename: "iphigenie.png", content_type: "image/png")
 iphigenie_doubtfire.save!
 
 # nannies.each do |nanny|
@@ -90,40 +98,45 @@ jane = Child.new(
   birthdate: "01-12-1971"
 )
 jane.user = john_doe
+jane.photo.attach(io: File.open("app/assets/images/children/eleven.jpg"), filename: "eleven.png", content_type: "image/png")
 jane.save!
 
 mike = Child.new(
   first_name: "Mike",
   last_name: "Wheeler",
-  birthdate: "07-04-1971"
+  birthdate: "07-04-1971",
 )
 
 mike.user = john_doe
+mike.photo.attach(io: File.open("app/assets/images/children/mike.jpg"), filename: "mike.png", content_type: "image/png")
 mike.save!
 
 dustin = Child.new(
   first_name: "Dustin",
   last_name: "Henderson",
-  birthdate: "29-05-1971"
+  birthdate: "29-05-1971",
 )
 
 dustin.user = john_doe
+dustin.photo.attach(io: File.open("app/assets/images/children/dustin.jpg"), filename: "dustin.png", content_type: "image/png")
 dustin.save!
 
 lucas = Child.new(
   first_name: "Lucas",
   last_name: "Sinclair",
-  birthdate: "17-01-1971"
+  birthdate: "17-01-1971",
 )
 lucas.user = jane_smith
+lucas.photo.attach(io: File.open("app/assets/images/children/Lucas.jpg"), filename: "lucas.png", content_type: "image/png")
 lucas.save!
 
 nancy = Child.new(
   first_name: "Nancy",
   last_name: "Wheeler",
-  birthdate: "14-10-1967"
+  birthdate: "14-10-1967",
 )
 nancy.user = jane_smith
+nancy.photo.attach(io: File.open("app/assets/images/children/nancy.jpg"), filename: "nancy.png", content_type: "image/png")
 nancy.save!
 
 puts 'Creating 2 contracts'

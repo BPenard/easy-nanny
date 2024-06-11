@@ -18,15 +18,21 @@ class PayslipsController < ApplicationController
 
   def create
     @contract = Contract.find(params[:contract_id])
-    temp_date = Date.today ## a adapter pour gérer les différentes dates
-    @payslip = @contract.new_payslip(temp_date)
+    if @contract.payslips.last.nil?
+      payslip_date = @contract.start_date
+    else
+      payslip_date = @contract.payslips.last.next_month
+    end
+    # payslip_date = @contract.payslips.last.next_month ## on ne peux créer que les fiches de paie suivant la précédente
+    # temp_date = Date.today ## a adapter pour gérer les différentes dates
+    @payslip = @contract.new_payslip(payslip_date)
 
     if @payslip.save!
       flash[:notice] = "La fiche de paie a été créée avec succès"
-      redirect_to contract_payslip_path(@contract, @payslip)
+      redirect_to payslip_path(@payslip)
     else
       flash[:alert] = "Erreur lors de la payslip : #{ @payslip.errors.full_messages.join(', ')}"
-      redirect_to payslips_path
+      redirect_to contracts_path
     end
 
     authorize @payslip

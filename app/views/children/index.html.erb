@@ -1,18 +1,86 @@
-<div class="container border p-5 m-5 rounded-5 bg-white">
+<div class="container">
   <div class="header text-center mb-4">
     <h1>Mes enfants</h1>
   </div>
-  <div class="d-flex flex-column">
-    <div class="m-2 p-2 border rounded-5 w-50 mx-auto">
+  <div class="contract-grid">
       <% @children.each do |child| %>
-        <div class="form-container p-4 m-2 rounded-5">
-          <%= child.first_name %>
-          <%= child.last_name %>
-          <%= link_to "Modifier", edit_child_path(child), class: 'btn btn-outline-light rounded-5 ms-5' %>
+        <div class="form-container contract-card " data-bs-toggle="modal" data-bs-target="#<%= child.id%>">
+          <div class="d-flex align-items-center ">
+            <% if child.photo.attached? %>
+              <%= cl_image_tag child.photo.key, class: "avatar-large", alt: "user avatar", width: 50, height: 50, crop: :thumb, gravity: :face %>
+            <% else %>
+              <%= image_tag "avatar-homme.png", class: "avatar", alt: "user avatar" %>
+            <% end %>
+            <div>
+            <h4 class="mb-0"><%= child.first_name %> <%= child.last_name %></h4>
+            <div><%= Date.today.year - child.birthdate.year %> ans</div>
+            </div>
+            <%#= link_to "Modifier", edit_child_path(child), class: 'btn btn-outline-light rounded-5 ms-5' %>
+          </div>
         </div>
-      <% end %>
-      <div class="d-flex mx-auto"></div>
-        <%= link_to "Add a child", new_child_path, class: 'btn btn-primary rounded-5 m-3'%>
+
+      <!-- Modal -->
+      <div class="modal fade" id="<%= child.id%>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog  modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">
+                Modifier les informations
+              </h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <%= simple_form_for(child, html: { class: 'form-horizontal', multipart: true }) do |f| %>
+              <%= f.input :last_name , input_html: { class: 'secondary-text-color' } %>
+              <%= f.input :first_name, input_html: { class: 'secondary-text-color' } %>
+              <%= f.input :birthdate , input_html: { class: 'secondary-text-color' } %>
+              <%= f.input :photo, as: :file %>
+              <div class="modal-footer">
+                <%= f.submit "Enregistrer", class: "btn btn-primary" %>
+                <% end %>
+
+              </div>
+
+
+
+            </div>
+          </div>
+        </div>
       </div>
+
+      <% end %>
+      <div class="form-container contract-card " data-bs-toggle="modal" data-bs-target="#new_child">
+          <div class="d-flex align-items-center ">
+            <%= image_tag "avatar-homme.png", class: "avatar", alt: "user avatar" %>
+            <div>
+            Ajouter un enfant
+            </div>
+          </div>
+        </div>
+
+      <!-- Modal -->
+      <div class="modal fade" id="new_child" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog  modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">
+                Ajouter un enfant
+              </h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <%= simple_form_for(@new_child, html: { class: 'form-horizontal', multipart: true }) do |f| %>
+              <%= f.input :last_name , input_html: { class: 'secondary-text-color' } %>
+              <%= f.input :first_name, input_html: { class: 'secondary-text-color' } %>
+              <%= f.input :birthdate , input_html: { class: 'secondary-text-color' } %>
+              <div class="modal-footer">
+                <%= f.submit "Enregistrer", class: "btn btn-primary" %>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
   </div>
 </div>

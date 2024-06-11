@@ -71,7 +71,7 @@ main {
 
 .nav-link.active {
   background-color: $primary !important;
-  color: white !important;
+  color: $secondary !important;
   border-radius: 50px !important;
   background-color: transparent;
   transition: background-color 0.3s ease;
