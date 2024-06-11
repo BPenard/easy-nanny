@@ -7,7 +7,7 @@
   <div data-controller="welcome">
 
     <div class="d-flex justify-content-between">
-      <p><<</p>
+      <p data-action="click->welcome#change_week"><<</p>
       <p data-action="click->welcome#events_of_day" data-day="monday">Lundi</p>
       <p data-action="click->welcome#events_of_day" data-day="tuesday">Mardi</p>
       <p data-action="click->welcome#events_of_day" data-day="wednesday">Mercredi</p>
@@ -16,36 +16,7 @@
       <p>>></p>
     </div>
 
-    <div class="event-grid">
-      <% @events.each do |event| %>
-        <div class="form-container contract-card d-none" data-infos="<%= event.start_date.strftime("%A").downcase %>" >
-        <div class="d-flex justify-content-between">
-          <div class="event-hour">
-            <%= event.start_date.strftime("%k") %>h
-
-          </div>
-            <%= event.start_date.strftime("%A") %>
-          <div class="event-type">
-            <%= event.type %>
-          </div>
-        </div>
-        <div>
-          <%= event.description %>
-        </div>
-        <div class="d-flex justify-content-end align-items-center">
-          <div>
-            <%= event.child.first_name %>
-          </div>
-          <div>
-            <%= cl_image_tag event.child.photo.key, class: "avatar", alt: "user avatar", width: 40, height: 40, crop: :thumb, gravity: :face %>
-          </div>
-        </div>
-        </div>
-      <% end %>
-
-    </div>
-
-
+  <%= render "week-events" %>
 
   </div>
 

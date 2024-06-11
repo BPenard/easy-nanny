@@ -37,4 +37,9 @@ export default class extends Controller {
     })
 
   }
+
+  change_week() {
+    console.log("change week")
+  }
+
 }
