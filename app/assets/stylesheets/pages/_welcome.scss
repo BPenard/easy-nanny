@@ -28,3 +28,48 @@
   border-radius: 10px;
   padding: 5px;
 }
+
+.day-strong {
+  // margin: 0;
+  background-color: $secondary;
+  color: white;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  padding-left: 15px;
+  padding-right: 15px;
+  border-radius: 2px;
+
+}
+.day-strong:hover {
+  cursor: pointer;
+}
+
+.day-light {
+  // margin: 0;
+  background-color: $primary;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  padding-left: 15px;
+  padding-right: 15px;
+  border-radius: 2px;
+}
+
+.day-light:hover {
+  cursor: pointer;
+
+}
+
+
+.day-transparent {
+  // border: solid 1px;
+  // margin: 0;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  padding-left: 15px;
+  padding-right: 15px;
+  border-radius: 2px;
+}
+.day-transparent:hover {
+  cursor: default;
+
+}
