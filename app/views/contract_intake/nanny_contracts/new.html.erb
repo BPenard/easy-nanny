@@ -11,15 +11,42 @@
           <div class="step">3</div>
     </div>
 
-    <div class="form-container p-4 rounded-5 shadow-lg w-75">
+    <div class="form-container p-4 w-75">
       <%= simple_form_for(@nanny_contract) do |f| %>
-        <%= f.input :nanny_id, required: false, collection: User.all_nannies, label_method: -> (nanny) {
-          "#{nanny.first_name} #{nanny.last_name}"
-        }, label: 'Choix de la Nanny', input_html: { class: 'form-control' }, label_html: { class: 'form-label' } %>
-        <div class="text-center mt-4">
-          <%= f.submit 'Suivant', class: 'btn btn-outline-light btn-lg rounded-5' %>
+        <div class="d-flex flex-row justify-content-start">
+          <div>
+            <%= f.input :nanny_id,
+                        as: :radio_buttons,
+                        collection: User.all_nannies,
+                        label: "Ma nanny",
+                        required: false,
+                        label_method: lambda { |nanny| render "form_card", user: nanny },
+                        wrapper_html: { class: "d-flex align-items-center justify-content-start" },
+                        label_html: { class: "me-5" },
+                        input_html: { class: "d-none"}%>
+          </div>
+          <div class="card nanny-new ms-4 mb-4">
+            <div class="card-body">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Unicode_0x002B.svg/1200px-Unicode_0x002B.svg.png" alt="new-nanny" class="card-img-top border border-primary rounded-circle">
+              <h5 class="card-title">Inviter une nanny</h5>
+            </div>
+          </div>
+        </div>
+        <div>
+        <%= f.input :children_id,
+                    as: :check_boxes,
+                    collection: current_user.children,
+                    label: "Mes enfants",
+                    label_method: lambda { |child| render "form_card", user: child },
+                    wrapper_html: { class: "d-flex align-items-center justify-content-start" },
+                    input_html: { class: "d-none"} %>
+        </div>
+
+
+        <div class="text-center">
+          <%= f.submit 'Suivant', class: 'btn btn-primary btn-lg rounded-5' %>
         </div>
       <% end %>
-    </div>
+      </div>
   </div>
 </div>

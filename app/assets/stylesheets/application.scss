@@ -10,3 +10,8 @@
 // Your CSS partials
 @import "components/index";
 @import "pages/index";
+
+body {
+  background: url('background_image.png') no-repeat center center fixed;
+  background-size: cover;
+}
