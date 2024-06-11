@@ -11,7 +11,7 @@ class User < ApplicationRecord
   has_many :nannies, through: :parent_contracts, source: :nanny
   has_many :nanny_contracts, class_name: 'Contract', foreign_key: 'nanny_id'
   has_many :parents, through: :nanny_contracts, source: :parent
-  has_many :payslips, through: :nanny_contracts # cette ligne n'a plus l'air de fonctionner
+  has_many :payslips, through: :nanny_contracts
 
   # methodes de classe
   scope :all_nannies, -> { where("role = ?", "nanny") }

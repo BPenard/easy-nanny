@@ -13,3 +13,25 @@
   align-items: center; /* Centre verticalement */
   margin-left: 250px;
 }
+
+
+.event-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  grid-auto-rows: minmax(100px, auto);
+  // margin-left: 50px;
+}
+
+.event-hour {
+  font-size: 45px;
+  font-weight: 600;
+}
+
+.event-type {
+  background-color: $primary;
+  font-weight: 500;
+  font-size: 25px;
+  border-radius: 10px;
+  padding: 5px;
+}
