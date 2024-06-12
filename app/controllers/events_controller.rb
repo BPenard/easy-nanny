@@ -23,6 +23,7 @@ class EventsController < ApplicationController
   def create
     @event = Event.new(event_params)
     @event.contract = Contract.find(params[:event][:contract_id].to_i)
+    @event.type = params[:type]
     @event.child = Child.find(params[:event][:child_id].to_i)
     authorize @event
 

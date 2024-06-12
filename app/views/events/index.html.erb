@@ -14,16 +14,26 @@
     <div class="modal fade" id="createEventModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content form-container p-4 new-event-modal">
-          <%# <div class="modal-header">
-            <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
-          </div> %>
-
-            <%# <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> %>
             <%= simple_form_for(@new_event, data:{ turbo: false }) do |f| %>
-              <%= f.association :child, collection: current_user.children, label_method: :first_name, label: 'Enfant' %>
-              <%= f.association :contract, collection: current_user.parent_contracts, label_method: :display_nanny_first_name, label: "Nanny" %>
+              <div class="d-flex justify-content-evenly">
+                <div>
+                  <%= f.association :child, collection: current_user.children, label_method: :first_name, label: 'Enfant' %>
+                </div>
+                <div>
+                  <%= f.association :contract, collection: current_user.parent_contracts, label_method: :display_nanny_first_name, label: "Nanny" %>
+                </div>
+              </div>
               <%= f.input :start_date, as: :string, label: 'Quand ?', required: false, input_html: { data: { controller: "datepicker-with-time" } } %>
-              <%= f.input :type, collection: ["Activité", "Congés", "Médicament", "RTT"] %>
+              <div class="contract-type d-flex justify-content-between">
+                <input type="radio" id="Activité" name="type" value="Activité" class="radio-input">
+                <label for="Activité" class="radio-label">Activité</label>
+                <input type="radio" id="Congés" name="type" value="Congés" class="radio-input">
+                <label for="Congés" class="radio-label">Congés</label>
+                <input type="radio" id="Médicament" name="type" value="Médicament" class="radio-input">
+                <label for="Médicament" class="radio-label">Médicament</label>
+                <input type="radio" id="RTT" name="type" value="RTT" class="radio-input">
+                <label for="RTT" class="radio-label">RTT</label>
+              </div>
               <%= f.input :description, as: :text, label: 'Commentaires' %>
               <%= f.input :photo, as: :file, label: "Ajouter une photo" %>
 
