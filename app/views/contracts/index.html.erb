@@ -61,19 +61,19 @@
               </div>
               <div>
               <div>
-                <%= link_to 'Modifier le contrat', edit_contract_path(contract), class: 'btn btn-primary rounded-5', target: '_blank' %>
+                <%= link_to 'Modifier le contrat', edit_contract_path(contract), class: 'btn btn-primary', target: '_blank' %>
               </div>
               <div>
-                <%= link_to 'Télécharger le contrat', contract_path(contract, format: :pdf), class: 'btn btn-primary rounded-5', target: '_blank' %>
+                <%= link_to 'Télécharger le contrat', contract_path(contract, format: :pdf), class: 'btn btn-primary', target: '_blank' %>
               </div>
               <div>
               <% if contract.has_payslip? %>
-                <%= link_to "Dernière fiche de paie : #{contract.payslips.last.month_of_payslip.strftime("%B %Y")}", payslip_path(contract.payslips.last), class: "btn btn-primary rounded-5"%>
+                <%= link_to "Dernière fiche de paie : #{contract.payslips.last.month_of_payslip.strftime("%B %Y")}", payslip_path(contract.payslips.last), class: "btn btn-primary"%>
                 <% unless Date.today.month == contract.payslips.last.month_of_payslip.month && Date.today.year == contract.payslips.last.month_of_payslip.year %>
-                  <%= link_to "Créer une nouvelle fiche de paie", contract_payslips_path(contract), data: {turbo_method: :post}, class: "btn btn-primary rounded-5"%>
+                  <%= link_to "Créer une nouvelle fiche de paie", contract_payslips_path(contract), data: {turbo_method: :post}, class: "btn btn-primary"%>
                 <% end %>
               <% else %>
-                <%= link_to "Créer une nouvelle fiche de paie", contract_payslips_path(contract), data: {turbo_method: :post}, class: "btn btn-primary rounded-5"%>
+                <%= link_to "Créer une nouvelle fiche de paie", contract_payslips_path(contract), data: {turbo_method: :post}, class: "btn btn-primary"%>
               <% end %>
               </div>
 
