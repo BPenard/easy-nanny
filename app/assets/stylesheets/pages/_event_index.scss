@@ -3,3 +3,27 @@ ul {
   padding: 0;
   margin: 0;
 }
+
+.btn-cta {
+  color: white !important;
+  background-color: $brown !important;
+  border-color: white !important;
+  display: inline-block;
+  padding: 10px 20px;
+  margin-top: 20px;
+  border: 2px solid;
+  border-radius: 5px;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.3s, border-color 0.3s, color 0.3s;
+  margin-bottom: 1rem !important;
+  margin-top: 0 !important;
+}
+
+.btn-cta:hover {
+  background-color: $light-beige !important;
+  color: $brown !important;
+  border-color: $light-beige !important;
+  border-color: $brown !important;
+  border: 2px solid;
+}
