@@ -13,23 +13,23 @@
     <!-- Modal -->
     <div class="modal fade" id="createEventModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
+        <div class="modal-content form-container p-4 new-event-modal">
+          <%# <div class="modal-header">
             <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-            <%= simple_form_for(@new_event) do |f| %>
+          </div> %>
+
+            <%# <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> %>
+            <%= simple_form_for(@new_event, data:{ turbo: false }) do |f| %>
               <%= f.association :child, collection: current_user.children, label_method: :first_name, label: 'Enfant' %>
               <%= f.association :contract, collection: current_user.parent_contracts, label_method: :display_nanny_first_name, label: "Nanny" %>
               <%= f.input :start_date, as: :string, label: 'Quand ?', required: false, input_html: { data: { controller: "datepicker-with-time" } } %>
               <%= f.input :type, collection: ["Activité", "Congés", "Médicament", "RTT"] %>
               <%= f.input :description, as: :text, label: 'Commentaires' %>
               <%= f.input :photo, as: :file, label: "Ajouter une photo" %>
-          </div>
+
           <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              <%= f.submit class: 'btn btn-primary'%>
+              <%= f.submit label: "Enregistrer", class: 'btn btn-primary'%>
             <% end %>
           </div>
         </div>
