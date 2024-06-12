@@ -5,7 +5,10 @@
   </div>
 
   <div class="contract-grid">
-    <% @contracts.each do |contract| %>
+
+
+    <% @contracts.select { |contract| contract.start_date.nil? == false }.each do |contract| %>
+    <%# la méthode select permet d'exclure les contracts créés à moitié dans le multi step de création du contrat %>
       <div class="form-container contract-card " data-bs-toggle="modal" data-bs-target="#<%= contract.id%>">
         <div class="d-flex align-items-center ">
           <% if contract.nanny.photo.attached?  %>
