@@ -62,7 +62,7 @@ mary_poppins = User.new(
   role: "nanny",
   phone_number: "07.12.21.47.23"
 )
-mary_poppins.photo.attach(io: File.open("app/assets/images/nannies/marypoppins.jpg"), filename: "iphigenie.png", content_type: "image/png")
+mary_poppins.photo.attach(io: File.open("app/assets/images/nannies/marypoppins.png"), filename: "iphigenie.png", content_type: "image/png")
 mary_poppins.save!
 
 iphigenie_doubtfire = User.new(

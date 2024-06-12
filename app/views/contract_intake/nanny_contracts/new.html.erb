@@ -1,7 +1,7 @@
 <div class="container p-5">
 
   <div class="header mb-2">
-    <h2>Créer un nouveau contrat</h2>
+    <h1>Créer un nouveau contrat</h1>
   </div>
 
   <div class="container d-flex flex-column align-items-center">
@@ -11,7 +11,7 @@
           <div class="step">3</div>
     </div>
 
-    <div class="form-container p-4 w-75">
+    <div class="form-container card p-4 w-60">
       <%= simple_form_for(@nanny_contract) do |f| %>
         <div class="d-flex flex-row justify-content-start">
           <div>
@@ -25,7 +25,7 @@
                         label_html: { class: "me-5" },
                         input_html: { class: "d-none"}%>
           </div>
-          <div class="card nanny-new ms-4 mb-4">
+          <div class="card nanny-new ms-4">
             <div class="card-body">
             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Unicode_0x002B.svg/1200px-Unicode_0x002B.svg.png" alt="new-nanny" class="card-img-top border border-primary rounded-circle">
               <h5 class="card-title">Inviter une nanny</h5>
@@ -44,7 +44,7 @@
 
 
         <div class="text-center">
-          <%= f.submit 'Suivant', class: 'btn btn-primary btn-lg rounded-5' %>
+          <%= f.submit 'Suivant', class: 'btn btn-primary btn-lg mt-0 rounded-5' %>
         </div>
       <% end %>
       </div>

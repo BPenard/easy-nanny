@@ -1,7 +1,7 @@
 <div class="container p-5">
 
   <div class="header mb-2">
-    <h2>Créer un nouveau contract</h2>
+    <h1>Créer un nouveau contract</h1>
   </div>
 
   <div class="container d-flex flex-column align-items-center">
@@ -26,7 +26,7 @@
           </div>
         </div>
       <div>
-        <div><%= f.input :weekly_worked_hours, required: false, label: 'Temps de travail hebdomadaire' %></div>
+        <div><%= f.input :weekly_worked_hours, required: false, label: 'Temps de travail hebdomadaire', placeholder: '35' %></div>
       </div>
       <div class="slider-group">
         <label for="gross_hourly_rate">Taux horaire (€)</label>
