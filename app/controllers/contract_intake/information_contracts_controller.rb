@@ -23,12 +23,10 @@ module ContractIntake
     private
 
     def set_information_contract
-      if information_params[:end_date].nil?
-        Raise
-        end_date = Date.parse(information_params[:end_date])
-      else
+      if information_params[:end_date] == ""
         end_date = nil
-        Raise
+      else
+        end_date = Date.parse(information_params[:end_date])
       end
 
       InformationContract.new(
