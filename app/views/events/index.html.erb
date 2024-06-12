@@ -1,19 +1,55 @@
-<div class="container p-5">
+<div class="container p-5" data-controller="welcome">
 
   <div class="header mb-2">
       <h1>Ma semaine</h1>
+      <p data-welcome-target="weekNum">toto</p>
+
+      <!-- Button trigger modal -->
+      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createEventModal">
+        Create new event
+      </button>
+
+      <!-- Modal -->
+      <div class="modal fade" id="createEventModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <%= simple_form_for(@new_event) do |f| %>
+              <%= f.input :child, collection: current_user.children, label_method: :first_name, label: 'Enfant' %>
+              <%= f.association :contract, collection: current_user.parent_contracts, label_method: :display_nanny_first_name, label: "Nanny" %>
+              <%= f.input :start_date, as: :date, label: 'Jour concerné' %>
+              <%= f.input :type, collection: ["RTT", "Congés", "Absence", "Médicament"] %>
+              <%= f.input :description, as: :text, label: 'Commentaires' %>
+              <%= f.input :photo, as: :file, label: "Ajouter une photo" %>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <%= f.submit class: 'btn btn-outline-light'%>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+
   </div>
 
-  <div data-controller="welcome">
+  <div >
 
     <div class="d-flex justify-content-between">
-      <p data-action="click->welcome#change_week"><<</p>
-      <p data-action="click->welcome#events_of_day" data-day="monday">Lundi</p>
-      <p data-action="click->welcome#events_of_day" data-day="tuesday">Mardi</p>
-      <p data-action="click->welcome#events_of_day" data-day="wednesday">Mercredi</p>
-      <p data-action="click->welcome#events_of_day" data-day="thursday">Jeudi</p>
-      <p data-action="click->welcome#events_of_day" data-day="friday">Vendredi</p>
-      <p>>></p>
+      <p data-action="click->welcome#change_week" data-direction="pastWeek" class="day-transparent"><<</p>
+      <p data-action="click->welcome#events_of_day" data-day="monday" data-welcome-target="monday" class="day-transparent">Lundi</p>
+      <p data-action="click->welcome#events_of_day" data-day="tuesday" data-welcome-target="tuesday">Mardi</p>
+      <p data-action="click->welcome#events_of_day" data-day="wednesday" data-welcome-target="wednesday">Mercredi</p>
+      <p data-action="click->welcome#events_of_day" data-day="thursday" data-welcome-target="thursday">Jeudi</p>
+      <p data-action="click->welcome#events_of_day" data-day="friday" data-welcome-target="friday">Vendredi</p>
+      <p data-action="click->welcome#change_week" data-direction="futurWeek"class="day-transparent">>></p>
     </div>
 
     <div data-welcome-target="calendar">
