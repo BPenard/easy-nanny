@@ -68,10 +68,11 @@ export default class extends Controller {
     this.weekNumTarget.innerText = weekRange;
 
     // On vérifie s'il y a des cards sur le jour, si oui on les affiche
-    if (
-      this[`has${dayName.charAt(0).toUpperCase() + dayName.slice(1)}CardTarget`]
-    ) {
-      this[`${dayName}CardTarget`].classList.remove("d-none");
+    if (this[`has${dayName.charAt(0).toUpperCase() + dayName.slice(1)}CardTarget`]) {
+      this[`${dayName}CardTargets`].forEach((cardTarget) => {
+        cardTarget.classList.remove("d-none");
+      })
+
     }
 
     // pour chaque jour de la semaine s'il y a un event on retire la classe transparent
@@ -122,22 +123,19 @@ export default class extends Controller {
 
     WEEK_DAYS.forEach((day) => {
       if (this[`has${day.charAt(0).toUpperCase() + day.slice(1)}CardTarget`]) {
-        this[`${day}CardTarget`].classList.add("d-none");
+        this[`${day}CardTargets`].forEach((cardTarget) => {
+              cardTarget.classList.add("d-none");
+            })
       }
     });
 
     // puis on affiche les jours sur lequel on a cliqué
-    if (
-      this[
-        `has${
-          event.currentTarget.dataset.day.charAt(0).toUpperCase() +
-          event.currentTarget.dataset.day.slice(1)
-        }CardTarget`
-      ]
-    ) {
-      this[`${event.currentTarget.dataset.day}CardTarget`].classList.remove(
-        "d-none"
-      );
+
+    if (this[`has${event.currentTarget.dataset.day.charAt(0).toUpperCase() + event.currentTarget.dataset.day.slice(1)}CardTarget`]) {
+      this[`${event.currentTarget.dataset.day}CardTargets`].forEach((cardTarget) => {
+        cardTarget.classList.remove("d-none");
+      })
+
     }
   }
 
@@ -187,15 +185,18 @@ export default class extends Controller {
         const previousDayName = days[dayOfPreviousWeek];
 
         // On vérifie s'il y a des cards sur le jour, si oui on les affiche
-        if (
-          this[
-            `has${
-              previousDayName.charAt(0).toUpperCase() + previousDayName.slice(1)
-            }CardTarget`
-          ]
-        ) {
-          this[`${previousDayName}CardTarget`].classList.remove("d-none");
+        if (this[`has${previousDayName.charAt(0).toUpperCase() + previousDayName.slice(1)}CardTarget`]) {
+          this[`${previousDayName}CardTargets`].forEach((cardTarget) => {
+            cardTarget.classList.remove("d-none");
+          })
+
         }
+
+
+        // if (this[`has${previousDayName.charAt(0).toUpperCase() + previousDayName.slice(1)}CardTarget`]
+        // ) {
+        //   this[`${previousDayName}CardTarget`].classList.remove("d-none");
+        // }
 
         WEEK_DAYS.forEach((day) => {
           this[`${day}Target`].classList.remove("day-strong");
