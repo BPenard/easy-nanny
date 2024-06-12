@@ -4,7 +4,7 @@
     <h1>Mes contrats</h1>
   </div>
 
-  <div class="contract-grid">
+  <div class="contract-grid container mx-auto">
 
 
     <% @contracts.select { |contract| contract.start_date.nil? == false }.each do |contract| %>
