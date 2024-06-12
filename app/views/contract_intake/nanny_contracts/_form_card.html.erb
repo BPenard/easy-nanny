@@ -1,7 +1,7 @@
 <div class="card nanny-card">
   <div class="card-body">
     <% if user.photo.attached?  %>
-      <%= cl_image_tag user.photo.key, class: "avatar-large", alt: "user avatar", width: 50, height: 50, crop: :thumb, gravity: :face %>
+      <%= cl_image_tag user.photo.key, class: "card-img-top", alt: "user avatar", width: 50, height: 50, crop: :thumb, gravity: :face %>
     <% else %>
       <%= image_tag "avatar-homme.png", class: "avatar", alt: "user avatar" %>
     <% end %>

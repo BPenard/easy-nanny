@@ -18,7 +18,7 @@
             <%= f.input :nanny_id,
                         as: :radio_buttons,
                         collection: User.all_nannies,
-                        label: "Ma nanny",
+                        label: "Nanny",
                         required: false,
                         label_method: lambda { |nanny| render "form_card", user: nanny },
                         wrapper_html: { class: "d-flex align-items-center justify-content-start" },
@@ -36,7 +36,7 @@
         <%= f.input :children_id,
                     as: :check_boxes,
                     collection: current_user.children,
-                    label: "Mes enfants",
+                    label: "Enfants",
                     label_method: lambda { |child| render "form_card", user: child },
                     wrapper_html: { class: "d-flex align-items-center justify-content-start" },
                     input_html: { class: "d-none"} %>
