@@ -1,12 +1,12 @@
 
 
 <div class="global-nav d-flex flex-column flex-shrink-0 bg-body-tertiary" style="width: 300px; height: 100vh; position:sticky; top: 0px">
-  <div class="d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
-    <%= link_to "/welcome", class:"title-logo" do %>
-      <%= image_tag "logo2.png", alt: "Logo Easy Nanny", class: "logo", style: "width: 55px; height: 55px; margin-right: 8px;" %>
-      <span class="title-logo fs-4">Easy Nanny</span>
-    <% end %>
-  </div>
+  <%= link_to "/welcome", class:"title-logo" do %>
+    <div class="title-navbar d-flex flex-row align-items-center justify-content-center mb-3 link-body-emphasis text-decoration-none">
+      <div class="w-25"> <%= image_tag "logo2.png", alt: "Logo Easy Nanny", class: "logo", style: "width: 55px; height: 55px; margin-right: 8px;" %> </div>
+      <div class="logo-header"> <span class="title-logo">Easy Nanny</span> </div>
+    </div>
+  <% end %>
 
     <hr>
     <ul class="nav nav-pills flex-column mb-auto">
