@@ -1,0 +1,31 @@
+<div class="container main-page p-5">
+
+  <div class="header mb-5">
+    <h1>Absences du mois</h1>
+  </div>
+<%= link_to "Créer une nouvelle fiche de paie", contract_payslips_path(@contract, start_date: Date.today), data: {turbo_method: :post}, class: "btn btn-primary"%>
+
+
+<div class="row">
+  <div class="col-9">
+
+    <%= month_calendar(events: @events, attribute: :start_date) do |date, event| %>
+      <%= date %>
+
+      <% event.each do |event| %>
+        <div class="meeting">
+          <p><%= event.type %></p>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+
+  <div class="col-2">
+  <%= @events.select {|event| event.type == "RTT"}.count %> RTT
+  <%= @events.select {|event| event.type == "Congés"}.count %> Congés
+  <%# @contracts.select { |contract| contract.start_date.nil? == false }.each do |contract| %>
+
+  </div>
+</div>
+
+</div>

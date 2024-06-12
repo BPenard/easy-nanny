@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :children, only: %i[index create update]
   resources :contracts, only: %i[new create index show edit update] do
     resources :payslips, only: %i[create]
+    get 'month_events', to: 'events#month_events', as: 'month_events'
   end
   resources :payslips, only: %i[show]
   post 'payslip/:id/save_pajeemploi_date', to: 'payslips#save_pajeemploi_date', as: 'save_pajeemploi_date'

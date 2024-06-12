@@ -34,6 +34,8 @@
       <%# Ne fonctionne pas car je dois envoyer une période dans les méthodes et pas uniquement une date %>
         <p><%#= @payslip.contract.business_days_in_month(@payslip.month_of_payslip) - @payslip.contract.count_of_leave(["Congés", "RTT"],@payslip.month_of_payslip) %> jours travaillés</p>
         <p> <%#= @payslip.contract.count_of_leave(["Congés", "RTT"],@payslip.month_of_payslip) %> jours d'absence</p>
+
+        TODO : liste des absences du mois
       </div>
 
 

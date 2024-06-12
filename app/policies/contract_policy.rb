@@ -11,4 +11,8 @@ class ContractPolicy < ApplicationPolicy
       scope.where(parent_id: user)
     end
   end
+
+  def month_events?
+    true
+  end
 end

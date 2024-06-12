@@ -16,4 +16,9 @@ class EventPolicy < ApplicationPolicy
   def index?
     true
   end
+
+  def month_events?
+    true
+    
+  end
 end

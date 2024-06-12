@@ -18,11 +18,15 @@ class PayslipsController < ApplicationController
   def create
     @contract = Contract.find(params[:contract_id])
     # on vérifie s'il y a une payslip, si non on démarre au premier mois du contrat
-    if @contract.payslips.exists?
-      payslip_date = @contract.payslips.last.month_of_payslip.next_month
+    if params[:start_date].nil? == false
+      payslip_date = Date.parse(params[:start_date]) # si on envoi une date en params on la prend en compte
+    elsif @contract.payslips.exists?
+      raise
+        payslip_date = @contract.payslips.last.month_of_payslip.next_month
     else
       payslip_date = @contract.start_date
     end
+
     # payslip_date = @contract.payslips.last.next_month ## on ne peux créer que les fiches de paie suivant la précédente
     # temp_date = Date.today ## a adapter pour gérer les différentes dates
     @payslip = @contract.new_payslip(payslip_date)
