@@ -41,14 +41,13 @@
   color: $beige;
 }
 
-
 .form-check:has(.form-check-input[type="radio"]:checked) .nanny-card {
   background-color: $brown !important;
   color: $beige;
 }
 
 .new_contract_intake_nanny_contract legend {
-  width: 4rem!important;
+  width: 4rem !important;
 }
 
 .nanny-new {
@@ -60,10 +59,8 @@
   width: 120px;
   height: 120px;
   text-align: center;
-  margin-left: 1,5rem;
+  margin-left: 1, 5rem;
 }
-
-
 
 .contract-card {
   width: 100%;
@@ -71,10 +68,11 @@
 
 .contract-card:hover {
   cursor: pointer;
-
 }
-
 
 .child-card {
   width: 100%;
+  padding: 15px !important;
+  margin: 5px !important;
+  position: relative;
 }
