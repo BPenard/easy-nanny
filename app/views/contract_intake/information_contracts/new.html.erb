@@ -11,7 +11,7 @@
           <div class="step">3</div>
     </div>
 
-  <div class="form-container p-4 w-75 rounded-5">
+  <div class="form-container p-4 w-75">
     <%= simple_form_for(@information_contract, url: contract_intake_information_contracts_path(contract: @contract)) do |f| %>
         <div data-controller="contract-type">
           <div class="contract-type d-flex">
@@ -34,7 +34,7 @@
         <output>10</output> €
       </div>
       <div class="text-center">
-      <%= f.submit 'Suivant', class: 'btn-custom btn btn-primary btn-lg rounded-5' %>
+      <%= f.submit 'Suivant', class: 'btn-custom btn btn-primary' %>
       </div>
     <% end %>
   </div>
