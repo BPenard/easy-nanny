@@ -1,6 +1,6 @@
 class EventsController < ApplicationController
   def index
-    @events = policy_scope(Event)
+    @events = policy_scope(Event).order(start_date: :asc)
     @new_event = Event.new
     start_date = params.fetch(:start_date, Date.today).to_date
 
