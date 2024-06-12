@@ -251,13 +251,53 @@ event7.save!
 
 event8 = Event.new(
   type: "Médicament",
-  start_date: "2024-06-14 10:00:00",
+  start_date: "2024-06-14 09:30:00",
   description: "Donner Dopliprane à Dustin (12kg)"
 )
 
 event8.contract = first_contract
 event8.child = dustin
 event8.save!
+
+event9 = Event.new(
+  type: "Activité",
+  start_date: "2024-06-12 16:00:00",
+  description: "Sortie Parc - Dustin va mieux, il a fait de la balançoire"
+)
+
+event9.contract = first_contract
+event9.child = dustin
+event9.save!
+
+event10 = Event.new(
+  type: "Médicament",
+  start_date: "2024-06-12 14:00:00",
+  description: "On est allé chez le médecin, rien de grave au final"
+)
+
+event10.contract = first_contract
+event10.child = dustin
+event10.save!
+
+event11 = Event.new(
+  type: "Activité",
+  start_date: "2024-06-12 17:00:00",
+  description: "Atelier Dessin"
+)
+
+event11.contract = first_contract
+event11.child = dustin
+event11.save!
+
+event12 = Event.new(
+  type: "Activité",
+  start_date: "2024-06-12 15:00:00",
+  description: "Initiation musique, Dustin a adoré"
+)
+
+event11.contract = first_contract
+event11.child = dustin
+event11.save!
 
 puts 'Creating previous payslips on contracts'
 

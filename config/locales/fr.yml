@@ -4,3 +4,41 @@ fr:
     next: "suivante"
     week: "Semaine"
     mon: "lundi"
+
+    fr:
+  date:
+    day_names:
+      ["Dimanche", "Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi"]
+    abbr_day_names: ["Dim", "Lun", "Mar", "Mer", "Jeu", "Ven", "Sam"]
+    month_names:
+      [
+        nil,
+        "Janvier",
+        "Février",
+        "Mars",
+        "Avril",
+        "Mai",
+        "Juin",
+        "Juillet",
+        "Août",
+        "Septembre",
+        "Octobre",
+        "Novembre",
+        "Décembre",
+      ]
+    abbr_month_names:
+      [
+        nil,
+        "Jan",
+        "Fév",
+        "Mar",
+        "Avr",
+        "Mai",
+        "Juin",
+        "Juil",
+        "Août",
+        "Sep",
+        "Oct",
+        "Nov",
+        "Déc",
+      ]
