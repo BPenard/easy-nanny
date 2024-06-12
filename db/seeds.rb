@@ -93,9 +93,9 @@ iphigenie_doubtfire.save!
 puts 'Creating 5 Children'
 
 jane = Child.new(
-  first_name: "Jane 'Eleven'",
+  first_name: "Eleven",
   last_name: "Hopper",
-  birthdate: "01-12-1971"
+  birthdate: "01-12-2012"
 )
 jane.user = john_doe
 jane.photo.attach(io: File.open("app/assets/images/children/eleven.jpg"), filename: "eleven.png", content_type: "image/png")
@@ -104,7 +104,7 @@ jane.save!
 mike = Child.new(
   first_name: "Mike",
   last_name: "Wheeler",
-  birthdate: "07-04-1971",
+  birthdate: "07-04-2020",
 )
 
 mike.user = john_doe
@@ -114,7 +114,7 @@ mike.save!
 dustin = Child.new(
   first_name: "Dustin",
   last_name: "Henderson",
-  birthdate: "29-05-1971",
+  birthdate: "29-05-2021",
 )
 
 dustin.user = john_doe
@@ -124,7 +124,7 @@ dustin.save!
 lucas = Child.new(
   first_name: "Lucas",
   last_name: "Sinclair",
-  birthdate: "17-01-1971",
+  birthdate: "17-01-2022",
 )
 lucas.user = jane_smith
 lucas.photo.attach(io: File.open("app/assets/images/children/Lucas.jpg"), filename: "lucas.png", content_type: "image/png")
@@ -133,7 +133,7 @@ lucas.save!
 nancy = Child.new(
   first_name: "Nancy",
   last_name: "Wheeler",
-  birthdate: "14-10-1967",
+  birthdate: "14-10-2010",
 )
 nancy.user = jane_smith
 nancy.photo.attach(io: File.open("app/assets/images/children/nancy.jpg"), filename: "nancy.png", content_type: "image/png")

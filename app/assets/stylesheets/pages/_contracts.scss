@@ -1,18 +1,11 @@
 .contract-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 10px;
+  gap: 20px;
   grid-auto-rows: minmax(100px, auto);
   margin-left: 50px;
 
 }
 
 
-.contract-card {
-  width: 25rem;
-}
 
-.contract-card:hover {
-  cursor: pointer;
-
-}
