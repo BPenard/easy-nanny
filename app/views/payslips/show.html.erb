@@ -1,6 +1,12 @@
 <div class="container p-5 m-2 rounded-3" style="height: 98vh;">
   <div class="form-container mx-2 mb-4 p-4 rounded-3 d-flex">
-      <%= image_tag("marry_poppins.png", class: "payslip_avatar")%>
+      <% if @contract.nanny.photo.attached?  %>
+        <%= cl_image_tag @contract.nanny.photo.key, class: "payslip_avatar", alt: "user avatar", width: 50, height: 50, crop: :thumb, gravity: :face %>
+      <% else  %>
+        <%= image_tag "avatar-homme.png", class: "payslip_avatar", alt: "user avatar" %>
+      <% end  %>
+
+      <%#= image_tag("marry_poppins.png", class: "payslip_avatar")%>
       <div class="m-2">
         <h2 class= "p-0 m-0"><%= @contract.nanny.last_name %> <%= @contract.nanny.first_name %></h1>
         <p class= "p-0 m-0">Nounou à domicile</h2>
