@@ -25,9 +25,7 @@
               <%= simple_form_for(@new_event) do |f| %>
               <%= f.input :child, collection: current_user.children, label_method: :first_name, label: 'Enfant' %>
               <%= f.association :contract, collection: current_user.parent_contracts, label_method: :display_nanny_first_name, label: "Nanny" %>
-              <%= f.input :start_date,
-                as: :string,
-                input_html: { class: "datetime", data: { controller: "datepicker" } } %>
+              <%= f.input :start_date, as: :string, label: 'Démarrage du contrat', required: false, input_html: { data: { controller: "datepicker-with-time" } } %>
             <%= f.input :type, collection: ["RTT", "Congés", "Absence", "Médicament"] %>
               <%= f.input :description, as: :text, label: 'Commentaires' %>
               <%= f.input :photo, as: :file, label: "Ajouter une photo" %>
