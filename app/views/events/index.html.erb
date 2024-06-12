@@ -1,7 +1,6 @@
 <div class="container main-page p-5" data-controller="welcome">
-
   <div class="header mb-2">
-      <h1>Ma semaine</h1>
+    <h1>Ma semaine</h1>
   </div>
     <div class="d-flex justify-content-between">
       <div><h4 data-welcome-target="weekNum"></h4></div>
@@ -11,48 +10,40 @@
         </button>
       </div>
     </div>
-
-
-      <!-- Modal -->
-      <div class="modal fade" id="createEventModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-              <%= simple_form_for(@new_event) do |f| %>
-              <%= f.input :child, collection: current_user.children, label_method: :first_name, label: 'Enfant' %>
+    <!-- Modal -->
+    <div class="modal fade" id="createEventModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <%= simple_form_for(@new_event) do |f| %>
+              <%= f.association :child, collection: current_user.children, label_method: :first_name, label: 'Enfant' %>
               <%= f.association :contract, collection: current_user.parent_contracts, label_method: :display_nanny_first_name, label: "Nanny" %>
               <%= f.input :start_date, as: :string, label: 'Quand ?', required: false, input_html: { data: { controller: "datepicker-with-time" } } %>
-              <%= f.input :type, collection: ["RTT", "Congés", "Absence", "Médicament", "Activité"] %>
+              <%= f.input :type, collection: ["Activité", "Congés", "Médicament", "RTT"] %>
               <%= f.input :description, as: :text, label: 'Commentaires' %>
               <%= f.input :photo, as: :file, label: "Ajouter une photo" %>
-            </div>
-            <div class="modal-footer">
+          </div>
+          <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              <%= f.submit class: 'btn btn-outline-light'%>
-              <% end %>
-            </div>
+              <%= f.submit class: 'btn btn-primary'%>
+            <% end %>
           </div>
         </div>
       </div>
-
-
-
-
-
+    </div>
   <div >
-
     <div class="d-flex justify-content-between">
-      <p data-action="click->welcome#change_week" data-direction="pastWeek" class="day-transparent"><<</p>
+      <p data-action="click->welcome#change_week" data-direction="pastWeek" class="previous-futur-week"><<</p>
       <p data-action="click->welcome#events_of_day" data-day="monday" data-welcome-target="monday" class="day-transparent">Lundi</p>
       <p data-action="click->welcome#events_of_day" data-day="tuesday" data-welcome-target="tuesday">Mardi</p>
       <p data-action="click->welcome#events_of_day" data-day="wednesday" data-welcome-target="wednesday">Mercredi</p>
       <p data-action="click->welcome#events_of_day" data-day="thursday" data-welcome-target="thursday">Jeudi</p>
       <p data-action="click->welcome#events_of_day" data-day="friday" data-welcome-target="friday">Vendredi</p>
-      <p data-action="click->welcome#change_week" data-direction="futurWeek"class="day-transparent">>></p>
+      <p data-action="click->welcome#change_week" data-direction="futurWeek"class="previous-futur-week">>></p>
     </div>
 
     <div data-welcome-target="calendar">

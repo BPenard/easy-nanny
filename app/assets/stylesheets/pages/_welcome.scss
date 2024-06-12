@@ -61,15 +61,25 @@
 
 
 .day-transparent {
-  // border: solid 1px;
-  // margin: 0;
   padding-top: 3px;
   padding-bottom: 3px;
   padding-left: 15px;
   padding-right: 15px;
   border-radius: 2px;
 }
+
 .day-transparent:hover {
   cursor: default;
+}
 
+.previous-futur-week {
+  padding-top: 3px;
+  padding-bottom: 3px;
+  padding-left: 15px;
+  padding-right: 15px;
+  border-radius: 2px;
+}
+
+.previous-futur-week:hover {
+  cursor: pointer;
 }

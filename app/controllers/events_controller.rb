@@ -1,6 +1,6 @@
 class EventsController < ApplicationController
   def index
-    @events = policy_scope(Event).order(start_date: :asc)
+    @events = policy_scope(Event).order(start_date: :asc).includes(child: [photo_attachment: :blob])
     @new_event = Event.new
     start_date = params.fetch(:start_date, Date.today).to_date
 
@@ -13,28 +13,29 @@ class EventsController < ApplicationController
     end
   end
 
-  def new
-    @event = Event.new
-    # @nannies = [[1, "Nannie 1"], [2, "Nannie 2"]]
-    # authorize @nannies
-    authorize @event
-  end
+  # def new
+  #   @event = Event.new
+  #   # @nannies = [[1, "Nannie 1"], [2, "Nannie 2"]]
+  #   # authorize @nannies
+  #   authorize @event
+  # end
 
   def create
     @event = Event.new(event_params)
     @event.contract = Contract.find(params[:event][:contract_id].to_i)
-    @event.child = Child.find(params[:event][:child].to_i)
+    @event.child = Child.find(params[:event][:child_id].to_i)
     authorize @event
 
     if @event.save!
-      redirect_to welcome_path
+      @new_event = Event.new
+      redirect_to welcome_path, status: :see_other
     else
-      render :new, status: :unprocessable_entity
+      render :index, status: :unprocessable_entity
     end
   end
 
   def event_params
-    params.require(:event).permit(:contract_id, :type, :description, :child_id, :start_date, :photo)
+    params.require(:event).permit(:contract_id, :type, :description, :start_date, :photo, :child_id)
   end
 end
 
