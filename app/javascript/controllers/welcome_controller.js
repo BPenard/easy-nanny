@@ -96,9 +96,9 @@ export default class extends Controller {
 
     // Reculer de 7 jours pour obtenir une date de la semaine précédente
     if (event.currentTarget.dataset.direction == "pastWeek"){
-      TARGETWEEKDAY.setDate(today.getDate() - 7);
+      TARGETWEEKDAY.setDate(TARGETWEEKDAY.getDate() - 7);
     } else if (event.currentTarget.dataset.direction == "futurWeek"){
-      TARGETWEEKDAY.setDate(today.getDate() + 7);
+      TARGETWEEKDAY.setDate(TARGETWEEKDAY.getDate() + 7);
     }
     this.weekNumTarget.innerText = `${TARGETWEEKDAY}`;
 
