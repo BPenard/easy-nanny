@@ -1,5 +1,4 @@
 class PayslipsController < ApplicationController
-
   def index
     @contracts = policy_scope(Contract)
     @payslips = policy_scope(Payslip)
