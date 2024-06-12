@@ -4,23 +4,25 @@
     <div class="d-flex justify-content-between">
       <div class="event-hour">
         <%= event.start_date.strftime("%k") %>h
-
       </div>
-        <%= event.start_date %>
-      <div class="event-type">
-        <%= event.type %>
-      </div>
-    </div>
-    <div>
-      <%= event.description %>
-    </div>
-    <div class="d-flex justify-content-end align-items-center">
+      <div  class="d-flex align-items-center">
       <div>
-        <%= event.child.first_name %>
+        <h2><%= event.child.first_name %></h2>
       </div>
       <div>
         <%= cl_image_tag event.child.photo.key, class: "avatar", alt: "user avatar", width: 40, height: 40, crop: :thumb, gravity: :face %>
       </div>
+      </div>
+      </div>
+      <div class="event-type">
+        <%= event.type %>
+      </div>
+    <div>
+      <%= event.description %>
+    </div>
+    <div class="d-flex justify-content-end align-items-center">
+
+
     </div>
     </div>
   <% end %>

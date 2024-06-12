@@ -7,5 +7,5 @@ class Event < ApplicationRecord
 
   validates :start_date, presence: true
   validates :type, presence: true
-  validates :type, inclusion: { in: %w[RTT Congés Absence Médicament] }
+  validates :type, inclusion: { in: %w[RTT Congés Absence Médicament Activité] }
 end
