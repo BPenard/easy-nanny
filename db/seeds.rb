@@ -200,7 +200,7 @@ event2.child = lucas
 event2.save!
 
 event3 = Event.new(
-  type: "Absence",
+  type: "Congés",
   start_date: "2024-06-07 09:00:00",
   description: "N'est pas venue au travail"
 )
