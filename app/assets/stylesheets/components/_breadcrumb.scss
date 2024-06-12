@@ -18,13 +18,14 @@
 
 .step {
   position: relative;
-  padding: 10px 15px;
+  padding: 4px 15px;
   background: #fff;
   border-radius: 50%;
   border: 1px solid $brown;
   text-align: center;
   margin: 40px 100px;
-  font-size: 10px;
+  font-size: 20px;
+  font-weight: bolder;
 }
 
 .step.current {
