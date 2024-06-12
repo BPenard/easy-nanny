@@ -2,13 +2,16 @@
 
   <div class="header mb-2">
       <h1>Ma semaine</h1>
+  </div>
+    <div class="d-flex justify-content-between">
+      <div><h3 data-welcome-target="weekNum"></h3></div>
+      <div>
+        <button type="button" class="mb-3 mt-0 btn btn-primary" data-bs-toggle="modal" data-bs-target="#createEventModal">
+          Create new event
+        </button>
+      </div>
+    </div>
 
-      <h3 data-welcome-target="weekNum"></h3>
-
-      <!-- Button trigger modal -->
-      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createEventModal">
-        Create new event
-      </button>
 
       <!-- Modal -->
       <div class="modal fade" id="createEventModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -41,7 +44,6 @@
 
 
 
-  </div>
 
   <div >
 
