@@ -123,6 +123,8 @@ GEM
       railties (>= 4.1.0)
       responders
       warden (~> 1.2.3)
+    devise-i18n (1.12.1)
+      devise (>= 4.9.0)
     dotenv (3.1.2)
     dotenv-rails (3.1.2)
       dotenv (= 3.1.2)
@@ -327,6 +329,7 @@ DEPENDENCIES
   cloudinary
   debug
   devise
+  devise-i18n
   dotenv-rails
   error_highlight (>= 0.4.0)
   font-awesome-sass (~> 6.1)
