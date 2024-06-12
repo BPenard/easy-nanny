@@ -23,13 +23,22 @@ module ContractIntake
     private
 
     def set_information_contract
+      if information_params[:end_date] == ""
+        end_date = nil
+      else
+        end_date = Date.parse(information_params[:end_date])
+      end
+
       InformationContract.new(
         start_date: Date.parse(information_params[:start_date]),
-        end_date: Date.parse(information_params[:end_date]),
         weekly_worked_hours: information_params[:weekly_worked_hours],
+        end_date: end_date,
         type: information_params[:type],
         gross_hourly_rate: information_params[:gross_hourly_rate]
       )
+
+
+
     end
 
     def information_params
