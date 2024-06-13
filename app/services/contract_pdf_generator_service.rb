@@ -63,6 +63,8 @@ class ContractPdfGeneratorService
 
   def draw(pdf)
     @pdf = pdf
+    register_fonts
+    @pdf.font("Quicksand")
     @last_measured_y = pdf.cursor
 
     paint
@@ -76,9 +78,71 @@ class ContractPdfGeneratorService
     write_text("1. Parties du Contrat", section_title_options)
     write_text("Salariée : #{@nanny.full_name}, demeurant à #{@nanny.address}.", text_options)
     write_text("Employeur : #{@parent.full_name}, demeurant à #{@parent.address}.", text_options)
+    write_text(" ")
 
-    reset_color
-    print_header_and_footer
+    write_text("2. Objet du Contrat", section_title_options)
+    write_text("Le présent contrat a pour objet l'emploi d'une assistante maternelle agréée pour la garde de", text_options)
+      @contract.children.each do |child|
+    write_text("#{child.first_name} #{child.last_name}", text_options)
+      end
+    write_text(" ")
+
+    write_text("3. Durée et Horaire de Travail", section_title_options)
+    write_text("Le contrat est conclu pour une durée de #{@contract.weekly_worked_hours} heures par mois, à compter du #{@contract.start_date}.
+      Les horaires de travail sont les suivants
+      Lundi : 9h - 18h
+      Mardi : 9h - 18h
+      Mercredi : 9h - 18h
+      Jeudi : 9h - 18h
+      Vendredi : 9h - 18h
+      Samedi : 9h - 18h
+      Dimanche : 9h - 18h", text_options)
+    write_text(" ")
+
+    write_text("4. Rémunération", section_title_options)
+
+    write_text("La rémunération de l'assistante maternelle est fixée à #{@contract.gross_hourly_rate} euros par heure. Le salaire sera versé le #{@payment_date} de chaque mois.", text_options)
+    write_text(" ")
+
+    write_text("5. Congés", section_title_options)
+
+    write_text("L'assistante maternelle a droit à 0 jours de congés payés par an :).", text_options)
+    write_text(" ")
+
+    write_text("6. Obligations de l'Employeur", section_title_options)
+    write_text("L'employeur s'engage à fournir toutes les informations nécessaires à l'assistante maternelle concernant les habitudes de l'enfant et à assurer un environnement de travail sain et sécurisé.", text_options)
+    write_text(" ")
+
+    write_text("7. Obligations de l'Assistante Maternelle", section_title_options)
+    write_text("L'assistante maternelle s'engage à assurer la garde de l'enfant dans le respect des horaires convenus et à signaler toute absence ou retard éventuel.", text_options)
+    write_text(" ")
+
+    write_text("8. Résiliation du Contrat", section_title_options)
+    write_text("Le présent contrat peut être résilié par l'une ou l'autre des parties moyennant un préavis de 30 jours.", text_options)
+    write_text(" ")
+
+    write_text("9. Signatures", section_title_options)
+
+    write_text("Fait à Paris, le #{@current_date}.", text_options)
+    write_text("Employeur : ____________________________", text_options)
+    write_text("Assistante Maternelle : ____________________________", text_options)
+  end
+
+  def register_fonts
+    @pdf.font_families.update(
+      "Quicksand" => {
+        normal: "#{Rails.root}/app/assets/fonts/Quicksand-Regular.ttf",
+        bold: "#{Rails.root}/app/assets/fonts/Quicksand-Bold.ttf",
+        semibold: "#{Rails.root}/app/assets/fonts/Quicksand-SemiBold.ttf",
+        italic: "#{Rails.root}/app/assets/fonts/Quicksand-Italic.ttf",
+        light: "#{Rails.root}/app/assets/fonts/Quicksand-Light.ttf"
+      },
+      "Helvetica" => {
+        normal: "#{Rails.root}/app/assets/fonts/Helvetica-Regular.ttf",
+        bold: "#{Rails.root}/app/assets/fonts/Helvetica-Bold.ttf",
+        italic: "#{Rails.root}/app/assets/fonts/Helvetica-Italic.ttf"
+      }
+    )
   end
 
   def write_text(text, options = {})
@@ -94,7 +158,7 @@ class ContractPdfGeneratorService
     @margin_right     = 15.mm
     @margin_top       = 20.mm
     @margin_bottom    = 5.mm
-    @logopath         = "#{Rails.root}/app/assets/images/logo.png"
+    @logopath         = "#{Rails.root}/app/assets/images/logo2.png"
     @initial_y        = 50
     @initialmove_y    = 50
   end
@@ -112,7 +176,7 @@ class ContractPdfGeneratorService
 
   def paint
     @pdf.canvas do
-      @pdf.fill_color '800080'
+      @pdf.fill_color "DEC8B3"
       @pdf.fill_polygon [@pdf.bounds.left, @pdf.bounds.top], [@pdf.bounds.left + 9.cm, @pdf.bounds.top], [@pdf.bounds.left, @pdf.bounds.top - 9.cm]
     end
     reset_color
