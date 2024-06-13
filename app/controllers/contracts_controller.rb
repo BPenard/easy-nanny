@@ -19,12 +19,8 @@ class ContractsController < ApplicationController
   def show
     @contract = Contract.find(params[:id])
     authorize @contract
-    respond_to do |format|
-      format.html
-      format.pdf do
-        send_data(@contract.to_pdf, filename: @contract.pdf_name, type: "application/pdf")
-      end
-    end
+    ContractPdfGeneratorService.call(@contract)
+    send_file "#{Rails.root}/tmp/ContratEasyNanny.pdf", type: 'application/pdf', disposition: 'attachment', filename: "ContratEasyNanny.pdf"
   end
 
   def recap
