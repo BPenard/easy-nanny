@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   resources :contracts, only: %i[new create index show edit update] do
     resources :payslips, only: %i[create]
     get 'month_events', to: 'events#month_events', as: 'month_events'
+    post 'payslip_creation_create', to: 'events#payslip_creation_create', as: 'payslip_creation_create'
+    # resources :events, only: [:index, :create], module: :contracts # cette ligne permettrait de gérer nativement les deux du dessus, en mettant un controleur event dans un dossier du contrat
   end
   resources :payslips, only: %i[show]
   post 'payslip/:id/save_pajeemploi_date', to: 'payslips#save_pajeemploi_date', as: 'save_pajeemploi_date'

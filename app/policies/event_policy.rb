@@ -19,6 +19,9 @@ class EventPolicy < ApplicationPolicy
 
   def month_events?
     true
-    
+  end
+
+  def payslip_creation_create?
+    true
   end
 end
