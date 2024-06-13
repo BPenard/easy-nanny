@@ -21,7 +21,7 @@
             <label for="cdi" class="radio-label">CDI</label>
           </div>
           <div class="d-flex justify-content-between">
-            <div><%= f.input :start_date, as: :string, label: 'Démarrage du contrat', required: false, input_html: { data: { controller: "datepicker" } } %></div>
+            <div><%= f.input :start_date, as: :string, label: 'Démarrage du contrat', required: true, input_html: { data: { controller: "datepicker" } } %></div>
             <div data-contract-type-target="endDate"><%= f.input :end_date, as: :string,label: 'Fin du contrat', input_html: { data: { controller: "datepicker" } } %></div>
           </div>
         </div>
