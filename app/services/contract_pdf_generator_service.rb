@@ -20,7 +20,10 @@ class ContractPdfGeneratorService
   end
 
   def generate!
-    Prawn::Document.new(document_options) { |pdf| draw(pdf) }.render
+    pdf = Prawn::Document.new(document_options) do |pdf|
+      draw(pdf)
+    end
+    pdf.render_file("#{Rails.root}/tmp/ContratEasyNanny.pdf")
   end
 
   private
