@@ -29,14 +29,37 @@ class EventsController < ApplicationController
   end
 
   def month_events
+
     event_types = ["Congés", "RTT"]
 
     @contract = Contract.find(params[:contract_id])
+    @new_event = Event.new
+    # @new_event.contract = @contract
     date = Date.parse(params[:start_date])
     start_date = Date.new(date.year, date.month, 1)
     @events = @contract.events.where(type: event_types, start_date: start_date.beginning_of_month..start_date.end_of_month)
     authorize @contract
     authorize @events
+  end
+
+  def payslip_creation_create
+
+    @event = Event.new(event_params)
+
+    @event.contract = Contract.find(params[:contract_id].to_i)
+    @event.type = params[:type]
+    @event.child = @event.contract.children.first
+    authorize @event
+
+    if @event.save!
+      @new_event = Event.new
+
+      redirect_to contract_month_events_path(@event.contract, start_date: Date.today), status: :see_other
+      # redirect_to welcome_path, status: :see_other
+    else
+      render :index, status: :unprocessable_entity
+    end
+
   end
 
   private
