@@ -76,3 +76,8 @@
   margin: 5px !important;
   position: relative;
 }
+
+.placeholder-italic::placeholder {
+  font-style: italic;
+  color: rgb(187, 186, 186);
+}
