@@ -6,19 +6,11 @@ class EventsController < ApplicationController
 
     @events = @events.where("start_date >= ? AND start_date <= ?", start_date.beginning_of_week, start_date.end_of_week)
 
-    # @events = @events.where("start_date >= ?", start_date.beginning_of_week)
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: { content: (render_to_string partial: '/events/week-events', formats: :html, locals: {events: @events}, layout: false) } }
     end
   end
-
-  # def new
-  #   @event = Event.new
-  #   # @nannies = [[1, "Nannie 1"], [2, "Nannie 2"]]
-  #   # authorize @nannies
-  #   authorize @event
-  # end
 
   def create
     @event = Event.new(event_params)
@@ -39,9 +31,3 @@ class EventsController < ApplicationController
     params.require(:event).permit(:contract_id, :type, :description, :start_date, :photo, :child_id)
   end
 end
-
-
-## 1 faire resortir chaque jours
-## faire un fetch avec une date en dur
-## mettre à jour la méthode pour récupérer les éléments
-## lorsqu'on met à jour les événements via une partial qui est mise à jour
