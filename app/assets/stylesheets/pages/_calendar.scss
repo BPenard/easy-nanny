@@ -3,18 +3,23 @@
     min-height: 20vh;
   }
   .today {
-    background-color: beige;
-    border: 4px dotted white;
+    // background-color: beige;
+    // border: 4px dotted white;
     color: black;
+    background: #ffffff !important;
   }
   .past {
-    background-color: #eaeaff;
-    opacity: 0.5;
+    background-color: #ffffff;
+    opacity: 0.9;
   }
 
   .future {
     background-color: #ffffff;
     opacity: 0.9;
+  }
+
+  .day {
+    font-size: 12px;
   }
 }
 
@@ -30,7 +35,9 @@
 
 .event {
   color: rgb(0, 0, 0);
-  padding: 8px 24px;
+  font-size: 16px;
+  // padding: 8px 24px;
+  margin-bottom: 2px !important;
   border-radius: 4px;
   background: transparent;
   border: 2px solid beige;
@@ -48,4 +55,9 @@
 
 .toggle {
   display: none;
+}
+
+.meeting {
+  margin-bottom: 2px !important;
+
 }
