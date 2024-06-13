@@ -1,13 +1,13 @@
 <div class="container main-page p-5">
 
-  <div class="header mb-5">
+  <div class="header mb-3">
     <h1>Mes contrats</h1>
   </div>
 
 <%# la méthode select permet d'exclure les contracts créés à moitié dans le multi step de création du contrat %>
-  <div class="d-flex">
+  <div class="contract-grid">
     <% @contracts.select { |contract| contract.start_date.nil? == false }.each do |contract| %>
-      <div class="form-container contract-card " data-bs-toggle="modal" data-bs-target="#<%= contract.id%>">
+      <div class="form-container contract-card" data-bs-toggle="modal" data-bs-target="#<%= contract.id%>">
         <div class="d-flex align-items-center ">
           <% if contract.nanny.photo.attached?  %>
             <%= cl_image_tag contract.nanny.photo.key, class: "avatar-large", alt: "user avatar", width: 50, height: 50, crop: :thumb, gravity: :face %>
