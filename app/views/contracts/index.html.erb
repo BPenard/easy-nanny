@@ -70,11 +70,13 @@
               <% if contract.has_payslip? %>
                 <%= link_to "Dernière fiche de paie : #{contract.payslips.last.month_of_payslip.strftime("%B %Y")}", payslip_path(contract.payslips.last), class: "btn btn-primary"%>
                 <% unless Date.today.month == contract.payslips.last.month_of_payslip.month && Date.today.year == contract.payslips.last.month_of_payslip.year %>
+
                   <%= link_to "Créer une nouvelle fiche de paie", contract_payslips_path(contract), data: {turbo_method: :post}, class: "btn btn-primary"%>
                 <% end %>
               <% else %>
                 <%= link_to "Créer une nouvelle fiche de paie", contract_payslips_path(contract), data: {turbo_method: :post}, class: "btn btn-primary"%>
               <% end %>
+              <%= link_to "Créer la fiche de paie de #{Date.today.strftime("%B %Y")}", contract_month_events_path(contract, start_date: Date.today), class: "btn btn-primary"%>
               </div>
 
               </div>
