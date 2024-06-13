@@ -4,11 +4,9 @@
     <h1>Mes contrats</h1>
   </div>
 
-  <div class="contract-grid container mx-auto">
-
-
+<%# la méthode select permet d'exclure les contracts créés à moitié dans le multi step de création du contrat %>
+  <div class="d-flex">
     <% @contracts.select { |contract| contract.start_date.nil? == false }.each do |contract| %>
-    <%# la méthode select permet d'exclure les contracts créés à moitié dans le multi step de création du contrat %>
       <div class="form-container contract-card " data-bs-toggle="modal" data-bs-target="#<%= contract.id%>">
         <div class="d-flex align-items-center ">
           <% if contract.nanny.photo.attached?  %>
@@ -19,29 +17,29 @@
           <h3> <%= contract.nanny.first_name %> <%= contract.nanny.last_name %> </h3>
         </div>
         <div class="mt-3">
-            <% if contract.type == "cdi" %>
-              <div> <%= contract.type.upcase %> depuis le <%= contract.start_date.strftime("%e %B %Y") %> </div>
-            <% else %>
-              <div> <%= contract.type.upcase %> du <%= contract.start_date.strftime("%e %B %Y") %> au <%= contract.end_date.strftime("%e %B %Y") %></div>
-            <% end %>
-            <p class="m-0 p-0"><%= contract.weekly_worked_hours %>h par semaine</p>
+          <% if contract.type == "cdi" %>
+            <div> <%= contract.type.upcase %> depuis le <%= contract.start_date.strftime("%e %B %Y") %> </div>
+          <% else %>
+            <div> <%= contract.type.upcase %> du <%= contract.start_date.strftime("%e %B %Y") %> au <%= contract.end_date.strftime("%e %B %Y") %></div>
+          <% end %>
+          <p class="m-0 p-0"><%= contract.weekly_worked_hours %>h par semaine</p>
         </div>
         <div class="grouped-children-avatar">
-        <% contract.children.each do |child| %>
-          <% if child.photo.attached? %>
-            <%= cl_image_tag child.photo.key, class: "avatar-large", alt: "user avatar", width: 50, height: 50, crop: :thumb, gravity: :face %>
-          <% else %>
-            <%= image_tag "avatar-homme.png", class: "avatar", alt: "user avatar" %>
+          <% contract.children.each do |child| %>
+            <% if child.photo.attached? %>
+              <%= cl_image_tag child.photo.key, class: "avatar-large", alt: "user avatar", width: 50, height: 50, crop: :thumb, gravity: :face %>
+            <% else %>
+              <%= image_tag "avatar-homme.png", class: "avatar", alt: "user avatar" %>
+            <% end %>
           <% end %>
-        <% end %>
         </div>
       </div>
 
       <!-- Modal -->
       <div class="modal fade" id="<%= contract.id%>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog  modal-dialog-centered">
-          <div class="modal-content">
-            <div class="modal-header">
+        <div class="modal-dialog">
+          <div class="modal-content form-container p-4 new-event-modal">
+            <div class="modal-header pt-0">
               <h1 class="modal-title fs-5" id="exampleModalLabel">
                 <%= contract.nanny.first_name %> <%= contract.nanny.last_name %>
               </h1>
@@ -59,37 +57,45 @@
                 </div>
                 <h2 class="d-flex align-items-center"><%= contract.gross_hourly_rate %> €/h</h2>
               </div>
-              <div>
-              <div>
-                <%= link_to 'Modifier le contrat', edit_contract_path(contract), class: 'btn btn-primary', target: '_blank' %>
-              </div>
-              <div>
-                <%= link_to 'Télécharger le contrat', contract_path(contract, format: :pdf), class: 'btn btn-primary', target: '_blank' %>
-              </div>
-              <div>
-              <% if contract.has_payslip? %>
-                <%= link_to "Dernière fiche de paie : #{contract.payslips.last.month_of_payslip.strftime("%B %Y")}", payslip_path(contract.payslips.last), class: "btn btn-primary"%>
-                <% unless Date.today.month == contract.payslips.last.month_of_payslip.month && Date.today.year == contract.payslips.last.month_of_payslip.year %>
 
-                  <%= link_to "Créer une nouvelle fiche de paie", contract_payslips_path(contract), data: {turbo_method: :post}, class: "btn btn-primary"%>
-                <% end %>
-              <% else %>
-                <%= link_to "Créer une nouvelle fiche de paie", contract_payslips_path(contract), data: {turbo_method: :post}, class: "btn btn-primary"%>
-              <% end %>
-              <%= link_to "Créer la fiche de paie de #{Date.today.strftime("%B %Y")}", contract_month_events_path(contract, start_date: Date.today), class: "btn btn-primary"%>
+              <div class="container">
+                <div class="row">
+                  <div class="col-12 row">
+                    <div class="d-flex flex-column justify-content-between mt-4">
+                      <% if contract.has_payslip? %>
+                        <div class="w-50 d-flex justify-content-start">
+                          <%= link_to "Voir le dernier salaire", payslip_path(contract.payslips.last), class: ""%>
+                        </div>
+                        <% unless Date.today.month == contract.payslips.last.month_of_payslip.month && Date.today.year == contract.payslips.last.month_of_payslip.year %>
+                          <div class="w-50 d-flex justify-content-start">
+                            <%= link_to "Déclarer un nouveau salaire", contract_month_events_path(contract, start_date: Date.today), class: ""%>
+                          </div>
+                        <% end %>
+                      <% else %>
+                        <div class="w-50 d-flex justify-content-start">
+                          <%= link_to "Déclarer un nouveau salaire", contract_month_events_path(contract, start_date: Date.today), class: ""%>
+                        </div>
+                      <% end %>
+                    </div>
+                    <div class="d-flex align-items-between w-100">
+                      <div class="w-100 mb-2">
+                        <%= link_to 'Modifier le contrat', edit_contract_path(contract), class: 'btn btn-primary btn-equal', target: '_blank' %>
+                      </div>
+                      <div class="w-100 mb-2">
+                        <%= link_to 'Télécharger le contrat', contract_path(contract, format: :pdf), class: 'btn btn-primary btn-equal ms-4', target: '_blank' %>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
 
-              </div>
+
+
+
             </div>
-            <%# <div class="modal-footer">
-
-            </div> %>
           </div>
         </div>
       </div>
-
-
     <% end %>
-
   </div>
 </div>
