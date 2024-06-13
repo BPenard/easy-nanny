@@ -86,7 +86,7 @@ h1 {
 }
 
 .content-section {
-  padding: 35px 8px 50px 8px;
+  padding: 35px 70px 100px 70px;
   text-align: center;
   background-color: #ffffff;
   color: black;
@@ -94,7 +94,7 @@ h1 {
 }
 
 .content-section2 {
-  padding: 35px 8px 50px 8px;
+  padding: 35px 70px 100px 70px;
   text-align: center;
   background-color: #f4e7dd;
   color: black;
@@ -104,13 +104,18 @@ h1 {
 .container-home {
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: top;
   height: 60vh;
+  padding-bottom: 80px;
 }
 
 .text1 {
-  margin: 20px;
-  border-radius: 4px;
+  margin: 30px;
+  width: 25%;
+}
+
+.nav-link:hover {
+  color: $beige;
 }
 
 .nav-links {
@@ -127,7 +132,7 @@ h1 {
 }
 
 .nav-links:hover {
-  color: #642817;
+  color: $beige;
   background-color: #ffffff;
   opacity: 1;
   border-color: #642817;
@@ -157,8 +162,10 @@ h1 {
   font-size: 24px;
   padding: 0px 10px;
 }
+
 .footer-links a:hover {
   opacity: 1;
+  color: $beige;
 }
 .footer .fa-heart {
   color: #d23333;
@@ -166,4 +173,8 @@ h1 {
 
 .link-default-color {
   color: inherit; /* Utilise la couleur par défaut du texte */
+}
+
+.link-default-color:hover {
+  color: $beige;
 }
