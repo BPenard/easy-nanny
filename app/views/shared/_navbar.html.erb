@@ -37,13 +37,16 @@
     <hr>
     <div class="dropdown p-3">
       <a href="#" class="d-flex align-items-center link-body-emphasis text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-        <%= image_tag "avatar-homme.png", class: "avatar", alt: "user avatar" %>
+        <% if current_user.photo.attached?  %>
+          <%= cl_image_tag current_user.photo.key, class: "avatar", alt: "user avatar", width: 40, height: 40, crop: :thumb, gravity: :face %>
+        <% else  %>
+          <%= image_tag "avatar-homme.png", class: "payslip_avatar", alt: "user avatar" %>
+        <% end  %>
         <% if current_user %>
           <strong><%= current_user.first_name %></strong>
         <% end %>
       </a>
       <ul class="dropdown-menu text-small shadow">
-
         <li class="dropdown-item "><%= link_to "Profile",  edit_user_registration_path%></li>
         <li><hr class="dropdown-divider"></li>
         <li class="dropdown-item "><%= link_to "Sign out", destroy_user_session_path, data: {turbo_method: :delete} %></li>

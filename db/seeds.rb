@@ -23,6 +23,9 @@ john_doe = User.new(
   role: "parent",
   phone_number: "06.03.23.47.23"
 )
+
+john_doe.photo.attach(io: File.open("app/assets/images/john-doe.jpg"), filename: "john.png", content_type: "image/png")
+
 john_doe.save!
 
 jane_smith = User.new(
