@@ -15,4 +15,23 @@ class Payslip < ApplicationRecord
   validates :employee_contributions, presence: true
   validates :gross_salary, presence: true
   # validates :tax_rate, presence: true
+
+
+  def count_of_leave
+    events.where(type: ["Congés", "RTT"]).count
+  end
+
+  def business_days_in_month
+    # Initialiser le compteur de jours ouvrés
+    business_days = 0
+
+    (month_of_payslip.beginning_of_month..month_of_payslip.end_of_month).each do |day|
+      # Incrémenter le compteur si le jour est un jour ouvré (ni samedi, ni dimanche)
+      business_days += 1 unless day.saturday? || day.sunday?
+    end
+
+    business_days
+  end
+
+
 end

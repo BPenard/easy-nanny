@@ -72,15 +72,15 @@
     <div>
       <% if @contract.has_payslip? %>
         <div class="mb-2">
-          <%= link_to "Voir le dernier salaire", payslip_path(@contract.payslips.last), class: "btn btn-primary"%>
+          <%= link_to "Voir le dernier salaire", payslip_path(@contract.payslips.last), class: ""%>
         </div>
         <% unless Date.today.month == @contract.payslips.last.month_of_payslip.month && Date.today.year == @contract.payslips.last.month_of_payslip.year %>
           <div>
-            <%= link_to "Déclarer un nouveau salaire", contract_payslips_path(@contract, start_date: Date.today), data: {turbo_method: :post}, class: "btn btn-cta"%>
+            <%= link_to "Déclarer un nouveau salaire", contract_payslips_path(@contract, start_date: Date.today), data: {turbo_method: :post}, class: "btn btn-cta mb-0"%>
           </div>
         <% end %>
       <% else %>
-        <%= link_to "Déclarer un nouveau salaire", contract_payslips_path(@contract, start_date: Date.today), data: {turbo_method: :post}, class: "btn btn-cta"%>
+        <%= link_to "Déclarer un nouveau salaire", contract_payslips_path(@contract, start_date: Date.today), data: {turbo_method: :post}, class: "btn btn-cta mb-0"%>
       <% end %>
     </div>
     </div>
