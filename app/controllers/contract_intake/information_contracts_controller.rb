@@ -30,7 +30,7 @@ module ContractIntake
       end
 
       InformationContract.new(
-        start_date: Date.parse(information_params[:start_date]),
+        start_date: information_params[:start_date],
         weekly_worked_hours: information_params[:weekly_worked_hours],
         end_date: end_date,
         type: information_params[:type],
