@@ -24,3 +24,14 @@
 .btn-custom {
   margin-top: 0px;
 }
+
+.btn-equal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 60px; /* Ajustez la hauteur selon vos besoins */
+  max-width: 250px; /* Ajustez la largeur maximale selon vos besoins */
+  text-align: center;
+  white-space: nowrap;
+}

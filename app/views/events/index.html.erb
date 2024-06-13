@@ -19,12 +19,12 @@
               <h4 class="m-0 pt-0 pb-2">Ajouter un événement</h4>
               </div>
 
-              <div class="d-flex justify-content-evenly pt-2">
-                <div>
-                  <%= f.association :child, collection: current_user.children, label_method: :first_name, label: 'Enfant' %>
+              <div class="d-flex justify-content-between pt-2">
+                <div class="w-25">
+                  <%= f.association :child, collection: current_user.children, label_method: :first_name, label: 'Enfant', input_html: { class: "w-100" } %>
                 </div>
-                <div>
-                  <%= f.association :contract, collection: current_user.parent_contracts, label_method: :display_nanny_first_name, label: "Nanny" %>
+                <div class="w-25">
+                  <%= f.association :contract, collection: current_user.parent_contracts, label_method: :display_nanny_first_name, label: "Nanny", input_html: { class: "w-100" } %>
                 </div>
               </div>
               <div class="d-flex justify-content-between">
@@ -45,7 +45,7 @@
                 <input type="radio" id="RTT" name="type" value="RTT" class="radio-input">
                 <label for="RTT" class="radio-label">RTT</label>
               </div>
-              <%= f.input :description, as: :text, label: 'Commentaires' %>
+              <%= f.input :description, as: :text, label: 'Commentaires', placeholder: "Détails de l'événement", input_html: { class: 'placeholder-italic' } %>
 
           <div class="modal-footer m-0 p-0">
             <div class="pt-0">
