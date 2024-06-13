@@ -1,6 +1,6 @@
-<div class="container main-page p-5">
+<div class="container main-page px-5">
 
-  <div class="header mb-5">
+  <div class="header mb-2">
     <h1>Absences du mois</h1>
   </div>
 
@@ -19,57 +19,71 @@
     <% end %>
   </div>
 
-  <div class="col-2">
-    <h3>
-    <%= @events.select {|event| event.type == "RTT"}.count %> RTT
-    </h3>
-    <h3>
-    <%= @events.select {|event| event.type == "Congés"}.count %> Congés
-    </h3>
-    <button type="button" class="mb-3 mt-0 btn btn-cta" data-bs-toggle="modal" data-bs-target="#createEventModal">
-      Nouvel événement
-    </button>
-    <!-- Modal -->
-    <div class="modal fade" id="createEventModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content form-container p-4 new-event-modal">
-            <%= simple_form_for(@new_event, url:  contract_payslip_creation_create_path(@contract), data:{ turbo: false }) do |f| %>
-              <div class="modal-header d-flex justify-content-center p-0">
-              <h4 class="m-0 pt-0 pb-2">Ajouter un événement</h4>
-              </div>
-
-
-              <div class="d-flex justify-content-between">
-                <div class="pl-4">
-                  <%= f.input :start_date, as: :string, label: 'Date', required: false, input_html: { data: { controller: "datepicker-with-time" } } %>
+  <div class="col-3 d-flex flex-column">
+    <div>
+      <h5>Absences du mois</h5>
+      <p class="mb-0">
+        • <%= @events.select {|event| event.type == "RTT"}.count %> RTT
+      </p>
+      <p>
+        • <%= @events.select {|event| event.type == "Congés"}.count %> Congés
+      </p>
+    </div>
+    <div class="d-flex flex-column justify-content-between h-100 mb-3">
+    <div>
+      <button type="button" class="mb-3 mt-0 btn btn-primary" data-bs-toggle="modal" data-bs-target="#createEventModal">
+        Nouvelle absence
+      </button>
+      <!-- Modal -->
+      <div class="modal fade" id="createEventModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content form-container p-4 new-event-modal">
+              <%= simple_form_for(@new_event, url:  contract_payslip_creation_create_path(@contract), data:{ turbo: false }) do |f| %>
+                <div class="modal-header d-flex justify-content-center p-0">
+                <h4 class="m-0 pt-0 pb-2">Ajouter un événement</h4>
                 </div>
-              </div>
-              <div class="contract-type d-flex justify-content-between my-2">
-                <input type="radio" id="Congés" name="type" value="Congés" class="radio-input">
-                <label for="Congés" class="radio-label">Congés</label>
-                <input type="radio" id="RTT" name="type" value="RTT" class="radio-input">
-                <label for="RTT" class="radio-label">RTT</label>
-              </div>
-              <%= f.input :description, as: :text, label: 'Commentaires' %>
 
-          <div class="modal-footer m-0 p-0">
-            <div class="pt-0">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              <%= f.submit "Enregistrer", class: 'btn btn-primary'%>
+
+                <div class="d-flex justify-content-between">
+                  <div class="pl-4">
+                    <%= f.input :start_date, as: :string, label: 'Date', required: false, input_html: { data: { controller: "datepicker-with-time" } } %>
+                  </div>
+                </div>
+                <div class="contract-type d-flex justify-content-between my-2">
+                  <input type="radio" id="Congés" name="type" value="Congés" class="radio-input">
+                  <label for="Congés" class="radio-label">Congés</label>
+                  <input type="radio" id="RTT" name="type" value="RTT" class="radio-input">
+                  <label for="RTT" class="radio-label">RTT</label>
+                </div>
+                <%= f.input :description, as: :text, label: 'Commentaires' %>
+
+            <div class="modal-footer m-0 p-0">
+              <div class="pt-0">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <%= f.submit "Enregistrer", class: 'btn btn-primary'%>
+              </div>
+              <% end %>
             </div>
-            <% end %>
           </div>
         </div>
       </div>
     </div>
 
-
-
-
     <div>
-      <%= link_to "Créer une nouvelle fiche de paie", contract_payslips_path(@contract, start_date: Date.today), data: {turbo_method: :post}, class: "btn btn-primary"%>
+      <% if @contract.has_payslip? %>
+        <div class="mb-2">
+          <%= link_to "Voir le dernier salaire", payslip_path(@contract.payslips.last), class: ""%>
+        </div>
+        <% unless Date.today.month == @contract.payslips.last.month_of_payslip.month && Date.today.year == @contract.payslips.last.month_of_payslip.year %>
+          <div>
+            <%= link_to "Déclarer un nouveau salaire", contract_payslips_path(@contract, start_date: Date.today), data: {turbo_method: :post}, class: "btn btn-cta mb-0"%>
+          </div>
+        <% end %>
+      <% else %>
+        <%= link_to "Déclarer un nouveau salaire", contract_payslips_path(@contract, start_date: Date.today), data: {turbo_method: :post}, class: "btn btn-cta mb-0"%>
+      <% end %>
     </div>
-
+    </div>
   </div>
 </div>
 

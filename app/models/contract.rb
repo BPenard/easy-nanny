@@ -79,7 +79,7 @@ class Contract < ApplicationRecord
   private
 
   def count_of_leave(event_types, payslip_period)
-    events.where(type: event_types, date: payslip_period[start_date]..payslip_period[end_date]).count
+    events.where(type: event_types, start_date: payslip_period[start_date]..payslip_period[end_date]).count
   end
 
   def business_days_in_month(payslip_period)
