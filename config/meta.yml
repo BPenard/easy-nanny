@@ -1,0 +1,5 @@
+meta_product_name: "Easy Nanny"
+ meta_title: "Easy Nanny - L'appli de la Easy Family"
+ meta_description: "Gérez facilement le contrat et la paie de votre nounou"
+ meta_image: "logo2.png" # should exist in `app/assets/images/`
+ twitter_account: "@product_twitter_account" # required for Twitter Cards
