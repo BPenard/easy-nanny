@@ -6,9 +6,9 @@
 }
 
 .top-navbar {
-  color: #642817 !important;
+  color: #642817;
   width: 100%;
-  height: 10vh;
+  height: 11vh;
   background-color: rgba(255, 255, 255, 0.4);
   text-decoration: none;
   display: flex;
@@ -17,6 +17,13 @@
   text-align: center;
   position: fixed;
   z-index: 3;
+  transition: background-color 300ms linear, color 200ms linear;
+}
+
+.top-navbar.scrolled {
+  background-color: $brown;
+  opacity: 0.9;
+  color: #ffffff;
 }
 
 .img-bg {
@@ -24,13 +31,13 @@
 }
 
 .nav-logo img {
-  width: 50px;
+  width: 45px;
   height: auto;
 }
 
 .bg-img-container {
   position: relative;
-  width: 100%;
+  width: 80%;
   height: 80vh;
   overflow: hidden;
   background-image: image-url("children-homepage.png");
@@ -60,8 +67,8 @@ h1 {
   font-size: 72px;
 }
 
-h3-home {
-  padding: 50px;
+.h3-home {
+  padding: 30px 0px 20px 0px;
 }
 
 .nav-connect {
@@ -73,13 +80,13 @@ h3-home {
 
 .nav-logo {
   position: absolute;
-  top: 10px;
+  top: 7px;
   left: 10px;
   z-index: 1;
 }
 
 .content-section {
-  padding: 20px 8px;
+  padding: 35px 8px 50px 8px;
   text-align: center;
   background-color: #ffffff;
   color: black;
@@ -87,7 +94,7 @@ h3-home {
 }
 
 .content-section2 {
-  padding: 20px 8px;
+  padding: 35px 8px 50px 8px;
   text-align: center;
   background-color: #f4e7dd;
   color: black;
@@ -110,15 +117,53 @@ h3-home {
   border-radius: 5px;
   text-decoration: none;
   color: #642817;
-  border-color: #ffffff;
-  padding: 6px;
-  margin-top: 6px;
-  margin-right: 6px;
+  background-color: #ffffff;
+  opacity: 1;
+  border-color: #642817;
+  border: solid 1px;
+  padding: 5px;
+  margin-top: 2px;
+  margin-right: 2px;
 }
 
 .nav-links:hover {
   color: #642817;
   background-color: #ffffff;
+  opacity: 1;
   border-color: #642817;
   border: solid 1px;
+}
+
+.footer {
+  background: #f4f4f4;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100px;
+  padding: 0px 25px;
+  color: #642817;
+  width: 100%;
+  height: 11vh;
+  background-color: rgba(255, 255, 255, 0.4);
+}
+.footer-links {
+  display: flex;
+  align-items: center;
+}
+.footer-links a {
+  color: $brown;
+  opacity: 0.6;
+  text-decoration: none;
+  font-size: 24px;
+  padding: 0px 10px;
+}
+.footer-links a:hover {
+  opacity: 1;
+}
+.footer .fa-heart {
+  color: #d23333;
+}
+
+.link-default-color {
+  color: inherit; /* Utilise la couleur par défaut du texte */
 }
