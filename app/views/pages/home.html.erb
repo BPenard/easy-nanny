@@ -1,45 +1,44 @@
   <div class="main-home">
-    <div class="top-navbar">
-      <%= link_to welcome_path, class: "nav-logo" do %>
-        <%= image_tag "logo2.png", alt: "Logo Easy Nanny" %>
-      <% end %>
-      <%= link_to "Qui sommes nous ?", welcome_path, class: "nav-link" %>
-      <%= link_to "F.A.Q", welcome_path, class: "nav-link" %>
-      <%= link_to "Mentions Légales", welcome_path, class: "nav-link" %>
-      <%= link_to "Presse", welcome_path, class: "nav-link" %>
-      <%= link_to "Me connecter", new_user_session_path, class: "nav-connect nav-links" %>
-    </div>
+<div data-controller="navbar" data-navbar-target="navbar" class="top-navbar navbar-fixed-top">
+  <%= link_to welcome_path, class: "nav-logo" do %>
+    <img src="/assets/logo2.png" alt="Logo Easy Nanny" width="20px" height="20px">
+  <% end %>
+  <%= link_to "Qui sommes nous ?", welcome_path, class: "nav-link" %>
+  <%= link_to "Nos offres", welcome_path, class: "nav-link" %>
+  <%= link_to "F.A.Q", welcome_path, class: "nav-link" %>
+  <%= link_to "Témoignages", welcome_path, class: "nav-link" %>
+  <%= link_to "Me connecter", new_user_session_path, class: "nav-connect nav-links" %>
+</div>
 
 
-    <div class="bg-img-container">
+    <div class="bg-img-container pt-5 mx-auto">
         <div class="container justify-content-center align-items-center banner-content">
             <h1 class="text-center text-banner">Easy Nanny</h1>
         </div>
     </div>
 
     <div class="content-section">
-        <h2>Votre garde d'enfants, simplifiée</h2>
-        <div class="container-home">
-          <div class="text1">
-            <%= image_tag "easy_happy.svg", alt: "Esprit libre", width: "200", height: "150" %>
-            <h3 class="h3-home">Prise en Main</h3>
-            <p> Préparez rapidement un contrat complet et adapté à votre situation. Il est robuste, conforme à la législation en vigueur et vérifié par des experts juridiques.</p>
-          </div>
-          <div class="text1">
-            <%= image_tag "run.svg", alt: "Facile d'utilisation", width: "200", height: "150" %>
-            <h3 class="h3-home">Tout en 1 clic</h3>
-            <p> Préparez rapidement un contrat complet et adapté à votre situation. Il est robuste, conforme à la législation en vigueur et vérifié par des experts juridiques.</p>
-          </div>
-          <div class="text1">
-            <%= image_tag "help.svg", alt: "Support", width: "200", height: "150" %>
-            <h3 class="h3-home">Assistance 24/24 7/7</h3>
-            <p> Préparez rapidement un contrat complet et adapté à votre situation. Il est robuste, conforme à la législation en vigueur et vérifié par des experts juridiques.</p>
-          </div>
+      <h2 class="pb-5">Votre garde d'enfants, simplifiée</h2>
+      <div class="container-home">
+        <div class="text1">
+          <%= image_tag "easy_happy.svg", alt: "Esprit libre", width: "200", height: "150" %>
+          <h3 class="h3-home">Prise en Main</h3>
+          <p> Préparez rapidement un contrat complet et adapté à votre situation. Il est robuste, conforme à la législation en vigueur et vérifié par des experts juridiques.</p>
         </div>
-
+        <div class="text1">
+          <%= image_tag "run.svg", alt: "Facile d'utilisation", width: "200", height: "150" %>
+          <h3 class="h3-home">Tout en 1 clic</h3>
+          <p> Préparez rapidement un contrat complet et adapté à votre situation. Il est robuste, conforme à la législation en vigueur et vérifié par des experts juridiques.</p>
+        </div>
+        <div class="text1">
+          <%= image_tag "help.svg", alt: "Support", width: "200", height: "150" %>
+          <h3 class="h3-home">Assistance 24/24 7/7</h3>
+          <p> Préparez rapidement un contrat complet et adapté à votre situation. Il est robuste, conforme à la législation en vigueur et vérifié par des experts juridiques.</p>
+        </div>
+      </div>
     </div>
-        <div class="content-section2">
-        <h2>Gestion de A à Z.</h2>
+      <div class="content-section2">
+        <h2 class="pb-5">Gestion de A à Z.</h2>
         <div class="container-home">
           <div class="text1">
             <%= image_tag "contrat.svg", alt: "Contrat" %>
@@ -61,7 +60,7 @@
     </div>
 
         <div class="content-section">
-        <h2>Echanges continus et sécurisés </h2>
+        <h2 class="pb-5">Echanges continus et sécurisés </h2>
         <div class="container-home">
           <div class="text1">
             <%= image_tag "calendar.svg", alt: "Agenda partagé", width: "200", height: "150" %>
