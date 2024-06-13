@@ -3,7 +3,6 @@
   <div class="header mb-5">
     <h1>Absences du mois</h1>
   </div>
-<%= link_to "Créer une nouvelle fiche de paie", contract_payslips_path(@contract, start_date: Date.today), data: {turbo_method: :post}, class: "btn btn-primary"%>
 
 
 <div class="row">
@@ -21,9 +20,13 @@
   </div>
 
   <div class="col-2">
+  <h3>
   <%= @events.select {|event| event.type == "RTT"}.count %> RTT
+  </h3>
+  <h3>
   <%= @events.select {|event| event.type == "Congés"}.count %> Congés
-  <%# @contracts.select { |contract| contract.start_date.nil? == false }.each do |contract| %>
+  </h3>
+  <%= link_to "Créer une nouvelle fiche de paie", contract_payslips_path(@contract, start_date: Date.today), data: {turbo_method: :post}, class: "btn btn-primary"%>
 
   </div>
 </div>
