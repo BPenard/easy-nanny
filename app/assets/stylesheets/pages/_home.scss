@@ -114,6 +114,10 @@ h1 {
   width: 25%;
 }
 
+.nav-link:hover {
+  color: $beige;
+}
+
 .nav-links {
   border-radius: 5px;
   text-decoration: none;
@@ -128,7 +132,7 @@ h1 {
 }
 
 .nav-links:hover {
-  color: #642817;
+  color: $beige;
   background-color: #ffffff;
   opacity: 1;
   border-color: #642817;
@@ -158,8 +162,10 @@ h1 {
   font-size: 24px;
   padding: 0px 10px;
 }
+
 .footer-links a:hover {
   opacity: 1;
+  color: $beige;
 }
 .footer .fa-heart {
   color: #d23333;
@@ -167,4 +173,8 @@ h1 {
 
 .link-default-color {
   color: inherit; /* Utilise la couleur par défaut du texte */
+}
+
+.link-default-color:hover {
+  color: $beige;
 }
