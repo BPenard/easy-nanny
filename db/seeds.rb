@@ -244,7 +244,7 @@ event9 = Event.new(
 event9.contract = first_contract
 event9.child = dustin
 
-event9.photo.attach(io: File.open("app/assets/images/children/balancoire_parc.png"), filename: "nancy.png", content_type: "image/png")
+event9.photo.attach(io: File.open("app/assets/images/balancoire_parc.png"), filename: "nancy.png", content_type: "image/png")
 event9.save!
 
 event10 = Event.new(
