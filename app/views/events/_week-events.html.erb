@@ -19,7 +19,7 @@
         </div>
       </div>
       <div class="description-type d-flex align-items-bottom justify-content-between">
-        <div>
+        <div class="col-12 col-md-10 col-lg-8">
           <%= event.description %>
         </div>
         <div class="event-type align-items-bottom">
@@ -34,41 +34,26 @@
 
     <div class="modal fade-modal-lg" id="<%= event.id %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-              <div class="modal-body">
                 <div class="form-container child-card d-none" data-bs-toggle="modal" data-bs-target="#<%= event.id %>" data-welcome-target="<%= event.start_date.strftime("%A").downcase %>Card">
-                  <div class="d-flex justify-content-start align-items-top">
-                    <div class="mr-5">
                       <% if event.photo.key.present? %>
-                        <%= cl_image_tag(event.photo.key, width: 300) %>
+                        <%= cl_image_tag event.photo.key, class: "img-fluid w-100 h-100" %>
                       <% else %>
-                        <%= image_tag("event_placeholder.png", width: 300) %>
+                        <%= image_tag "event_placeholder.png", class: "img-fluid w-100 h-100" %>
                       <% end %>
-                    </div>
-
-
-                    <div class="d-flex align-items-bottom justify-space-between">
-                      <div class="event-child-name w-100 ml-5">
-                        <%= event.start_date.strftime("%kh%M") %>
-                        <%= event.start_date.strftime("%B")%>
-                          <div class="event-child-photo">
-                            <% if event.child.photo.attached? %>
-                              <%= cl_image_tag event.child.photo.key, class: "avatar", alt: "user avatar", width: 40, height: 40, crop: :thumb, gravity: :face %>
-                            <% else %>
-                              <%= image_tag "avatar-homme.png", class: "avatar", alt: "user avatar" %>
-                            <% end %>
-                          </div>
-                          <div><%= event.description %></div>
-                      </div>
-                    </div>
-                  </div>
-                    <div class="modal-footer">
-                      <%# <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> %>
-                    </div>
               </div>
-              </div>
-            </div>
         </div>
     </div>
   <% end %>
 </div>
+
+
+
+                        <%# <%= event.start_date.strftime("%kh%M") %>
+                        <%# <%= event.start_date.strftime("%B")%>
+                          <%# <div class="event-child-photo"> %>
+                            <%# <% if event.child.photo.attached? %>
+                              <%# <%= cl_image_tag event.child.photo.key, class: "avatar", alt: "user avatar", width: 40, height: 40, crop: :thumb, gravity: :face %>
+                            <%# <% else %>
+                              <%# <%= image_tag "avatar-homme.png", class: "avatar", alt: "user avatar" %>
+                            <%# <% end %>
+                          <%# </div> %>
