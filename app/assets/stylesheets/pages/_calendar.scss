@@ -34,12 +34,13 @@
 }
 
 .event {
-  color: rgb(0, 0, 0);
+  color: white;
+  background-color: $brown ;
   font-size: 16px;
   // padding: 8px 24px;
   margin-bottom: 2px !important;
   border-radius: 4px;
-  background: transparent;
+  // background: transparent;
   border: 2px solid beige;
   transition: 0.3s ease;
   position: relative;
@@ -58,6 +59,23 @@
 }
 
 .meeting {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   margin-bottom: 2px !important;
+  color: white !important;
+  background-color: $brown ;
+  font-size: 16px;
+  // padding: 8px 24px;
+  margin-bottom: 0px !important;
+  border-radius: 4px;
+  // background: transparent;
+  border: 2px solid beige;
+  transition: 0.3s ease;
+  position: relative;
 
+}
+.meeting p {
+  color: white !important;
+  margin: 0 !important;
 }

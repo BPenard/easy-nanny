@@ -15,7 +15,7 @@ User.destroy_all
 puts 'Creating 2 Parents'
 
 john_doe = User.new(
-  first_name: "John",
+  first_name: "Bastien",
   last_name: "Doe",
   email: "john.doe@example.com",
   password: "password",
@@ -24,7 +24,7 @@ john_doe = User.new(
   phone_number: "06.03.23.47.23"
 )
 
-john_doe.photo.attach(io: File.open("app/assets/images/john-doe.jpg"), filename: "john.png", content_type: "image/png")
+john_doe.photo.attach(io: File.open("app/assets/images/bastien.jpg"), filename: "john.png", content_type: "image/png")
 
 john_doe.save!
 
@@ -38,21 +38,6 @@ jane_smith = User.new(
   phone_number: "06.04.26.37.93"
 )
 jane_smith.save!
-
-# parents = [john_doe, jane_smith]
-
-# parents.each do |user|
-#   new_user = User.new(
-#     first_name: user[:first_name],
-#     last_name: user[:last_name],
-#     email: user[:email],
-#     password: user[:password],
-#     address: user[:address],
-#     role: user[:role],
-#     phone_number: user[:phone_number]
-#   )
-#   new_user.save!
-# end
 
 puts 'Creating 2 Nannies'
 
@@ -80,18 +65,6 @@ iphigenie_doubtfire = User.new(
 iphigenie_doubtfire.photo.attach(io: File.open("app/assets/images/nannies/iphigenie.jpg"), filename: "iphigenie.png", content_type: "image/png")
 iphigenie_doubtfire.save!
 
-# nannies.each do |nanny|
-#   new_nanny = User.new(
-#     first_name: nanny[:first_name],
-#     last_name: nanny[:last_name],
-#     email: nanny[:email],
-#     password: nanny[:password],
-#     address: nanny[:address],
-#     role: nanny[:role],
-#     phone_number: nanny[:phone_number]
-#   )
-#   new_nanny.save!
-# end
 
 puts 'Creating 5 Children'
 
@@ -244,7 +217,7 @@ event6.save!
 
 event7 = Event.new(
   type: "Médicament",
-  start_date: "2024-06-14 02:00:00",
+  start_date: "2024-06-14 07:30:00",
   description: "Dustin a été malade toute la nuit"
 )
 
@@ -264,18 +237,20 @@ event8.save!
 
 event9 = Event.new(
   type: "Activité",
-  start_date: "2024-06-12 16:00:00",
+  start_date: "2024-06-14 16:00:00",
   description: "Sortie Parc - Dustin va mieux, il a fait de la balançoire"
 )
 
 event9.contract = first_contract
 event9.child = dustin
+
+event9.photo.attach(io: File.open("app/assets/images/children/balancoire_parc.png"), filename: "nancy.png", content_type: "image/png")
 event9.save!
 
 event10 = Event.new(
   type: "Médicament",
   start_date: "2024-06-12 14:00:00",
-  description: "On est allé chez le médecin, rien de grave au final"
+  description: "On est allés chez le médecin, rien de grave au final"
 )
 
 event10.contract = first_contract
